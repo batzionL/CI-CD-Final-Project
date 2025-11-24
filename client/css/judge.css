@@ -1,0 +1,108 @@
+body {
+    background-image: url('1205.jpg');
+    background-size: cover;
+    font-size: 16px;
+    font-family: 'Rubik', 'ploni', sans-serif;
+}
+
+.container {
+    display: inline-block;
+    background-color: #bbdfee;
+    cursor: pointer;
+}
+
+#logo-container {
+    text-align: center;
+    padding: 10px;
+    background-image: url('1205.jpg');
+    background-size: cover;
+}
+
+#logo-container img {
+    max-width: 300px;
+    height: auto;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -20px; /* Add margin to create space between button and table */
+}
+
+.btn-success {
+    background-color: #1e9ad3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 40px 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    align-items: center;
+    display: inline-block;
+    text-decoration: none; /* Ensure buttons are not underlined */
+}
+
+.btn-success:hover {
+    background-color: #555;
+}
+
+.btn-success:focus, .btn-success:active {
+    outline: none; /* Remove outline on focus */
+    background-color: #1e9ad3; /* Maintain original background color */
+    /* box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); Optional: add a shadow to indicate focus */
+}
+
+#tableContainer {
+    width: 50%;
+    margin: 0 auto; /* Center the table container */
+    margin-top: 10px; /* Add margin-top for spacing */
+    overflow-x: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #c6c7c8;
+    color: #fff;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+label.upload-label {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+label.upload-label:hover {
+    background-color: #0056b3;
+}

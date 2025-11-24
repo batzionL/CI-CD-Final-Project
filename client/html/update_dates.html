@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+    <title>עידכון תאריכי הגשה</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- load bootstrap via CDN -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
+    "></script> <!-- load jquery via CDN -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="/css/updateDates.css">
+    <script src="/js/update_dates.js"></script> <!-- load our javascript file -->
+</head>
+
+<body>
+    <div id="logo-container">
+        <a href="#" id="btnHome" onclick="home()">
+            <img src="https://yedion.jce.ac.il/info/images/CollegeLogo.png" alt="Logo">
+        </a>
+    </div>
+    <center>
+        <div id="dates">
+            <h1 id="subDates">תאריכי הגשה</h1>
+            </br>
+            <div class="input-container">
+                <label>דוח הצעה</label>
+                <br>
+                <input class="custom-label" type="date" id="proposal_id">
+                <input class="custom-pre" placeholder="תאריך נוכחי" name="previousDate" id="prevProp">
+            </div>
+
+            <div class="input-container">
+                <label>דוח אלפה</label><br>
+                <input class="custom-label" type="date" id="alfa_id">
+                <input class="custom-pre" placeholder="תאריך נוכחי" name="previousDate" id="prevAlfa">
+            </div>
+
+            <div class="input-container">
+                <label>דוח בטה</label><br>
+                <input class="custom-label" type="date" id="beta_id">
+                <input class="custom-pre" placeholder="תאריך נוכחי" name="previousDate" id="prevBeta">
+            </div>
+
+            <div class="input-container">
+                <label>דוח סופי</label><br>
+                <input class="custom-label" type="date" id="final_id">
+                <input class="custom-pre" placeholder="תאריך נוכחי" name="previousDate" id="prevFinal">
+            </div>
+
+            <div class="input-container">
+                <label>הצגת הפרויקט</label><br>
+                <input class="custom-label" type="date" id="presentation_id">
+                <input class="custom-pre" placeholder="תאריך נוכחי" name="previousDate" id="prevPresnt">
+            </div>
+        </div>
+        <!-- <button id="okBtn">אישור</button> -->
+        <div class="button-container">
+            <button type="submit" id="okBtn" class="btn btn-success" ;
+                style="align-items: center;">אישור</button>
+        </div>
+    </center>
+</body>
+
+</html>

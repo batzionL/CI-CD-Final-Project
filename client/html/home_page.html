@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- load bootstrap via CDN -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- load jquery via CDN -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="/js/home_page.js"></script> <!-- load our javascript file -->
+    <!-- <script src="/js/taskbar.js"></script> -->
+    <link rel="stylesheet" href="/css/styleHome.css">
+
+</head>
+
+<body>
+    <div id="logo-container">
+        <a href="#" id="btnHome" onclick="home()">
+            <img src="https://yedion.jce.ac.il/info/images/CollegeLogo.png" alt="Logo">
+        </a>
+    </div>
+    <div class="col-sm-6 col-sm-offset-3">
+
+        <!-- <h1 id="conference_title">Welcome</h1> -->
+
+        <!-- OUR FORM -->
+        <form id="id_project" name="id_login">
+
+            <h1 id="title"></h1>
+            <div id="id-list-group" class="form-group">
+                <label id="lbl_projects" for="project">רשימת הפרויקטים:</label>
+                <div class="custom-select">
+                    <select name="projects_name" id="projects_name"></select>
+                </div>
+            </div>
+
+            <!-- EXPLANATION -->
+            <div id="explanation-group" class="form-group">
+                <label id="explanation" for="name">הסבר</label>
+                <input type="text" class="form-control" name="id_explanation" id="id_explanation"
+                    placeholder="הסבר על הפרויקט יופיע כאן" disabled>
+                <!-- errors will go here -->
+            </div>
+
+            <!-- STATUS -->
+            <div id="status-group" class="form-group">
+                <label for="status">סטטוס</label>
+                <input type="text" class="form-control" name="status_id" id="status_id" placeholder="סטטוס הפרויקט"
+                    disabled>
+            </div>
+
+             <!-- NUM. OF STUDENTS -->
+             <div id="num-stds-group" class="form-group">
+                <label for="numStds">מס' סטודנטים</label>
+                <input type="text" class="form-control" name="num_stds_id" id="num_stds_id" placeholder="מס' סטודנטים השותפים לפרויקט זה"
+                    disabled>
+            </div>
+
+            <!-- </div> -->
+            <div class="button-container">
+                <button id="editProjbtn">עריכה</button>
+            </div>
+            <div class="button-container">
+                <button id="sendingARequest" type="submit" onclick="getIdModFromPro(event)">שליחת בקשה</button>
+            </div>
+            <div class="button-container">
+                <button id="deleteProjectBtn" style="display:none;">הפסקת פרויקט</button>
+            </div>
+            <div id="button-container">
+                <center><button id="monitoringTblBtn" style="display:none;">טבלת מעקב</button></center>
+            </div>
+            <!-- <button type="submit" class="btn btn-success" onclick="goToTracking()">למעקב אחר הפרוייקט<span
+                    class="fa fa-arrow-right"></span></button> -->
+        </form>
+    </div>
+
+</body>
+<!-- </center> -->
+
+</html>

@@ -1,0 +1,77 @@
+body {
+    background-image: url('1205.jpg');
+    background-size: cover;
+    font-size: 16px;
+    font-family: 'Rubik', 'ploni', sans-serif;
+}
+
+.container {
+    display: inline-block;
+    background-color: #bbdfee;
+    cursor: pointer;
+}
+
+#logo-container {
+    text-align: center;
+    padding: 10px;
+    background-image: url('1205.jpg');
+    background-size: cover;
+}
+
+#logo-container img {
+    max-width: 300px;
+    height: auto;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-success {
+    background-color: #1e9ad3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 40px 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    align-items: center;
+    display: inline-block;
+    text-decoration: none; /* Ensure buttons are not underlined */
+}
+
+.btn-success:hover {
+    background-color: #555;
+}
+.btn-success:focus, .btn-success:active {
+    outline: none; /* Remove outline on focus */
+    background-color: #1e9ad3; /* Maintain original background color */
+    /* box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); Optional: add a shadow to indicate focus */
+}
+.col-sm-6.col-sm-offset-3 {
+    
+    border-radius: 20px;
+    background-color: #bbdfee;
+    padding: 20px; /* Adding padding to create space between content and border */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    /* flex-direction: column; Align items vertically */
+    text-align: center; 
+  }
+  label {
+    width: 150px; /* Adjust the width as needed */
+    display: inline-block; /* Ensures the width property takes effect */
+  }
+  
+  select{
+    width: 90px; /* Adjust the width as needed */
+    height: 40px;
+    text-align: center;
+    border-radius: 50px;
+    border-color: #1e9ad3;
+  }

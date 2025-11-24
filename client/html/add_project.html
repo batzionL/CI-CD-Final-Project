@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+    <title>add project</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- load bootstrap via CDN -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
+    "></script> <!-- load jquery via CDN -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="/css/addProject.css">
+    <script src="/js/add_project.js"></script> <!-- load our javascript file -->
+</head>
+
+<body>
+    <div id="logo-container">
+        <a href="#" id="btnHome" onclick="home()">
+            <img src="https://yedion.jce.ac.il/info/images/CollegeLogo.png" alt="Logo">
+        </a>
+    </div>
+    <div class="rectangle">
+        <div class="col-sm-6 col-sm-offset-3">
+
+            <!-- OUR FORM -->
+            <form id="id_project" name="id_login" onsubmit="per_add_proj(event)">
+                <h1 id="title" ; style="text-align: center;">הוספת פרויקט</h1>
+                <!-- FIRST NAME -->
+                <div id="name-group" class="form-group">
+                    <label for="name">שם פרוייקט באנגלית:</label>
+                    <input type="text" class="form-control" name="pjt_eng_id" id="pjt_eng_id"
+                        placeholder="שם פרוייקט באנגלית" required>
+                    <!-- errors will go here -->
+                </div>
+
+                <!-- LAST NAME -->
+                <div id="name-group" class="form-group">
+                    <label for="name">שם פרוייקט בעברית:</label>
+                    <input type="text" class="form-control" name="pjt_hbw_id" id="pjt_hbw_id"
+                        placeholder="שם פרוייקט בעברית" required>
+                    <!-- errors will go here -->
+                </div>
+
+                <!-- OFFER -->
+                <div id="id-group" class="form-group">
+                    <label for="offer">מציע:</label>
+                    <input type="text" class="form-control" name="offer_id" id="offer_id" disabled>
+                    <!-- errors will go here -->
+                </div>
+
+                <!-- DETAILS -->
+                <div id="id-group" class="form-group">
+                    <label for="details">פרטים:</label>
+                    <textarea rows="6" type="text" class="form-control" name="details_id" id="details_id"
+                        placeholder="פרטי פרויקט" required></textarea>
+                    <!-- errors will go here -->
+                </div>
+
+                <!-- PROJECT TYPE -->
+                <div id="id-group" class="form-group">
+                    <label for="project_type">נושא:</label>
+                    <input type="text" class="form-control" name="project_type_id" id="project_type_id"
+                        placeholder="סוג פרוייקט" required>
+                    <!-- errors will go here -->
+                </div>
+
+                </br>
+                <div class="row">
+                    <!-- STATUS -->
+                    <div id="id-group" class="form-group">
+                        <label for="status">סטטוס:</label>
+                        <select name="status_id" id="status_id">
+                            <option value="open" id="open">פתוח</option>
+                            <option value="close" id="close">סגור</option>
+                        </select>
+                        <input type="hidden" class="form-control" name="input_status_id" id="input_status_id">
+                        <!-- errors will go here -->
+                    </div>
+
+                    <!-- SINGLE OR COUPLE -->
+                    <div id="id-group" class="form-group">
+                        <label for="single_or_couple">יחיד או זוג:</label>
+                        <select name="single_or_couple" id="single_or_couple_id">
+                            <option value="single" id="single">יחיד</option>
+                            <option value="couple" id="couple">זוג</option>
+                        </select>
+                        <input type="hidden" class="form-control" name="input_single_or_couple_id"
+                            id="input_single_or_couple_id">
+                        <!-- errors will go here -->
+                    </div>
+                </div>
+                <!-- EXTERNAL FACTOR -->
+                <div id="id-group" class="form-group">
+                    <label for="external_factor">גורם חיצוני:</label>
+                    <input type="text" class="form-control" name="external_factor_id" id="external_factor_id">
+                    <!-- errors will go here -->
+                </div>
+
+                <!-- EXTERNAL PARTY EMAIL -->
+                <div id="id-group" class="form-group">
+                    <label for="external_party_email">מייל של הגורם החיצוני:</label>
+                    <input type="text" class="form-control" name="external_party_email_id" id="external_party_email_id">
+                    <!-- errors will go here -->
+                </div>
+
+                <div class="row">
+                    <!-- Added on TIME -->
+                    <div id="id-group" class="form-group">
+                        <label for="offer" id="offer_add_time_id" ; style="width: 100%;">נוסף בתאריך:</label>
+                        <input type="text" class="form-control" name="add_time_id" id="add_time_id" ; style="width:95%;"
+                            disabled>
+                        <!-- errors will go here -->
+                    </div>
+
+                    <!-- Updated on TIME -->
+                    <div id="id_group_update" class="form-group">
+                        <label for="offer" id="offer_update_time_id" ; style="width: 95%;">עודכן בתאריך:</label>
+                        <input type="text" class="form-control" name="update_time_id" id="update_time_id" ;
+                            style="width:95%;" disabled>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button type="submit"  class="btn btn-success">אישור<span
+                            class="fa fa-arrow-right"; style="align-items: center;"></span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+    <title>Add coordinator</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
+    "></script> <!-- load jquery via CDN -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="/css/addCoor.css">
+    <script src="/js/add_coordinator.js"></script> <!-- load our javascript file -->
+</head>
+
+<body>
+    <div id="logo-container">
+        <a href="#" id="btnHome" onclick="home()">
+            <img src="https://yedion.jce.ac.il/info/images/CollegeLogo.png" alt="Logo">
+        </a>
+    </div>
+    <div class="col-sm-6 col-sm-offset-3">
+
+        <!-- OUR FORM -->
+        <form id="id_project" name="id_login">
+            <h1>שמירת רכז:</h1>
+
+            <!-- ID -->
+            <div id="name-group" class="form-group">
+                <label for="id_coo">בחר מהרשימה</label>
+                <br>
+                <select name="coordinators_name" id="coordinators_name"></select>
+            </div>
+            <button type="submit" onclick="if_there_coor(event)" class="btn btn-success">אישור<span
+                    class="fa fa-arrow-right"></span></button>
+        </form>
+
+    </div>
+</body>
+
+</html>

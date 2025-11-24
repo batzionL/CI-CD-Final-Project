@@ -1,0 +1,97 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Rubik', 'ploni', sans-serif;
+  font-size: 16px;
+  text-align: center;
+  background-image: url('1205.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* overflow: hidden; */
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-gap {
+   padding-top: 0;
+}
+
+.username-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.input-group .input-group-addon.eye-addon {
+  padding: 6px 12px;
+  background-color: #fff;
+  border-left: none;
+}
+
+.input-group-addon.eye-addon .fa-eye {
+  cursor: pointer;
+}
+
+.input-group .form-control {
+  border-right: none;
+}
+
+.input-group .form-control:focus {
+  box-shadow: none;
+}
+
+#logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#logo-container img {
+  max-width: 300px;
+  height: auto;
+}
+
+button, .btn-success {
+  background-color: #1e9ad3;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 40px 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  align-items: center;
+  display: inline-block;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+#projects_name {
+  border-radius: 50px;
+  border-color: #1e9ad3;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -50px;}
+
+#deleteProjectBtn {
+  margin-top: -50px; /* Adjust as needed */
+}
+#editProjbtn{
+  margin-top: 80px; /* Adjust as needed */
+
+}
+#monitoringTblBtn{
+  margin-top: -50px; /* Adjust as needed */
+
+}
