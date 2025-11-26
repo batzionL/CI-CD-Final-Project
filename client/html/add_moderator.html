@@ -8,12 +8,11 @@
     <title>Add moderator</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <!-- load bootstrap via CDN -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
-    "></script> <!-- load jquery via CDN -->
+    "></script> 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="/css/addModerator.css">
-    <script src="/js/add_moderator.js"></script> <!-- load our javascript file -->
+    <script src="/js/add_moderator.js"></script> 
     <script src="/js/login.js"></script>
 
 </head>
@@ -27,56 +26,46 @@
 
     <div class="col-sm-6 col-sm-offset-3">
 
-        <!-- <h1 id="conference_title">Welcome</h1> -->
-
         <!-- OUR FORM -->
-        <form id="id_mod_form" name="id_mod_form">
+            <form id="id_mod_form" name="id_mod_form" onsubmit="add_mod(event)">
             <h1 id="title_mod">הוספת מנחה:</h1>
+
             <!-- USERNAME -->
             <div id="name-group" class="form-group">
                 <label for="name">שם משתמש</label>
                 <input type="text" class="form-control" name="mod_username_id" id="mod_username_id"
                     required>
-                <!-- errors will go here -->
             </div>
 
             <!-- PASSWORD -->
             <div id="name-group" class="form-group">
                 <label for="subject">סיסמה</label>
                 <div style="position: relative;">
-                    <input type="password" class="form-control" name="mod_pswd_id" id="mod_pswd_id"
-                        disabled>
+                    <input type="password" class="form-control" name="mod_pswd_id" id="mod_pswd_id">
                     <i class="far fa-eye" id="chbx_shw_pwd_id" onclick="showPassword('mod')"
                         style="position: absolute; top: 50%; transform: translateY(-50%); left: 10px; cursor: pointer;"></i>
                 </div>
             </div>
-
-            <!-- FIRST NAME -->
             <div id="name-group" class="form-group">
                 <label for="firstName">שם פרטי</label>
                 <input type="text" class="form-control" name="firstName_mod_id" id="firstName_mod_id" required>
-                <!-- errors will go here -->
             </div>
 
-            <!-- LAST NAME -->
             <div id="name-group" class="form-group">
                 <label for="lastName">שם משפחה</label>
                 <input type="text" class="form-control" name="lastName_mod_id" id="lastName_mod_id" required>
-                <!-- errors will go here -->
             </div>
 
             <!-- ID -->
             <div id="name-group" class="form-group">
                 <label for="id_mod">ת.ז.</label>
                 <input type="text" class="form-control" name="id_mod" id="id_mod" required>
-                <!-- errors will go here -->
             </div>
 
             <!-- EMAIL -->
             <div id="id-group" class="form-group">
                 <label for="email_mod">כתובת מייל</label>
                 <input type="email" class="form-control" name="email_mod_id" id="email_mod_id" required>
-                <!-- errors will go here -->
             </div>
 
             <div class="button-container">
