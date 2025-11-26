@@ -215,7 +215,6 @@ Then sends the request function the ID of the moderator and the name of the proj
 function getIdModFromPro(e) {
     e.preventDefault()
     var id_pjt = localStorage.getItem('id_pjt');
-    // console.log('id_pjt - ', id_pjt)
     $.ajax({
         type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
         url: '/project/' + id_pjt,
@@ -230,22 +229,16 @@ function getIdModFromPro(e) {
 
 function sendRequest(id_mod, name) {
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',
         url: '/getemail/' + id_mod,
         contentType: 'application/json',
         success: function (result) {
-            // var email = 'batziona99@gmail.com'
-            // console.log(result)
-            // alert('before')
             var subject = 'בקשת פרוייקט';
             var body1 = 'שלום וברכה,';
             var body2 = "אשמח לשמוע פרטים אודות הפרוייקט:" + '\n' + name;
             var fullBody = body1 + "\n" + body2;
             var mailtoUrl = 'mailto:' + result + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(fullBody);
-            // console.log('mailtoUrl - ', mailtoUrl)
-            // alert('mailtoUrl')
             window.open(mailtoUrl, '_self');
-            // alert('after window.open')
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
@@ -254,59 +247,15 @@ function sendRequest(id_mod, name) {
 }
 
 
-// function getIdModFromPro(e) {
-//     e.preventDefault()
-//     var id_pjt = localStorage.getItem('id_pjt');
-//     // console.log('id_pjt - ', id_pjt)
-//     $.ajax({
-//         type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-//         url: '/project/' + id_pjt,
-//         success: function (result) {
-//             console.log('result - ', result)
-//             // sendRequest(result[0].mod_id, result[0].name_hebrew);
-//             $.ajax({
-//                 type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-//                 url: '/getemail/' + result[0].mod_id,
-//                 contentType: 'application/json',
-//                 success: function (result) {
-//                     // var email = 'batziona99@gmail.com'
-//                     // console.log(result)
-//                     // alert('before')
-//                     var subject = 'בקשת פרוייקט';
-//                     var body1 = 'שלום וברכה,';
-//                     var body2 = "אשמח לשמוע פרטים אודות הפרוייקט:" + '\n' + result[0].name_hebrew;
-//                     var fullBody = body1 + "\n" + body2;
-//                     var mailtoUrl = 'mailto:' + result[0].mod_email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(fullBody);
-//                     console.log('mailtoUrl - ', mailtoUrl)
-//                     alert('mailtoUrl')
-//                     window.open(mailtoUrl, '_self');
-//                     alert('after window.open')
-//                 },
-//                 error: function (jqXhr, textStatus, errorThrown) {
-//                     console.log(errorThrown);
-//                 }
-//             });
-//         },
-//         error: function (jqXhr, textStatus, errorThrown) {
-//             console.log(errorThrown);
-//         }
-//     });
-// }
-
-
-
 function monitoringTbl(id) {
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET', 
         url: '/project/' + id,
         success: function (result) {
-            // console.log(result[0])
-            // alert('result')
             localStorage.setItem("secData", "notJudge")
             localStorage.setItem("idOfSubRpt", result[0].sub_rpt_id);
             localStorage.setItem("idOfPjt", id);
             window.location.href = "/Monitoring";
-            // sendRequest(result[0].mod_id, result[0].name_hebrew);
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
@@ -315,9 +264,7 @@ function monitoringTbl(id) {
 }
 
 function stoppedProject(id) {
-    // dltGrdsDoc(id);
     updateSdtIdRpt(id);
-    // dltSubDoc(id)
     $.ajax({
         type: 'PUT',
         url: "/stpPjt/" + id,
@@ -328,8 +275,6 @@ function stoppedProject(id) {
         success: function (data) {
             console.log('stopped')
             document.getElementById("status_id").innerHTML = "הופסק";
-
-            // location.reload();
         },
         error: function (err) {
             console.log("err", err);
@@ -340,10 +285,9 @@ function stoppedProject(id) {
 
 function updateSdtIdRpt(id) {
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',
         url: '/getSdtbyPjtId/' + id,
         success: function (result) {
-            // console.log(result[0])
             if (result[0] != undefined) {
                 dltRpt(result[0].id_prop_rpt, "prop");
                 dltRpt(result[0].id_alfa_rpt, "alfa");
@@ -364,7 +308,6 @@ function dltRpt(rpt, nameRpt) {
             url: "/deleteRpt/" + rpt + '/' + nameRpt,
             type: 'DELETE',
             success: function (data) {
-                // location.reload();
             },
             error: function (err) {
                 console.log("err", err);
