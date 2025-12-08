@@ -1,0 +1,126 @@
+html, body {
+    background-image: url('1205.jpg');
+    background-size: cover;    /* font-family: sans-serif; */
+      font-size: 16px;
+      /* font-family: 'lato', sans-serif; */
+      font-family: 'Rubik', 'ploni', sans-serif;
+    /* background-image: url('1205.jpg');
+    background: linear-gradient(90deg, );
+    /* max-height: 100vh; Changed max-height to viewport height (vh) */
+    /* overflow-y: auto; Changed overflow-y to hidden */ 
+}
+#logo-container {
+    text-align: center;
+    padding: 10px;
+    background-image: url('1205.jpg');
+    background-size: cover; 
+  }
+  #logo-container img {
+    max-width: 300px; /* Adjust the max-width as needed */
+    height: auto;
+  }
+.container {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Changed min-height to viewport height (vh) */
+
+}
+h1{
+    margin-top: 0%;
+    color: #000;
+}
+.button-container {
+    display: flex;
+    justify-content: center; /* Horizontally center the button */
+    align-items: center; /* Vertically center the button */
+}
+
+.btn-success {
+  background-color: #d33232;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  align-items: center;
+  display: inline-block;
+}
+
+.btn-success:hover {
+    background-color: #555;
+}
+
+.input-container {
+    border-radius: 2em;
+    background-color: white;
+    margin-bottom: 10px;
+    -moz-box-shadow: 0 0 10px grey;
+    -webkit-box-shadow: 0 0 10px grey;
+    box-shadow: 0 0 20px grey;
+    padding: 10px; /* Added padding for better spacing */
+    position: relative;
+    margin-bottom: 20px;
+    width: 50%;
+}
+
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 20px; /* Added for spacing between input containers */
+}
+
+input[type="date"].custom-label {
+    background-color: #1e9ad3;
+    padding: 10px;
+    position: relative; /* Changed from absolute to relative */
+    font-family: "Roboto Mono", monospace;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    width: 30%; /* Added width */
+}
+
+input.custom-label-placeholder {
+    background-color: #1e9ad3; /* Match the background color of the date input */
+    padding: 15px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    font-family: "Roboto Mono", monospace;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.custom-pre{
+    background-color: #ffffff;
+    padding: 10px;
+    position: relative; /* Changed from absolute to relative */
+    font-size: 16px;
+    border-radius: 10px;
+    width: 30%; /* Added width */
+    text-align: center;
+}

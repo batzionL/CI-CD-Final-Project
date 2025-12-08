@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="hw">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+  <link rel="stylesheet" href="/css/reports.css">
+  <script src="/js/template.js"></script>
+</head>
+
+<body>
+  <div id="logo-container">
+    <a href="#" id="btnHome" onclick="home()">
+      <img src="https://yedion.jce.ac.il/info/images/CollegeLogo.png" alt="Logo">
+    </a>
+  </div>
+  <h1 id="rptsH1">דוחות</h1>
+  <section>
+    <div class="card">
+      <div class="title">
+        <i class="fa fa-icon"></i>
+        <h2>דוח סופי</h2>
+      </div>
+      <form class="uploadForm" enctype="multipart/form-data">
+      <label for="finalFileInput" class="custom-file-upload">בחר קובץ</label>
+      <input id="finalFileInput" type="file" name="final_rpt" accept=".pdf" />
+        <button type="button" id="0011" onclick="final_upload(this.id)">העלאה</button>
+      </form>
+      <form id="downloadForm">
+        <button type="button" id="0011" onclick="downloadFile(this.id, 'final_rpt')">הורדה</button>
+      </form>
+    </div>
+  
+    <div class="card">
+      <div class="title">
+        <i class="fa fa-icon"></i>
+        <h2>דוח בטה</h2>
+      </div>
+      <form class="uploadForm" enctype="multipart/form-data">
+        <label for="betaFileInput" class="custom-file-upload">בחר קובץ</label>
+      <input id="betaFileInput" type="file" name="beta_rpt" accept=".pdf" />
+        <button type="button" id="0010" onclick="beta_upload(this.id)">העלאה</button>
+      </form>
+      <form id="downloadForm">
+        <button type="button" id="0010" onclick="downloadFile(this.id, 'beta_rpt')">הורדה</button>
+      </form>
+    </div>
+  
+    <div class="card">
+      <div class="title">
+        <i class="fa fa-icon"></i>
+        <h2>דוח אלפא</h2>
+      </div>
+      <form class="uploadForm" enctype="multipart/form-data">
+        <label for="alfaFileInput" class="custom-file-upload">בחר קובץ</label>
+        <input id="alfaFileInput" type="file" name="alfa_rpt" accept=".pdf" />
+        <button type="button" id="0001" onclick="alfa_upload(this.id)">העלאה</button>
+      </form>
+      <form id="downloadForm">
+        <button type="button" id="0001" onclick="downloadFile(this.id, 'alfa_rpt')">הורדה</button>
+      </form>
+    </div>
+  
+    <div class="card">
+      <div class="title">
+        <i class="fa fa-icon"></i>
+        <h2 style="text-align: center;">דוח הצעה</h2>
+      </div>
+      <form class="uploadForm" enctype="multipart/form-data">
+        <label for="propFileInput" class="custom-file-upload">בחר קובץ</label>
+        <input id="propFileInput" type="file" name="proposal_rpt" accept=".pdf" />
+        <button type="button" id="0000" onclick="proposal_upload(this.id)">העלאה</button>
+      </form>
+      <form id="downloadForm">
+        <button type="button" id="0000" onclick="downloadFile(this.id ,'proposal_rpt')">הורדה</button>
+      </form>
+    </div>
+  </section>
+
+<!-- 
+
+    <div class="card">
+      <div class="title">
+        <i class="fa fa-icon"></i>
+        <h2 style="text-align: center;">דוח הצעה</h2>
+      </div>
+      <form class="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="propFileInput" name="proposal_rpt" accept=".pdf" />
+        <button type="button" id="0000" onclick="proposal_upload(this.id)">העלאה</button>
+      </form>
+      <form id="downloadForm">
+        <button type="button" id="0000" onclick="downloadFile(this.id ,'proposal_rpt')">הורדה</button>
+      </form>
+    </div>
+
+
+    
+
+    <div class="card">
+      <div class="title">
+        <i class="fa fa-icon"></i>
+        <h2>דוח אלפא</h2>
+      </div>
+      <form class="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="alfaFileInput" name="alfa_rpt" accept=".pdf" />
+        <button type="button" id="0001" onclick="alfa_upload(this.id)">העלאה</button>
+      </form>
+      <form id="downloadForm">
+        <button type="button" id="0001" onclick="downloadFile(this.id, 'alfa_rpt')">הורדה</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="title">
+        <i class="fa fa-icon"></i>
+        <h2>דוח בטה</h2>
+      </div>
+      <form class="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="betaFileInput" name="beta_rpt" accept=".pdf" />
+        <button type="button" id="0010" onclick="beta_upload(this.id)">העלאה</button>
+      </form>
+      <form id="downloadForm">
+        <button type="button" id="0010" onclick="downloadFile(this.id, 'beta_rpt')">הורדה</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="title">
+        <i class="fa fa-icon"></i>
+        <h2>דוח סופי</h2>
+      </div>
+      <form class="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="finalFileInput" name="final_rpt" accept=".pdf" />
+        
+        <button type="button" id="0011" onclick="final_upload(this.id)">העלאה</button>
+      </form>
+      <form id="downloadForm">
+        <button type="button" id="0011" onclick="downloadFile(this.id, 'final_rpt')">הורדה</button>
+      </form>
+    </div>
+
+  </section> -->
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="hw" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+  <link rel="stylesheet" href="/css/reports.css">
+  <script src="/js/template.js"></script>
+</head>
+  <body>
+    <div id="logo-container">
+      <a href="#" id="btnHome" onclick="home()">
+          <img src="https://yedion.jce.ac.il/info/images/CollegeLogo.png" alt="Logo">
+      </a>
+  </div>
+    <h1>דוחות</h1>
+    <section>
+      <div class="card">
+        <div class="title">
+          <i class="fa fa-icon"></i>
+          <h2>דוח סופי</h2>
+        </div>
+        <form id="uploadForm" enctype="multipart/form-data">
+          <input type="file" id="finalFileInput" name="final_rpt" accept=".pdf" />
+          <button type="button" id="0011" onclick="final_upload(this.id)">העלאה</button>
+        </form>
+        <form id="downloadForm">
+          <button type="button" id="0011" onclick="downloadFile(this.id, 'final_rpt')">הורדה</button>
+        </form>
+      </div>
+    
+      <div class="card">
+        <div class="title">
+          <i class="fa fa-icon"></i>
+          <h2>דוח בטה</h2>
+        </div>
+        <form id="uploadForm" enctype="multipart/form-data">
+          <input type="file" id="betaFileInput" name="beta_rpt" accept=".pdf" />
+          <button type="button" id="0010" onclick="beta_upload(this.id)">העלאה</button>
+        </form>
+        <form id="downloadForm">
+          <button type="button" id="0010" onclick="downloadFile(this.id, 'beta_rpt')">הורדה</button>
+        </form>
+      </div>
+    
+      <div class="card">
+        <div class="title">
+          <i class="fa fa-icon"></i>
+          <h2>דוח אלפא</h2>
+        </div>
+        <form id="uploadForm" enctype="multipart/form-data">
+          <input type="file" id="alfaFileInput" name="alfa_rpt" accept=".pdf" />
+          <button type="button" id="0001" onclick="alfa_upload(this.id)">העלאה</button>
+        </form>
+        <form id="downloadForm">
+          <button type="button" id="0001" onclick="downloadFile(this.id, 'alfa_rpt')">הורדה</button>
+        </form>
+      </div>
+    
+      <div class="card">
+        <div class="title">
+          <i class="fa fa-icon"></i>
+          <h2 style="text-align: center;">דוח הצעה</h2>
+        </div>
+        <form id="uploadForm" enctype="multipart/form-data">
+          
+          <input type="file" id="propFileInput" name="proposal_rpt" accept=".pdf" />
+          <button type="button" id="propUpload" onclick="proposal_upload(this.id)">העלאה</button>
+        </form>
+        <form id="downloadForm">
+          <button type="button" id="0000" onclick="downloadFile(this.id ,'proposal_rpt')">הורדה</button>
+        </form>
+      </div>
+    </section>
+    
+    </body>
+
+
+</html> -->

@@ -1,0 +1,113 @@
+body {
+  background-image: url('1205.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;  /* Prevent the image from repeating */
+  background-position: center center;  /* Center the image */
+  background-attachment: fixed;  /* Fix the image in the viewport */
+  font-size: 16px;
+  font-family: 'Rubik', 'ploni', sans-serif;
+}
+
+.container {
+  display: inline-block;
+  background-color: #bbdfee;
+  cursor: pointer;
+}
+
+#logo-container {
+  text-align: center;
+  padding: 10px;
+  background-image: url('1205.jpg');
+  background-size: cover;
+}
+
+#logo-container img {
+  max-width: 300px; /* Adjust the max-width as needed */
+  height: auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Horizontally center the button */
+  align-items: center; /* Vertically center the button */
+}
+
+.btn-success {
+  background-color: #1e9ad3;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 40px 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  align-items: center;
+  display: inline-block;
+}
+
+.btn-success:hover {
+  background-color: #555;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Add this style to create a line through the eye icon when password is visible */
+.password-visible::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: black;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.col-sm-6.col-sm-offset-3 {
+  border-radius: 40px;
+  background-color: #bbdfee;
+  padding: 20px; /* Adding padding to create space between content and border */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  flex-direction: column; /* Align items vertically */
+  /* text-align: center; Center text content */
+}
+
+#single_or_couple_id, #status_id {
+  border-radius: 50px;
+  border-color: #1e9ad3;
+}
+
+label[for="status"], label[for="single_or_couple"] {
+  width: 90px; /* Adjust the width as needed */
+  display: inline-block; /* Ensures the width property takes effect */
+}
+
+select#status_id, select#single_or_couple_id {
+  width: 90px; /* Adjust the width as needed */
+  height: 40px;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  margin-right: 0px;
+}
+
+.form-group {
+  margin-right: 5px; /* Adjust as needed */
+  flex-grow: 1; /* Allow the form group to grow to fill available space */
+  width: 100%; /* Make the input field fill the width of its container */
+}
+
+.form-control {
+  width: 100%; /* Make the input field fill the width of its container */
+}
+
+#id_project {
+  width: 70%;
+}
