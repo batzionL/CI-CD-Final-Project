@@ -13,15 +13,17 @@ services:
     build: ./server
     container_name: backend
     environment:
-      - DATABASE_URL=mongodb://mongo:27017/finalproject
-      - PORT=3000
+      DATABASE_URL: mongodb://mongo:27017/finalproject
+      PORT: 3000
     depends_on:
       - mongo
     expose:
       - "3000"
 
   nginx:
-    build: ./nginx
+    build:
+      context: ./        # כל project_ci_cd הוא context
+      dockerfile: ./nginx/Dockerfile
     container_name: nginx
     ports:
       - "80:80"
