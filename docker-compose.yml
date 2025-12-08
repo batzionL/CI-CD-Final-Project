@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./server
+    container_name: backend
+    environment:
+      - DATABASE_URL=mongodb://mongo:27017/finalproject
+      - PORT=3000
+    depends_on:
+      - mongo
+    expose:
+      - "3000"
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
