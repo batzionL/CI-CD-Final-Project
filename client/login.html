@@ -23,17 +23,15 @@
         <form class="login" onsubmit="sub(event)">
           <div class="login__field">
             <i class="login__icon fas fa-user"></i>
-            <input type="text" class="login__input" id="id_username" placeholder="שם משתמש">
+            <input type="text" class="login__input" id="id_username" placeholder="Username">
           </div>
           <div class="login__field">
             <i class="login__icon fas fa-lock"></i>
-            <input type="password" class="login__input" name="id_password" id="id_password" placeholder="סיסמה" required>
+            <input type="password" class="login__input" name="id_password" id="id_password" placeholder="Password" required>
             <i class="far fa-eye" id="chbx_shw_pwd_id" onclick="showPassword('login')" style="position: absolute; top: 50%; transform: translateY(-50%); left: 70px"></i>
-            <!-- <span class="psw"><a href="#" class="reset" style="color: red;" onclick="resetPassword()">שכחת סיסמה?</a></span>
-            <span class="psw"><a href="#" class="first" style="color: red;" onclick="firsTime()">כניסה ראשונית</a></span> -->
           </div>
           <button class="button login__submit" type="submit">
-            <span class="button__text">כניסה</span>
+            <span class="button__text">Login</span>
           </button>
         </form>
       </div>

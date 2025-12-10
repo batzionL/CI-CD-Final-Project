@@ -26,20 +26,19 @@
 
     <div class="col-sm-6 col-sm-offset-3">
 
-        <!-- OUR FORM -->
             <form id="id_mod_form" name="id_mod_form" onsubmit="add_mod(event)">
-            <h1 id="title_mod">הוספת מנחה:</h1>
+            <h1 id="title_mod"></h1>
 
             <!-- USERNAME -->
             <div id="name-group" class="form-group">
-                <label for="name">שם משתמש</label>
+                <label for="name">Username</label>
                 <input type="text" class="form-control" name="mod_username_id" id="mod_username_id"
                     required>
             </div>
 
             <!-- PASSWORD -->
             <div id="name-group" class="form-group">
-                <label for="subject">סיסמה</label>
+                <label for="subject">Passsword</label>
                 <div style="position: relative;">
                     <input type="password" class="form-control" name="mod_pswd_id" id="mod_pswd_id">
                     <i class="far fa-eye" id="chbx_shw_pwd_id" onclick="showPassword('mod')"
@@ -47,39 +46,37 @@
                 </div>
             </div>
             <div id="name-group" class="form-group">
-                <label for="firstName">שם פרטי</label>
+                <label for="firstName">First Name</label>
                 <input type="text" class="form-control" name="firstName_mod_id" id="firstName_mod_id" required>
             </div>
 
             <div id="name-group" class="form-group">
-                <label for="lastName">שם משפחה</label>
+                <label for="lastName">Last Name</label>
                 <input type="text" class="form-control" name="lastName_mod_id" id="lastName_mod_id" required>
             </div>
 
             <!-- ID -->
             <div id="name-group" class="form-group">
-                <label for="id_mod">ת.ז.</label>
+                <label for="id_mod">ID</label>
                 <input type="text" class="form-control" name="id_mod" id="id_mod" required>
             </div>
 
             <!-- EMAIL -->
             <div id="id-group" class="form-group">
-                <label for="email_mod">כתובת מייל</label>
+                <label for="email_mod">Email Address</label>
                 <input type="email" class="form-control" name="email_mod_id" id="email_mod_id" required>
             </div>
 
             <div class="button-container">
                 <button type="submit" onclick="add_mod()" class="btn btn-success" ;
-                    style="align-items: center;">אישור</button>
+                    style="align-items: center;">Submit</button>
             </div>
 
             <div class="button-container">
                 <button onclick="add_coor()" class="btn btn-success" ;
-                    style="align-items: center;">שמירת מנחה כרכז</button>
+                    style="align-items: center;">Save moderator as a coordinator</button>
             </div>
         </form>
-
     </div>
 </body>
-
 </html>

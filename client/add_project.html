@@ -4,12 +4,11 @@
 <head>
     <title>add project</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-    <!-- load bootstrap via CDN -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
-    "></script> <!-- load jquery via CDN -->
+    "></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="/css/addProject.css">
-    <script src="/js/add_project.js"></script> <!-- load our javascript file -->
+    <script src="/js/add_project.js"></script>
 </head>
 
 <body>
@@ -21,105 +20,83 @@
     <div class="rectangle">
         <div class="col-sm-6 col-sm-offset-3">
 
-            <!-- OUR FORM -->
             <form id="id_project" name="id_login" onsubmit="per_add_proj(event)">
-                <h1 id="title" ; style="text-align: center;">הוספת פרויקט</h1>
-                <!-- FIRST NAME -->
+                <h1 id="title" ; style="text-align: center;">Add Project</h1>
                 <div id="name-group" class="form-group">
-                    <label for="name">שם פרוייקט באנגלית:</label>
+                    <label for="name">Project Name (en):</label>
                     <input type="text" class="form-control" name="pjt_eng_id" id="pjt_eng_id"
-                        placeholder="שם פרוייקט באנגלית" required>
-                    <!-- errors will go here -->
+                        placeholder="Project Name (en)" required>
                 </div>
 
-                <!-- LAST NAME -->
                 <div id="name-group" class="form-group">
-                    <label for="name">שם פרוייקט בעברית:</label>
+                    <label for="name">Project Name (he):</label>
                     <input type="text" class="form-control" name="pjt_hbw_id" id="pjt_hbw_id"
-                        placeholder="שם פרוייקט בעברית" required>
-                    <!-- errors will go here -->
+                        placeholder="Project Name (he)" required>
                 </div>
 
-                <!-- OFFER -->
                 <div id="id-group" class="form-group">
-                    <label for="offer">מציע:</label>
+                    <label for="offer">Offer:</label>
                     <input type="text" class="form-control" name="offer_id" id="offer_id" disabled>
-                    <!-- errors will go here -->
                 </div>
 
-                <!-- DETAILS -->
                 <div id="id-group" class="form-group">
-                    <label for="details">פרטים:</label>
+                    <label for="details">Details:</label>
                     <textarea rows="6" type="text" class="form-control" name="details_id" id="details_id"
-                        placeholder="פרטי פרויקט" required></textarea>
-                    <!-- errors will go here -->
+                        placeholder="Project Details" required></textarea>
                 </div>
 
-                <!-- PROJECT TYPE -->
                 <div id="id-group" class="form-group">
-                    <label for="project_type">נושא:</label>
+                    <label for="project_type">Subject:</label>
                     <input type="text" class="form-control" name="project_type_id" id="project_type_id"
-                        placeholder="סוג פרוייקט" required>
-                    <!-- errors will go here -->
+                        placeholder="Project type" required>
                 </div>
 
                 </br>
                 <div class="row">
-                    <!-- STATUS -->
                     <div id="id-group" class="form-group">
-                        <label for="status">סטטוס:</label>
+                        <label for="status">Status:</label>
                         <select name="status_id" id="status_id">
-                            <option value="open" id="open">פתוח</option>
-                            <option value="close" id="close">סגור</option>
+                            <option value="open" id="open">Open</option>
+                            <option value="close" id="close">Close</option>
                         </select>
                         <input type="hidden" class="form-control" name="input_status_id" id="input_status_id">
-                        <!-- errors will go here -->
                     </div>
 
-                    <!-- SINGLE OR COUPLE -->
                     <div id="id-group" class="form-group">
-                        <label for="single_or_couple">יחיד או זוג:</label>
+                        <label for="single_or_couple">Couple or single:</label>
                         <select name="single_or_couple" id="single_or_couple_id">
-                            <option value="single" id="single">יחיד</option>
-                            <option value="couple" id="couple">זוג</option>
+                            <option value="single" id="single">Single</option>
+                            <option value="couple" id="couple">Couple</option>
                         </select>
                         <input type="hidden" class="form-control" name="input_single_or_couple_id"
                             id="input_single_or_couple_id">
-                        <!-- errors will go here -->
                     </div>
                 </div>
-                <!-- EXTERNAL FACTOR -->
                 <div id="id-group" class="form-group">
-                    <label for="external_factor">גורם חיצוני:</label>
+                    <label for="external_factor">External factor:</label>
                     <input type="text" class="form-control" name="external_factor_id" id="external_factor_id">
-                    <!-- errors will go here -->
                 </div>
 
-                <!-- EXTERNAL PARTY EMAIL -->
                 <div id="id-group" class="form-group">
-                    <label for="external_party_email">מייל של הגורם החיצוני:</label>
+                    <label for="external_party_email">Email of external factor:</label>
                     <input type="text" class="form-control" name="external_party_email_id" id="external_party_email_id">
-                    <!-- errors will go here -->
                 </div>
 
                 <div class="row">
-                    <!-- Added on TIME -->
                     <div id="id-group" class="form-group">
-                        <label for="offer" id="offer_add_time_id" ; style="width: 100%;">נוסף בתאריך:</label>
+                        <label for="offer" id="offer_add_time_id" ; style="width: 100%;">Added on:</label>
                         <input type="text" class="form-control" name="add_time_id" id="add_time_id" ; style="width:95%;"
                             disabled>
-                        <!-- errors will go here -->
                     </div>
 
-                    <!-- Updated on TIME -->
                     <div id="id_group_update" class="form-group">
-                        <label for="offer" id="offer_update_time_id" ; style="width: 95%;">עודכן בתאריך:</label>
+                        <label for="offer" id="offer_update_time_id" ; style="width: 95%;">Updated on:</label>
                         <input type="text" class="form-control" name="update_time_id" id="update_time_id" ;
                             style="width:95%;" disabled>
                     </div>
                 </div>
                 <div class="button-container">
-                    <button type="submit"  class="btn btn-success">אישור<span
+                    <button type="submit"  class="btn btn-success">Submit<span
                             class="fa fa-arrow-right"; style="align-items: center;"></span></button>
                 </div>
             </form>

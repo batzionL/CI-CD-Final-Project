@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!doctype html>
 <html lang="he" dir="rtl">
 
@@ -6,12 +5,11 @@
     <title>Add student</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <!-- load bootstrap via CDN -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
-    "></script> <!-- load jquery via CDN -->
+    "></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="/css/addStudent.css">
-    <script src="/js/add_student.js"></script> <!-- load our javascript file -->
+    <script src="/js/add_student.js"></script>
     <script src="/js/Login.js"></script>
 </head>
 
@@ -24,20 +22,16 @@
 
     <div class="col-sm-6 col-sm-offset-3">
 
-        <!-- OUR FORM -->
         <form id="id_project" name="id_login" onsubmit="add_studen(event)">
-            <h1>הוספת סטודנט:</h1>
-            <!-- USERNAME -->
+            <h1>Add Student</h1>
             <div id="name-group" class="form-group">
-                <label for="name">שם משתמש</label>
+                <label for="name">Username</label>
                 <input type="text" class="form-control" name="sdt_username_id" id="sdt_username_id"
-                    placeholder="שם משתמש" required>
-                <!-- errors will go here -->
+                    placeholder="Username" required>
             </div>
 
-            <!-- PASSWORD -->
             <div id="name-group" class="form-group">
-                <label for="password">סיסמה</label>
+                <label for="password">Password</label>
                 <div style="position: relative;">
                     <input type="password" class="form-control" name="sdt_pswd_id" id="sdt_pswd_id"
                         required>
@@ -47,45 +41,36 @@
             </div>
 
 
-            <!-- FIRST NAME -->
             <div id="name-group" class="form-group">
-                <label for="firstName">שם פרטי</label>
+                <label for="firstName">First name</label>
                 <input type="text" class="form-control" name="firstName_sdt_id" id="firstName_sdt_id"
-                    placeholder="שם פרטי" required>
-                <!-- errors will go here -->
+                    placeholder="First name" required>
             </div>
 
-            <!-- LAST NAME -->
             <div id="name-group" class="form-group">
-                <label for="lastName">שם משפחה</label>
+                <label for="lastName">Last name</label>
                 <input type="text" class="form-control" name="lastName_sdt_id" id="lastName_sdt_id"
-                    placeholder="שם משפחה" required>
-                <!-- errors will go here -->
+                    placeholder="Last name" required>
             </div>
 
-            <!-- ID -->
             <div id="name-group" class="form-group">
-                <label for="id_mod">ת.ז.</label>
-                <input type="text" class="form-control" name="id_sdt" id="id_sdt" placeholder="ת.ז." required>
-                <!-- errors will go here -->
+                <label for="id_mod">ID</label>
+                <input type="text" class="form-control" name="id_sdt" id="id_sdt" placeholder="ID" required>
             </div>
 
-            <!-- EMAIL -->
             <div id="id-group" class="form-group">
-                <label for="email_mod">כתובת מייל:</label>
-                <input type="email" class="form-control" name="email_sdt_id" id="email_sdt_id" placeholder="כתובת מייל"
+                <label for="email_mod">Email address:</label>
+                <input type="email" class="form-control" name="email_sdt_id" id="email_sdt_id" placeholder="Email address"
                     required>
-                <!-- errors will go here -->
             </div>
 
             <div class="button-container">
                 <button type="submit" class="btn btn-success" ;
-                    style="align-items: center;">אישור</button>
+                    style="align-items: center;">Submit</button>
             </div>
         </form>
 
     </div>
-    <!-- </center> -->
 </body>
 
 </html>

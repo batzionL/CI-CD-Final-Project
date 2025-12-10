@@ -5,10 +5,10 @@
     <title>Add coordinator</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
-    "></script> <!-- load jquery via CDN -->
+    "></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="/css/addCoor.css">
-    <script src="/js/add_coordinator.js"></script> <!-- load our javascript file -->
+    <script src="/js/add_coordinator.js"></script>
 </head>
 
 <body>
@@ -21,15 +21,15 @@
 
         <!-- OUR FORM -->
         <form id="id_project" name="id_login">
-            <h1>שמירת רכז:</h1>
+            <h1>Save coordinator:</h1>
 
             <!-- ID -->
             <div id="name-group" class="form-group">
-                <label for="id_coo">בחר מהרשימה</label>
+                <label for="id_coo">Select from list</label>
                 <br>
                 <select name="coordinators_name" id="coordinators_name"></select>
             </div>
-            <button type="submit" onclick="if_there_coor(event)" class="btn btn-success">אישור<span
+            <button type="submit" onclick="if_there_coor(event)" class="btn btn-success">Submit<span
                     class="fa fa-arrow-right"></span></button>
         </form>
 

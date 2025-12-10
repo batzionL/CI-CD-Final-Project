@@ -4,11 +4,9 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-    <!-- load bootstrap via CDN -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- load jquery via CDN -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="/js/home_page.js"></script> <!-- load our javascript file -->
-    <!-- <script src="/js/taskbar.js"></script> -->
+    <script src="/js/home_page.js"></script>
     <link rel="stylesheet" href="/css/styleHome.css">
 
 </head>
@@ -21,50 +19,46 @@
     </div>
     <div class="col-sm-6 col-sm-offset-3">
 
-        <!-- OUR FORM -->
         <form id="id_project" name="id_login">
 
             <h1 id="title"></h1>
             <div id="id-list-group" class="form-group">
-                <label id="lbl_projects" for="project">רשימת הפרויקטים:</label>
+                <label id="lbl_projects" for="project">Projects list:</label>
                 <div class="custom-select">
                     <select name="projects_name" id="projects_name"></select>
                 </div>
             </div>
 
-            <!-- EXPLANATION -->
             <div id="explanation-group" class="form-group">
-                <label id="explanation" for="name">הסבר</label>
+                <label id="explanation" for="name">Explanation</label>
                 <input type="text" class="form-control" name="id_explanation" id="id_explanation"
-                    placeholder="הסבר על הפרויקט יופיע כאן" disabled>
+                    placeholder="An explanation of the project will appear here." disabled>
             </div>
 
-            <!-- STATUS -->
             <div id="status-group" class="form-group">
-                <label for="status">סטטוס</label>
-                <input type="text" class="form-control" name="status_id" id="status_id" placeholder="סטטוס הפרויקט"
+                <label for="status">Status</label>
+                <input type="text" class="form-control" name="status_id" id="status_id" placeholder="Project status"
                     disabled>
             </div>
 
-             <!-- NUM. OF STUDENTS -->
              <div id="num-stds-group" class="form-group">
-                <label for="numStds">מס' סטודנטים</label>
-                <input type="text" class="form-control" name="num_stds_id" id="num_stds_id" placeholder="מס' סטודנטים השותפים לפרויקט זה"
+                <label for="numStds">Number of students</label>
+                <input type="text" class="form-control" name="num_stds_id" id="num_stds_id" placeholder="Number of students participating in this project"
                     disabled>
             </div>
 
             <!-- </div> -->
             <div class="button-container">
-                <button id="editProjbtn">עריכה</button>
+                <button id="editProjbtn">Edit</button>
             </div>
             <div class="button-container">
-                <button id="sendingARequest" type="submit" onclick="getIdModFromPro(event)">שליחת בקשה</button>
+                <button id="sendingARequest" type="submit" onclick="getIdModFromPro(event)">Sending a request</button>
             </div>
             <div class="button-container">
-                <button id="deleteProjectBtn" style="display:none;">הפסקת פרויקט</button>
+                <button id="deleteProjectBtn" style="display:none;">Project termination</button>
             </div>
             <div id="button-container">
-                <center><button id="monitoringTblBtn" style="display:none;">טבלת מעקב</button></center>
+                <center><button id="monitoringTblBtn" style="display:none;">Monitoring table</button></center>
             </div>
         </form>
     </div>
