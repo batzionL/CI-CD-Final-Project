@@ -14,10 +14,6 @@ var ProposalReportSchema = new mongoose.Schema({
         type: String
     },
 
-    // propos_rpt_DOS: {     //Date Of Submission
-    //     type: String
-    // }
-
 }, { timestamps: true });
 ProposalReportSchema.plugin(id_validator);
 

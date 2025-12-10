@@ -1,6 +1,6 @@
 jQuery(function ($) {
     var name = localStorage.getItem('name')
-    document.getElementById("title").innerHTML = "שלום " + name;
+    document.getElementById("title").innerHTML = "Hello " + name;
 
     var project = document.createElement("option")
 
@@ -34,7 +34,7 @@ jQuery(function ($) {
             monitoringTblBtn.style.display = "block";
             var id = localStorage.getItem("modID");
             $.ajax({
-                type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+                type: 'GET',
                 url: '/getModeratorProjects/' + id,
                 success: function (result) {
                     index = 0;
@@ -50,7 +50,7 @@ jQuery(function ($) {
 
     }
 
-    projects_name.addEventListener("change", function () {     //choose the id of project that selected
+    projects_name.addEventListener("change", function () {    
         var select = document.getElementById('projects_name');
         var explanation = document.getElementById('id_explanation');
         var status = document.getElementById('status_id');
@@ -65,15 +65,15 @@ jQuery(function ($) {
             else {
                 if (option.selected) {
                     $.ajax({
-                        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+                        type: 'GET',
                         url: '/project/' + option.id,
                         success: function (result) {
                             explanation.value = result[0].details;
 
                             if (result[0].status == 'open') {
-                                status.value = 'פתוח';
+                                status.value = 'Open';
                             } else {
-                                status.value = 'סגור';
+                                status.value = 'Closed';
                                 btnSendingARequest.style.visibility = "hidden";
                             }
 
@@ -81,9 +81,9 @@ jQuery(function ($) {
                                 btnSendingARequest.style.visibility = "visible";
                             }
                             if (result[0].single_or_couple == 'single') {
-                                numOfStds.value = 'יחיד';
+                                numOfStds.value = 'Single';
                             } else {
-                                numOfStds.value = 'זוגי';
+                                numOfStds.value = 'Couple';
                             }
 
                         },

@@ -1,9 +1,9 @@
 function add_mod(e) {
-    e.preventDefault(); // מונע את שליחת הטופס הרגילה
+    e.preventDefault();
 
     var id = document.getElementById("id_mod").value;
     if (id.length != 9) {
-        alert("מס' ת.ז. לא תקין");
+        alert("Invalid id number");
         return;
     }
 
@@ -39,7 +39,7 @@ function checkIfModExist(id) {
             url: '/moderator/' + id,
             success: function (result) {
                 if (result[0] != undefined) {
-                    alert('מנחה זה כבר קיים');
+                    alert('This moderator already exists.');
                     resolve(true);
                 } else {
                     resolve(false);

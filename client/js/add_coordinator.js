@@ -48,7 +48,7 @@ function if_there_coor(e) {
                 add_coord('');
             }
             else {
-                var userResponse = confirm("בלחיצה על אישור הינך מחליף/ה את הרכז/ת הקיים/ת");
+                var userResponse = confirm("By clicking OK, you are replacing the existing coordinator.");
 
                 if (userResponse) {
                     dltOldCoor();

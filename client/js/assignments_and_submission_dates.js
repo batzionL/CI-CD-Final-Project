@@ -3,7 +3,6 @@ jQuery(function ($) {
     localStorage.setItem("data", data);
 
     var addProjBtn = document.getElementById("addProjectBtn");
-    // var monitoringTblBtn = document.getElementById('monitoringTblBtn');
     var addStudentBtn = document.getElementById("addStudentBtn")
     var addModeratorBtn = document.getElementById("addModeratorBtn")
     var updateDatesBtn = document.getElementById("updateDatesBtn");
@@ -12,7 +11,6 @@ jQuery(function ($) {
     var projectsListBtn = document.getElementById('projectsListBtn');
     var judgesAndPjctsBtn = document.getElementById('judgesAndPjctsBtn');
 
-    // console.log("data", data)
     if (data === "student") {
         monitoringTblBtn.textContent  = "טבלת מעקב";
         addProjBtn.style.display = "none";
@@ -21,7 +19,7 @@ jQuery(function ($) {
         updateDatesBtn.style.display = "none";
         allProjectsListBtnBtn.style.display = "none";
         judgesAndPjctsBtn.style.display = "none";
-        projectsListBtn.textContent = 'לכל הפרויקטים';
+        projectsListBtn.textContent = 'Projects List';
     }
 
     else if (data === "moderator") {
@@ -42,7 +40,6 @@ function addProject() {
     localStorage.setItem("isEdit", 'false');
     var name = localStorage.getItem("name");
     localStorage.setItem("name", name);
-    // console.log('name - ass - ', name);
     window.location.href = "/addproject";
 }
 
@@ -61,17 +58,10 @@ function monitoringTbl() {
     }
 
 
-    // var sdt = localStorage.getItem("stdID")
-    // localStorage.setItem('stdID', sdt);
-    // console.log(' id - ', id);
-    // alert('id');
-    // if (data === "student") {
     window.location.href = "/Monitoring";
-    // }
 }
 
 function projectsList() {
-    // alert('in projectsList')
     var modID = localStorage.getItem("modID");
     localStorage.setItem("modID", modID);
     var name = localStorage.getItem("name")
@@ -97,8 +87,6 @@ function updateDates() {
 }
 
 function allProjectsList() {
-    // var modID = localStorage.getItem("modID");
-    // alert('in allprojectsList')
     localStorage.setItem("All", "all");
     var name = localStorage.getItem("name")
     localStorage.setItem("name", name);
@@ -118,10 +106,9 @@ function getDates() {
     var present = document.getElementById("presentation_id");
 
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',
         url: '/getdates',
         success: function (result) {
-            // console.log(result)
             $.each(result, function (index, value) {
                 if ("propRpt" in value) {
                     prop.innerHTML = value.propRpt;

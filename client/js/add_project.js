@@ -8,17 +8,17 @@ jQuery(async function ($) {
     getFullDate();
 
     if (isEdit == 'true') {
-        $('#title').html("עדכון פרויקט:")
+        $('#title').html("Update project:")
         await receiving_the_information();
     }
 
     else if (isEdit == 'false') {
         document.getElementById('offer_id').value = nameMod;
-        var update_or_add = document.getElementById('id_group_update')      //לבדוק מחר אם זה נותן את התאריך של של היום הנוכחי או את התאריך של ההוספה - לא תקין
+        var update_or_add = document.getElementById('id_group_update')    
         update_or_add.style.visibility = "hidden";
 
         localStorage.clear()
-        $('#title').html("הוספת פרויקט:")
+        $('#title').html("Add new project:")
     }
 });
 
@@ -206,16 +206,16 @@ async function add_project_id_to_students(id_pjt, single_or_couple) {
     getSdtName(id_sdt, '', '');
     var isExist = localStorage.getItem('isExist')
     if (id_sdt == null || id_sdt == "" || isExist == 'no') {
-        alert("חובה להכניס תז תקין של הסטודנט");
+        alert("You must enter a valid student ID");
     } else {
         await createGraedeDoc(id_pjt, id_sdt, 1, single_or_couple);    //יצירת מסמך של ציון ושמירתו אצל הסטודנט
     }
     if (single_or_couple == 'couple') {
-        let id_second_sdt = prompt("הכנס תז של הסטודנט הנוסף שעושה פרוייקט זה", "");
+        let id_second_sdt = prompt("Enter the ID of the additional student working on this project", "");
         getSdtName(id_second_sdt, '', '');
         var isExist = localStorage.getItem('isExist')
         if (id_second_sdt == null || id_second_sdt == "" || isExist == 'no') {
-            alert("חובה להכניס תז תקין של הסטודנט");
+            alert("You must enter a valid student ID");
         } else {
             localStorage.setItem("id_second_sdt", id_second_sdt)
             localStorage.setItem("num_for_sec_sdt", 2)
@@ -356,8 +356,8 @@ async function save_sub_id_doc(id_pjt, id_sub_doc, outputSingleOrCouple) {
 async function createActivePjts(idPjt, outputSingleOrCouple) {
     if (outputSingleOrCouple == 'single') {
         $.ajax({
-            type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
-            url: '/crtActvPjts', // the url where we want to POST
+            type: 'POST',
+            url: '/crtActvPjts',
             contentType: 'application/json',
             data: JSON.stringify({
                 "idPjt": idPjt,
@@ -383,8 +383,8 @@ async function createActivePjts(idPjt, outputSingleOrCouple) {
     }
     else {
         $.ajax({
-            type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
-            url: '/crtActvPjts', // the url where we want to POST
+            type: 'POST', 
+            url: '/crtActvPjts',
             contentType: 'application/json',
             data: JSON.stringify({
                 "idPjt": idPjt,
@@ -413,7 +413,7 @@ async function createActivePjts(idPjt, outputSingleOrCouple) {
 
 async function getSdtName(idSdt, idPjt, num) {
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET', 
         url: '/student/' + idSdt,
         success: async function (result) {
             if (idPjt == '') {
@@ -439,9 +439,8 @@ async function getSdtName(idSdt, idPjt, num) {
 }
 
 async function updateActvPjts(name, idPjt, num) {
-    // alert(name)
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'PUT', 
         url: '/updateActvPjts/' + idPjt,
         contentType: 'application/json',
         data: JSON.stringify({

@@ -45,7 +45,6 @@ var ProjectSchema = new mongoose.Schema({
 
     update_time: {
         type: String,
-        // required: true,
         trim: true
     },
 
@@ -57,26 +56,20 @@ var ProjectSchema = new mongoose.Schema({
 
     external_factor: {
         type: String,
-        // required: true,
         trim: true
     },
 
     external_party_email: {
         type: String,
-        // required: true,
         trim: true
     },
 
     mod_id: {
         type: String
-        // required: true,
-        // trim: true
     },
 
     sub_rpt_id: {
         type: String
-        // required: true,
-        // trim: true
     },
 
     Grades_arr: [{

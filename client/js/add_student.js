@@ -1,19 +1,8 @@
-// jQuery(function ($) {
-//     const random7DigitNumber = getRandom7DigitNumber();
-//     document.getElementById("sdt_pswd_id").value = random7DigitNumber;
-// })
-
-// function getRandom7DigitNumber() {
-//     const min = 100000;
-//     const max = 999999;
-//     return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
-
 function add_studen(e) {
     e.preventDefault();
     var id = document.getElementById("id_sdt").value;
     if (id.length != 9) { 
-        alert("מס' ת.ז. לא תקין");
+        alert("Invalid id number");
         return;
     }
 
@@ -50,7 +39,7 @@ function checkIfSdudentExist(id) {
             url: '/student/' + id,
             success: function (result) {
                 if (result[0] != undefined) {
-                    alert('סטודנט זה כבר קיים');
+                    alert('This student already exists.');
                     resolve(true);
                 } else {
                     resolve(false);

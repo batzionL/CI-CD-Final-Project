@@ -63,7 +63,7 @@ function setDates(prevProp, prevAlfa, prevBeta, prevFinal, prevPresnt){
     }
 
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'PUT', 
         url: '/updateSubDates',
         contentType: 'application/json',
         data: JSON.stringify({
@@ -74,7 +74,7 @@ function setDates(prevProp, prevAlfa, prevBeta, prevFinal, prevPresnt){
             "presentation": presentation
         }),
         success: function (result) {
-            alert("התאריך/ים נשמר/ו בהצלחה");
+            alert("Dates updated successfully");
             location.href = "/assigAndsubDats";
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -91,28 +91,22 @@ function getDates() {
     var present = document.getElementById("presentation_id_date");
 
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',
         url: '/getdates',
         success: function (result) {
-            // console.log(result)
-            var current = new Date()//.getTime();
+            var current = new Date()
             let dd = String(current.getDate()).padStart(2, '0');
-            let mm = String(current.getMonth() + 1).padStart(2, '0'); // January is 0!
+            let mm = String(current.getMonth() + 1).padStart(2, '0');
             let yyyy = current.getFullYear();
             current = yyyy + '-' + mm + '-' + dd;
-// console.log(current)
             $.each(result, function (index, value) {
                 if ("propRpt" in value) {
                     if (current <= value.propRpt) {
                         prop.innerHTML = value.propRpt;
                     }
                     else {
-                        // console.log('getdates - prop - past date')
-                        // document.getElementsByName("propFileDis")[0].disabled = true;
                         document.getElementById("propUploadForm").style.visibility = 'hidden';
-                        // element.style.visibility = "visible";
-                        // document.getElementById("proposal").disabled = true;
-                        prop.innerHTML = "תאריך הגשה עבר";
+                        prop.innerHTML = "The submission date has passed";
                     }
                 }
                 if ("alfaRpt" in value) {
@@ -121,12 +115,7 @@ function getDates() {
                     }
                     else {
                         document.getElementById("alfaUploadForm").style.visibility = 'hidden';
-                        // document.getElementsByName("alfaFileDis")[0].disabled = true;
-                        // let buttons = document.querySelectorAll('#alfa');
-                        // buttons.forEach(button => {
-                        //     button.disabled = true;
-                        // });
-                        alfa.innerHTML = "תאריך הגשה עבר";
+                        alfa.innerHTML = "The submission date has passed";
                     }
                 }
                 if ("betaRpt" in value) {
@@ -135,9 +124,7 @@ function getDates() {
                     }
                     else {
                         document.getElementById("betaUploadForm").style.visibility = 'hidden';
-                        // document.getElementById("beta").disabled = true;
-                        // document.getElementsByName("betaFileDis")[0].disabled = true;
-                        beta.innerHTML = "תאריך הגשה עבר";
+                        beta.innerHTML = "The submission date has passed";
                     }
                 }
                 if ("finalRpt" in value) {
@@ -146,9 +133,7 @@ function getDates() {
                     }
                     else {
                         document.getElementById("finalUploadForm").style.visibility = 'hidden';
-                        // document.getElementById("final").disabled = true;
-                        // document.getElementsByName("finalFileDis")[0].disabled = true;
-                        final.innerHTML = "תאריך הגשה עבר";
+                        final.innerHTML = "The submission date has passed";
                     }
                 }
                 if ("presentation" in value) {

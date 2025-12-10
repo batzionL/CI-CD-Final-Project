@@ -2,14 +2,13 @@
 <html lang="he" dir="rtl">
 
 <head>
-    <title>עידכון תאריכי הגשה</title>
+    <title>Update submission date</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-    <!-- load bootstrap via CDN -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
-    "></script> <!-- load jquery via CDN -->
+    "></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="/css/updateDates.css">
-    <script src="/js/update_dates.js"></script> <!-- load our javascript file -->
+    <script src="/js/update_dates.js"></script>
 </head>
 
 <body>
@@ -20,43 +19,42 @@
     </div>
     <center>
         <div id="dates">
-            <h1 id="subDates">תאריכי הגשה</h1>
+            <h1 id="subDates">Submission dates</h1>
             </br>
             <div class="input-container">
-                <label>דוח הצעה</label>
+                <label>Proposal report</label>
                 <br>
                 <input class="custom-label" type="date" id="proposal_id">
-                <input class="custom-pre" placeholder="תאריך נוכחי" name="previousDate" id="prevProp">
+                <input class="custom-pre" placeholder="Current date" name="previousDate" id="prevProp">
             </div>
 
             <div class="input-container">
-                <label>דוח אלפה</label><br>
+                <label>Alpha Report</label><br>
                 <input class="custom-label" type="date" id="alfa_id">
-                <input class="custom-pre" placeholder="תאריך נוכחי" name="previousDate" id="prevAlfa">
+                <input class="custom-pre" placeholder="Current date" name="previousDate" id="prevAlfa">
             </div>
 
             <div class="input-container">
-                <label>דוח בטה</label><br>
+                <label>Beta report</label><br>
                 <input class="custom-label" type="date" id="beta_id">
-                <input class="custom-pre" placeholder="תאריך נוכחי" name="previousDate" id="prevBeta">
+                <input class="custom-pre" placeholder="Current date" name="previousDate" id="prevBeta">
             </div>
 
             <div class="input-container">
-                <label>דוח סופי</label><br>
+                <label>Final report</label><br>
                 <input class="custom-label" type="date" id="final_id">
-                <input class="custom-pre" placeholder="תאריך נוכחי" name="previousDate" id="prevFinal">
+                <input class="custom-pre" placeholder="Current date" name="previousDate" id="prevFinal">
             </div>
 
             <div class="input-container">
-                <label>הצגת הפרויקט</label><br>
+                <label>Project presentation</label><br>
                 <input class="custom-label" type="date" id="presentation_id">
-                <input class="custom-pre" placeholder="תאריך נוכחי" name="previousDate" id="prevPresnt">
+                <input class="custom-pre" placeholder="Current date" name="previousDate" id="prevPresnt">
             </div>
         </div>
-        <!-- <button id="okBtn">אישור</button> -->
         <div class="button-container">
             <button type="submit" id="okBtn" class="btn btn-success" ;
-                style="align-items: center;">אישור</button>
+                style="align-items: center;">Submit</button>
         </div>
     </center>
 </body>

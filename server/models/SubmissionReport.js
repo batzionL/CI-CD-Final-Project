@@ -5,9 +5,7 @@ var SubmissionReportSchema = new mongoose.Schema({
     id_project: {
         type: String,
     },
-    // id_judge: {
-    //     type: String
-    // },
+    
     prop_rpt_sub:{
         type: String,
     },

@@ -37,19 +37,16 @@ var ModeratorSchema = new mongoose.Schema({
         trim: true
     },
 
-    //List of projects the moderator in
     projects_arr: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'project'
     }],
 
-    //List of projects judged by the moderator
     judge_project_arr: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'project'
     }],
 
-    //A list of grade documents that are linked to the project that the supervisor is judging
     Grades_arr_judge: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'grades'

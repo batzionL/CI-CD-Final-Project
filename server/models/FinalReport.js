@@ -14,10 +14,6 @@ var FinalReportSchema = new mongoose.Schema({
         type: String
     },
 
-    // final_rpt_DOS: {     //Date Of Submission
-    //     type: String
-    // }
-
 }, { timestamps: true });
 FinalReportSchema.plugin(id_validator);
 

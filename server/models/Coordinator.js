@@ -8,22 +8,6 @@ var CoordinatorSchema = new mongoose.Schema({
         trim: true
     }
 
-    // Proposal_rpt: {
-    //     type: String
-    // },
-
-    // alfa_rpt: {
-    //     type: String
-    // },
-
-    // beta_rpt: {
-    //     type: String
-    // },
-
-    // finall_rpt: {
-    //     type: String
-    // }
-
 }, { timestamps: true }
 );
 CoordinatorSchema.plugin(id_validator);

@@ -12,28 +12,23 @@ var finalRptSumGrd = 0;
 var finalPjtSumGrd = 0;
 
 jQuery(function ($) {
-    // console.log('data - ', data)
-    // var csvRpt = document.getElementById('csvId')
     var checkelm = document.getElementById("rptsH1");
     if (checkelm === null) {
-        // console.log('in null')
         document.getElementById('lblStatusProp').innerHTML = "";
         document.getElementById('lblStatusAlfa').innerHTML = "";
         document.getElementById('lblStatusBeta').innerHTML = "";
         document.getElementById('lblStatusFinal').innerHTML = "";
 
-        //הצגת דוחות שללא ציון
         var elements = document.getElementsByName("nonGrade");
         for (var i = 0; i < elements.length; i++) {
-            elements[i].innerHTML = "ללא ציון";
+            elements[i].innerHTML = "Without grade";
         }
 
         if (data === "moderator" || data === "coordinator") {
-            document.getElementById("upload_file").innerHTML = "הורדת מסמך";
-            document.getElementById("weighted_score").innerHTML = "נתינת ציון";
+            document.getElementById("upload_file").innerHTML = "Upload Report";
+            document.getElementById("weighted_score").innerHTML = "Giving a grade";
 
             if (secData === "notJudge") {
-                // console.log('mod not judge')
 
                 var elements = document.querySelectorAll('.uploadForm');
                 elements.forEach(function (element) {
@@ -48,29 +43,22 @@ jQuery(function ($) {
             }
 
             else if (secData === 'judge') {
-                // console.log('mod judge')
                 var hiddenElements = $("[style='display: none;']");
-                // Show all hidden elements
                 hiddenElements.each(function () {
-                    $(this).css("display", "inherit"); // Change display style to make them visible
+                    $(this).css("display", "inherit");
                 });
                 $(".uploadForm").hide();
 
                 var elements = document.querySelectorAll('[name="subRptTbl"]');
-                // Loop through each element and hide it
                 elements.forEach(function (element) {
                     element.style.display = 'none';
                 });
-
-                // showDetailsForMod('jdg')
             }
         }
 
 
         if (data === "student") {
-            // console.log('datattt - ', data)
             var elements = document.querySelectorAll('[name="subRptTbl"]');
-            // Loop through each element and hide it
             elements.forEach(function (element) {
                 element.style.display = 'none';
             });
@@ -89,14 +77,12 @@ jQuery(function ($) {
             elements.forEach(function (element) {
                 element.style.visibility = "visible";
             });
-            // csvRpt.style.display = "none";
         }
     }
 
 });
 
 function getIdPjt() {
-    // console.log('id_pjt - ', idOfPjt)
     var idPjt;
     $.ajax({
         type: 'GET',
@@ -109,15 +95,14 @@ function getIdPjt() {
                 }
             }
 
-            var prop = document.getElementById('propUpload');//.id = 'idPjt';
+            var prop = document.getElementById('propUpload');
             prop.id = idPjt;
-            var alfa = document.getElementById('alfaUpload');//.id = 'idPjt';
+            var alfa = document.getElementById('alfaUpload');
             alfa.id = idPjt;
-            var beta = document.getElementById('betaUpload');//.id = 'idPjt';
+            var beta = document.getElementById('betaUpload');
             beta.id = idPjt;
-            var final = document.getElementById('finalUpload');//.id = 'idPjt';
+            var final = document.getElementById('finalUpload');
             final.id = idPjt;
-            // console.log('id_pjt - ', prop.id)
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
@@ -126,20 +111,16 @@ function getIdPjt() {
 }
 
 function proposal_upload(id) {
-    // console.log('id - ', id)
     if (data === "student") {
-        // id = id_sdt;
         checkIfStudentUploadedRpt(id_sdt, 'prop');
     }
     if (id.startsWith("00")) {
         checkUploadTnplt('prop')
     }
-    const formData = new FormData();  // Create a new FormData object
-    // Assuming 'fileInput' is the id of file input element
+    const formData = new FormData(); 
     const file = document.getElementById('propFileInput').files[0];
     const fileName = 'proposal_rpt-' + id + '.pdf';
-    // Append the file to the formData
-    formData.append('proposal_rpt', file);//, fileName);
+    formData.append('proposal_rpt', file);
     $.ajax({
         url: '/uploadProposalRep/' + id + '/' + fileName,
         type: 'POST',
@@ -147,7 +128,7 @@ function proposal_upload(id) {
         contentType: false,
         processData: false,
         success: function (data) {
-            alert('הקובץ הועלה בהצלחה!')
+            alert('The file was uploaded successfully!')
             if (!data.propos_rpt_id.startsWith("00")) {
                 updateSdtIdRpt(id_sdt, data._id, 'prop', false);
             }
@@ -157,17 +138,14 @@ function proposal_upload(id) {
 
 function alfa_upload(id) {
     if (data === "student") {
-        // id = id_sdt;
         checkIfStudentUploadedRpt(id_sdt, 'alfa');
     }
     if (id.startsWith("00")) {
         checkUploadTnplt('alfa')
     }
-    const formData = new FormData();  // Create a new FormData object
-    // Assuming 'fileInput' is the id of file input element
+    const formData = new FormData();  
     const file = document.getElementById('alfaFileInput').files[0];
     const fileName = 'alfa_rpt-' + id + '.pdf';
-    // Append the file to the formData
     formData.append('alfa_rpt', file);
     $.ajax({
         url: '/uploadAlfaRep/' + id + '/' + fileName,
@@ -176,7 +154,7 @@ function alfa_upload(id) {
         contentType: false,
         processData: false,
         success: function (data) {
-            alert('הקובץ הועלה בהצלחה!')
+            alert('The file was uploaded successfully!')
             if (!data.alfa_rpt_id.startsWith("00")) {
                 updateSdtIdRpt(id_sdt, data._id, 'alfa', false);
             }
@@ -186,18 +164,14 @@ function alfa_upload(id) {
 
 function beta_upload(id) {
     if (data === "student") {
-        // id = id_sdt;
         checkIfStudentUploadedRpt(id, 'beta');
     }
     if (id.startsWith("00")) {
         checkUploadTnplt('beta')
     }
-    const formData = new FormData();  // Create a new FormData object
-    // Assuming 'fileInput' is the id of file input element
+    const formData = new FormData(); 
     const file = document.getElementById('betaFileInput').files[0];
-    // Set the desired filename (you can modify this part)
     const fileName = 'beta_rpt-' + id + '.pdf';
-    // Append the file to the formData
     formData.append('beta_rpt', file);
     $.ajax({
         url: '/uploadBetaRep/' + id + '/' + fileName,
@@ -206,7 +180,7 @@ function beta_upload(id) {
         contentType: false,
         processData: false,
         success: function (data) {
-            alert('הקובץ הועלה בהצלחה!')
+            alert('The file was uploaded successfully!')
             if (!data.beta_rpt_id.startsWith("00")) {
                 updateSdtIdRpt(id_sdt, data._id, 'beta', false);
             }
@@ -216,17 +190,14 @@ function beta_upload(id) {
 
 function final_upload(id) {
     if (data === "student") {
-        // id = id_sdt;
         checkIfStudentUploadedRpt(id, 'final');
     }
     if (id.startsWith("00")) {
         checkUploadTnplt('final')
     }
-    const formData = new FormData();  // Create a new FormData object
-    // Assuming 'fileInput' is the id of file input element
+    const formData = new FormData();  
     const file = document.getElementById('finalFileInput').files[0];
     const fileName = 'final_rpt-' + id + '.pdf';
-    // Append the file to the formData
     formData.append('final_rpt', file);
     $.ajax({
         url: '/uploadFinalRep/' + id + '/' + fileName,
@@ -235,7 +206,7 @@ function final_upload(id) {
         contentType: false,
         processData: false,
         success: function (data) {
-            alert('הקובץ הועלה בהצלחה!')
+            alert('The file was uploaded successfully!')
             if (!data.final_rpt_id.startsWith("00")) {
                 updateSdtIdRpt(id_sdt, data._id, 'final', false);
             }
@@ -243,13 +214,11 @@ function final_upload(id) {
     });
 }
 
-//בדיקה אם הסטודנט העלה את הדוח הזה. אם כן אז מחיקתו והעלאת הדוח המחודש
 function checkIfStudentUploadedRpt(id, nameRpt) {
     $.ajax({
         type: 'GET',
         url: '/student/' + id,
         success: function (result) {
-            // console.log(result[0])
             var rpt;
             if (nameRpt === 'prop') {
                 rpt = result[0].id_prop_rpt;
@@ -268,7 +237,6 @@ function checkIfStudentUploadedRpt(id, nameRpt) {
                     url: "/deleteRpt/" + rpt + '/' + nameRpt,
                     type: 'DELETE',
                     success: function (data) {
-                        // location.reload();
                     },
                     error: function (err) {
                         console.log("err", err);
@@ -287,7 +255,6 @@ function checkUploadTnplt(nameRpt) {
         type: 'GET',
         url: '/checkRptUpload/' + nameRpt,
         success: function (result) {
-            // console.log(result[0])
             if (result[0] != undefined) {
                 dltRptTlt(nameRpt)
             }
@@ -303,7 +270,6 @@ function dltRptTlt(nameRpt) {
         url: "/deleteRptTlt/" + nameRpt,
         type: 'DELETE',
         success: function (data) {
-            // location.reload();
         },
         error: function (err) {
             console.log("err", err);
@@ -313,7 +279,7 @@ function dltRptTlt(nameRpt) {
 
 function updateSdtIdRpt(id, idRpt, nameRpt, flag) {
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'PUT', 
         url: '/saveIdRptInSdt/' + id + '/' + nameRpt,
         contentType: 'application/json',
         data: JSON.stringify({
@@ -323,12 +289,10 @@ function updateSdtIdRpt(id, idRpt, nameRpt, flag) {
             "id_final_rpt": idRpt
         }),
         success: function (result) {
-            // console.log(result[0].)
             if (!flag) {
                 checkIfSdtHasCouple(result.id_pjt, id, idRpt, nameRpt)
             }
 
-            // alert('הדוח עלה בהצלחה');
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
@@ -365,29 +329,20 @@ function checkIfSdtHasCouple(idPjt, idSdt, idRpt, nameRpt) {
 }
 
 function downloadFile(fileId, rpt) {
-    // console.log('download - fileId', fileId)
-    // console.log('download - rpt', rpt)
-    // alert('check')
     var path = rpt + '-' + fileId + '.pdf';
     var form = document.getElementById('downloadForm');
     form.action = '/download-file/' + path;
     form.submit();
 }
 
-//מקשרת כפתור לפרויקט
-function loadPjt(idBtn) {//
-    // console.log(idBtn)
+function loadPjt(idBtn) {
     getIdModOfDoc(id_mod);
     $.ajax({
         type: 'GET',
         url: '/getModeratorProjectsJudge/' + id_mod + "/" + idBtn,
         success: function (result) {
-            //מקבלים בתשובה את האיידי של הפרויקט
-            // console.log(id_mod)
-            // alert("moderatorProjects")
             if (result == "" || result == undefined) {
-                // console.log('result is undefined or empty')
-                alert("לא קיים פרויקט")
+                alert("Does not exist in the project");
             }
             else {
                 localStorage.setItem('id_pjt', result);
@@ -397,9 +352,8 @@ function loadPjt(idBtn) {//
                     url: '/project/' + result,
                     success: function (result) {
                         var name = result[0].name_hebrew;
-                        document.getElementById("namePjt").innerHTML = "שם הפרויקט: " + name;
+                        document.getElementById("namePjt").innerHTML = "Project Name: " + name;
                         var jdgIdDoc = localStorage.getItem('jdgIdDoc');
-                        // console.log('modGrdsArr - ', modGrdsArr[0])
                         showDetails(jdgIdDoc, result[0].Grades_arr, result[0].sub_rpt_id, result[0]._id);
                     },
                     error: function (jqXhr, textStatus, errorThrown) {
@@ -414,7 +368,6 @@ function loadPjt(idBtn) {//
     });
 }
 
-//מחזיר את האיידי של ההמסמך של השופט
 function getIdModOfDoc(id) {
     $.ajax({
         type: 'GET',
@@ -436,18 +389,14 @@ function showDetails(jdgIdDoc, gradesArrPjt, subRptId, idPjt) {
     AttachStudentRptToBtn(idPjt);
 }
 
-//מחזיר את מסמך הציון הרצוי
 function getGrd(id_grade, jdgIdDoc) {
     document.getElementById('lblGrdAlfa').innerHTML = "";
     document.getElementById('lblGrdFinal').innerHTML = "";
     document.getElementById('lblGrdFinalPjt').innerHTML = "";
-    // console.log('id_grade - ', id_grade)
-    // if (result[0].id_judge == jdgIdDoc) {
     $.ajax({
         type: 'GET',
         url: '/getGrdDoc/' + id_grade,
         success: function (result) {
-            // console.log('result - ', result);
             if (result[0].id_judge == jdgIdDoc) {
                 $.each(result, function (index, value) {
                     if ("alfa_rpt_grd" in value) {
@@ -475,16 +424,16 @@ function getSub(id_sub) {
         url: '/getSubDoc/' + id_sub,
         success: function (result) {
             if (result[0].prop_rpt_sub != "") {
-                document.getElementById('lblStatusProp').innerHTML = "הדוח אושר";
+                document.getElementById('lblStatusProp').innerHTML = "The report was submitted";
             }
             if (result[0].alfa_rpt_sub != "") {
-                document.getElementById('lblStatusAlfa').innerHTML = "הדוח אושר";
+                document.getElementById('lblStatusAlfa').innerHTML = "The report was submitted";
             }
             if (result[0].beta_rpt_sub != "") {
-                document.getElementById('lblStatusBeta').innerHTML = "הדוח אושר";
+                document.getElementById('lblStatusBeta').innerHTML = "The report was submitted";
             }
             if (result[0].final_rpt_sub != "") {
-                document.getElementById('lblStatusFinal').innerHTML = "הדוח אושר";
+                document.getElementById('lblStatusFinal').innerHTML = "The report was submitted";
             }
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -494,22 +443,17 @@ function getSub(id_sub) {
 }
 
 function showDetailsForMod() {
-    // if (typeEnter == '') {
         AttachStudentRptToBtn(idOfPjt);
-    // }
 
     var sdtId = localStorage.getItem('sdtId')
     beforeGetAvgGrds(sdtId)
 }
 
-//הצמדת דוח של סטודנט לכפתור
 function AttachStudentRptToBtn(idPjt) {
-    // console.log('idPjt - ', idPjt)
     $.ajax({
         type: 'GET',
         url: '/getstudents',
         success: function (result) {
-            // console.log('rslt - ', result)
             var index;
             for (var i = 0; i < result.length; i++) {
                 if (result[i].id_pjt == idPjt) {
@@ -538,10 +482,9 @@ function AttachStudentRptToBtn(idPjt) {
     });
 }
 
-//אישור דוח
 function saveSubRpt(idBtn) {
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'PUT',
         url: '/saveSub/' + idOfSubRpt,
         contentType: 'application/json',
         data: JSON.stringify({
@@ -561,20 +504,18 @@ function grade(idBtn) {
     getDates();
     var id_pjt = localStorage.getItem('id_pjt')
 
-    var grade = prompt("הכנס ציון:", "");
+    var grade = prompt("Enter a grade:  ", "");
     if (grade < 0 || grade > 100) {
-        alert("הזן רק מספרים");
+        alert("Invalid grade! Please enter a grade between 0 to 100");
     }
     else {
-        // מביאים את שני המערכים של מסמכי הציונים - מהשופט ומהפרויקט- המסמך הקיים בשני המערכים הוא המסמך ששם צריך לשנות את הציון
         $.ajax({
-            type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+            type: 'GET',
             url: '/getGradeIdDoc/' + id_mod,
             success: function (result) {
-                // console.log('array - ', result)
                 var grdsFromMod = result;
                 $.ajax({
-                    type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+                    type: 'GET',
                     url: '/getGradeId/' + id_pjt,
                     success: function (result) {
                         var grdsFromPjt = result;
@@ -605,7 +546,7 @@ function saveGrd(id, idBtn, grade) {
     }
 
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'PUT', 
         url: '/saveGrade/' + id,
         contentType: 'application/json',
         data: JSON.stringify({
@@ -613,7 +554,6 @@ function saveGrd(id, idBtn, grade) {
             "idBtn": idBtn
         }),
         success: function (result) {
-            // alert("הציון נשמר בהצלחה");
             if (idBtn === "alfa") {
                 document.getElementById("lblGrdAlfa").innerHTML = grade;
             }
@@ -624,17 +564,14 @@ function saveGrd(id, idBtn, grade) {
     });
 }
 
-/////שמירת ציונים לתלמיד
 function beforeGetAvgGrds(idSdt) {
-    // console.log("beforeGetAvgGrds - ", idSdt);
 
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET', 
         url: '/student/' + idSdt,
         success: function (result) {
-            // if (secData === 'notJudge') {
-                checkGrdForSdt(result[0].id_grade);
-            // }
+            checkGrdForSdt(result[0].id_grade);
+            
             checkRptSub(result[0]);
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -649,32 +586,20 @@ function checkRptSub(student) {
     var beta = document.getElementById('lblStatusBeta');
     var final = document.getElementById('lblStatusFinal');
 
-    // $.ajax({
-    //     type: 'GET',
-    //     url: '/getGrdDoc/' + idGrd,
-    //     success: function (result) {
-
-    //     },
-    //     error: function (jqXhr, textStatus, errorThrown) {
-    //         console.log(errorThrown);
-    //     }
-    // });
-
     if (student.id_prop_rpt != "") {
-        prop.innerHTML = 'הדוח הוגש';
+        prop.innerHTML = "The report was submitted";
     }
     if (student.id_alfa_rpt != "") {
-        alfa.innerHTML = 'הדוח הוגש';
+        alfa.innerHTML = "The report was submitted";
     }
     if (student.id_beta_rpt != "") {
-        beta.innerHTML = 'הדוח הוגש';
+        beta.innerHTML = "The report was submitted";
     }
     if (student.id_final_rpt != "") {
-        final.innerHTML = 'הדוח הוגש';
+        final.innerHTML = "The report was submitted";
     }
 }
 
-//בדיקה אם כבר נשמרו חלק מהציונים לסטודנט
 function checkGrdForSdt(idGrd) {
     $.ajax({
         type: 'GET',
@@ -699,7 +624,7 @@ function showDetailsForSdt(id_pjt, id_grd) {
     getGrd(id_grd);
 
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',
         url: '/project/' + id_pjt,
         success: function (result) {
             getSub(result[0].sub_rpt_id);
@@ -710,11 +635,10 @@ function showDetailsForSdt(id_pjt, id_grd) {
     });
 }
 
-//הפןנקציה מקבל איידי של פרוייקט ומחזירה את מערך האיידי'ס של הציונים
 function getGrdsArrFromPjt(idPjt, idGrdOfSdt) {
 
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET', 
         url: '/project/' + idPjt,
         success: function (result) {
             var gradesIdArr = result[0].Grades_arr;
@@ -768,8 +692,5 @@ function getGradesForSdt(gradeId, idGrdOfSdt) {
 }
 
 function home() {
-    // console.log("hi")
-    // window.location.href = "http://localhost:3000/home";
-
     window.location.href = "/assigAndsubDats";
 }

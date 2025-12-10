@@ -40,20 +40,16 @@ module.exports = {
             propos_rpt_path: filePath,
             propos_rpt_id: req.params.fileId
         });
-        // const oldFileName = req.file.filename;
-        // await uploadHandle(newFile, oldFileName, fileName, res);
 
         try {
             await newFile.save();
-            // console.log(newFile)
             res.status(200).send(newFile);
-            const oldFilePath = path.join('uploads', req.file.filename); // Use req.file.filename to get the file path
+            const oldFilePath = path.join('uploads', req.file.filename);
             const newFilePath = path.join('uploads', fileName);
             fs.rename(oldFilePath, newFilePath, function (err) {
                 if (err) {
                     console.error("Error renaming file:", err);
                 } else {
-                    // console.log(newFile)
                     console.log("File renamed successfully.");
                 }
             });
@@ -75,7 +71,7 @@ module.exports = {
         try {
             await newFile.save();
             res.status(200).send(newFile);
-            const oldFilePath = path.join('uploads', req.file.filename); // Use req.file.filename to get the file path
+            const oldFilePath = path.join('uploads', req.file.filename); 
             const newFilePath = path.join('uploads', fileName);
             fs.rename(oldFilePath, newFilePath, function (err) {
                 if (err) {
@@ -92,7 +88,6 @@ module.exports = {
 
     createUploadBetaRep: async function (req, res) {
         console.log(req.params)
-        // console.log(req.body)
         const fileName = req.params.fileName;
         const filePath = path.join('uploads', fileName);
 
@@ -103,9 +98,8 @@ module.exports = {
         });
         try {
             await newFile.save();
-            // console.log(newFile)
             res.status(200).send(newFile);
-            const oldFilePath = path.join('uploads', req.file.filename); // Use req.file.filename to get the file path
+            const oldFilePath = path.join('uploads', req.file.filename); 
             const newFilePath = path.join('uploads', fileName);
             fs.rename(oldFilePath, newFilePath, function (err) {
                 if (err) {
@@ -132,7 +126,7 @@ module.exports = {
         try {
             await newFile.save();
             res.status(200).send(newFile);
-            const oldFilePath = path.join('uploads', req.file.filename); // Use req.file.filename to get the file path
+            const oldFilePath = path.join('uploads', req.file.filename); 
             const newFilePath = path.join('uploads', fileName);
             fs.rename(oldFilePath, newFilePath, function (err) {
                 if (err) {
@@ -177,7 +171,6 @@ module.exports = {
         }
     },
 
-    //שמירת תאריכי הגשה
     DateOfSub: function (req, res) {
         if (!req.body) res.status(400).send("There is no body")
         else {
@@ -222,7 +215,7 @@ module.exports = {
         const { email, password } = req.body;
 
         const transporter = nodemailer.createTransport({
-            service: 'Gmail', // You can use other services
+            service: 'Gmail',
             auth: {
                 user: userEmail,
                 pass: passEmail,
@@ -245,10 +238,7 @@ module.exports = {
     },
 
     getModByUsername: function (req, res) {
-        // console.log(req.params)
-        // if (!req.params["id"]) res.status(400).send("There is no id");
         Moderator.find({ "username": req.params.username }).then(moderator => {
-            // console.log(moderator)
             res.status(200).send(moderator)
         }
         ).catch(e => res.status(500).send())
@@ -283,7 +273,6 @@ module.exports = {
 
     getPasswordMod: function (req, res) {
         Moderator.find({ "username": req.params.username }).then(moderator => {
-            // console.log(moderator)
             res.status(200).send(moderator)
         }
         ).catch(e => res.status(500).send())
@@ -296,17 +285,13 @@ module.exports = {
     },
 
     getModerators: function (req, res) {
-        // console.log('getModerators')
         Moderator.find().then(moderator =>
-            // console.log(moderator)
             res.send(moderator)
         ).catch(e => res.status(500).send())
     },
 
     getCoodinator: function (req, res) {
-        // if (!req.params["id"]) res.status(400).send("There is no id");
         Coordinator.find().then(coordinator =>
-            // console.log('getCoodinator - ', coordinator[0]),
             res.send(coordinator)
         ).catch(e => res.status(500).send())
     },
@@ -317,11 +302,7 @@ module.exports = {
     */
     getProject: function (req, res) {
         if (!req.params["id"]) res.status(400).send("There is no id");
-        //If the conference doesnt exist
-        // console.log('getProject - ')
-        // console.log(req.params)
         Project.find({ "_id": req.params.id }).then(project => {
-            // console.log(project),
             res.status(200).send(project)
         }
         ).catch(e => res.status(500).send())
@@ -329,18 +310,14 @@ module.exports = {
 
     //מחזיר את רשימת הפרויקטים שמנחה זה מנחה
     getModeratorProjects: function (req, res) {
-        // console.log(req.params.id)
         Moderator.find({ "mod_ID": req.params.id }).then(moderator => {
-            // console.log(moderator[0])
             res.status(200).send(moderator[0].projects_arr)
         }
         ).catch(e => res.status(500).send())
     },
 
     getEmailMod: function (req, res) {
-        // console.log(req.params.id)
         Moderator.find({ "mod_ID": req.params.id }).then(moderator => {
-            // console.log(moderator[0].mod_email)
             res.status(200).send(moderator[0].mod_email)
         }
         ).catch(e => res.status(500).send())
@@ -348,9 +325,7 @@ module.exports = {
 
     //מחזיר את הפרויקטים שמנחה זה שופט
     getProjetsById: function (req, res) {
-        // console.log(req.params.id)
         Moderator.find({ "mod_ID": req.params.id_mod }).then(moderator => {
-            // console.log(moderator[0].mod_email)
             res.status(200).send(moderator[0].judge_project_arr)
         }
         ).catch(e => res.status(500).send())
@@ -358,9 +333,7 @@ module.exports = {
 
     //מחזיר את רשימת האיידי של הציונים של הפרויקטים שהמנחה שופט
     getGradeIdDoc: function (req, res) {
-        // console.log(req.params.id)
         Moderator.find({ "mod_ID": req.params.id_mod }).then(moderator => {
-            // console.log(moderator[0].mod_email)
             res.status(200).send(moderator[0].Grades_arr_judge)
         }
         ).catch(e => res.status(500).send())
@@ -373,22 +346,6 @@ module.exports = {
         }
         ).catch(e => res.status(500).send())
     },
-
-    // //מחזיר את רשימת האיידי של האישורים של הפרויקטים שהמנחה שופט
-    // getSubRptIdDoc: function (req, res) {
-    //     Moderator.find({ "mod_ID": req.params.id_mod }).then(moderator => {
-    //         res.status(200).send(moderator[0].SubRpt)
-    //     }
-    //     ).catch(e => res.status(500).send())
-    // },
-
-    // //מחזיר את רשימת האיידי של האישורים של אותו פרויקט
-    // getSubRptId: function (req, res) {
-    //     Project.find({ "_id": req.params.id_pjt }).then(project => {
-    //         res.status(200).send(project[0].SubRpt)
-    //     }
-    //     ).catch(e => res.status(500).send())
-    // },
 
     getDates: function (req, res) {
         DateOfSubmission.find().then(dateOfSub =>
@@ -419,7 +376,6 @@ module.exports = {
         ).catch(e => res.status(500).send())
     },
 
-    //מחזיר את מסמך הציונים התואם לאיידי שנשלח
     getGrdsDoc: function (req, res) {
         Grade.find({ "_id": req.params.gradeId }).then(grade => {
             res.status(200).send(grade)
@@ -427,7 +383,6 @@ module.exports = {
         ).catch(e => res.status(500).send())
     },
 
-    //מחזיר את מסמך האישורים התואם לאיידי שנשלח
     getSubsDoc: function (req, res) {
         SubRpt.find({ "_id": req.params.subId }).then(subRpt => {
             res.status(200).send(subRpt)
@@ -450,7 +405,6 @@ module.exports = {
 
     getModByIdDoc: function (req, res) {
         Moderator.find({ "_id": req.params.id }).then(moderator => {
-            // console.log(moderator)
             res.status(200).send(moderator)
         }
         ).catch(e => res.status(500).send())
@@ -492,7 +446,6 @@ module.exports = {
     },
 
     updateStudent: function (req, res) {
-        // console.log('updateStudent')
         const updates = Object.keys(req.body)
         const allowedUpdates = ['password'];
         const isValidOperation = updates.length === 1 && updates[0] === 'password';
@@ -513,7 +466,6 @@ module.exports = {
     },
 
     updateModerator: function (req, res) {
-        // console.log('in updateS')
         const updates = Object.keys(req.body)
         const allowedUpdates = ['password'];
         const isValidOperation = updates.length === 1 && updates[0] === 'password';
@@ -531,46 +483,7 @@ module.exports = {
             }).catch(e => res.status(400).send(e))
     },
 
-
-    ///////////////////////////////////
-    // updateDateOfSub: function (req, res) {
-    //     console.log('in updates')
-    //     console.log(req.body)
-    //     const update = Object.keys(req.body)
-    //     // console.log(updates)
-    //     //var myObject = { a: 'c', b: 'a', c: 'b' };
-    //     // var keyNames = Object.keys(myObject);
-    //     // const allowedUpdates = ['password'];
-    //     // const allowedUpdates = [updates];
-    //     // const isValidOperation = updates.length === 1 && updates[0] === 'password';
-    //     // if (!isValidOperation) {
-    //     //     return res.status(400).send({ error: 'Invalid updates!' })
-    //     // }
-    //     if (update === "alfaRpt") {
-    //         DateOfSubmission.findOneAndUpdate({ updates: req.body.password }, { new: true, runValidators: true })
-    //             .then(moderator => {
-    //                 if (!moderator) {
-    //                     return res.status(404).send('There is no project')
-    //                 }
-    //                 else {
-    //                     res.send(moderator)
-    //                 }
-    //             }).catch(e => res.status(400).send(e))
-    //     }
-    //     // DateOfSubmission.findOneAndUpdate({ updates: req.body.password }, { new: true, runValidators: true })
-    //     //     .then(moderator => {
-    //     //         if (!moderator) {
-    //     //             return res.status(404).send('There is no project')
-    //     //         }
-    //     //         else {
-    //     //             res.send(moderator)   
-    //     //         }
-    //     //     }).catch(e => res.status(400).send(e))
-    // },
-
     updateStudentIdPjt: function (req, res) {
-        // console.log('in updateS')
-        // console.log(req.body)
         const updates = Object.keys(req.body)
         const allowedUpdates = ['id_pjt', 'id_grade'];
         const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
@@ -583,22 +496,13 @@ module.exports = {
                     return res.status(404).send('There is no student')
                 }
                 else {
-                    // console.log(student)
                     res.send(student)
                 }
             }).catch(e => res.status(400).send(e))
     },
 
     SaveGrades: function (req, res) {
-        // console.log('in updateS')
-        // console.log(req.body)
         const idBtn = req.body.idBtn;
-        // // const allowedUpdates = ['id_pjt'];
-        // const isValidOperation = updates.length === 1 && updates[0] === 'id_pjt';
-        // if (!isValidOperation) {
-        //     return res.status(400).send({ error: 'Invalid updates!' })
-        // }
-
         if (idBtn === "alfa") {
             Grade.findOneAndUpdate({ "_id": req.params.id }, { "alfa_rpt_grd": req.body.grd }, { new: true, runValidators: true })
                 .then(grade => {
@@ -684,18 +588,6 @@ module.exports = {
                     }
                 }).catch(e => res.status(400).send(e))
         }
-
-        // else {
-        //     Grade.findOneAndUpdate({ "_id": req.params.id }, { "final_grd_pjt": req.body.grd }, { new: true, runValidators: true })
-        //         .then(grade => {
-        //             if (!grade) {
-        //                 return res.status(404).send('There is no student')
-        //             }
-        //             else {
-        //                 res.send(grade)
-        //             }
-        //         }).catch(e => res.status(400).send(e))
-        // }
     },
 
     UpdateGradeDocId: function (req, res) {
@@ -715,26 +607,6 @@ module.exports = {
             }
         }).catch(e => res.status(400).send(e))
     },
-
-    // UpdateSubDocId: function (req, res) {
-    //     // console.log("UpdateSubDocId")
-    //     // console.log(req.body)
-    //     const updates = Object.keys(req.body)
-    //     const allowedUpdates = ['id_judge']
-    //     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
-
-    //     if (!isValidOperation) {
-    //         return res.status(400).send({ error: 'Invalid updates!' })
-    //     }
-    //     SubRpt.findOneAndUpdate({ "_id": req.params.id_sub }, { "id_judge": req.body.id_judge }, { new: true, runValidators: true }).then(subRpt => {
-    //         if (!subRpt) {
-    //             return res.status(404).send('There is no project')
-    //         }
-    //         else {
-    //             res.send(subRpt)
-    //         }
-    //     }).catch(e => res.status(400).send(e))
-    // },
 
     //שומר את האיידי של המסמך שהועלה אצל הסטודנט
     saveIdRptInSdt: function (req, res) {
@@ -788,13 +660,8 @@ module.exports = {
     },
 
     AddProjectToModerator: function (req, res) {
-        // console.log('AddProjectToModerator')
-        // console.log(req.body)
-        // console.log(req.params.modID)
         if (!req.body) res.status(400).send("There is no body");
-        // else if (!req.params["_id"] || !req.body.modID) res.status(400).send("Missing parameters");
         else {
-            //find the specific moderator and update it
             Moderator.findOneAndUpdate({ "mod_ID": req.params.modID }, { $push: { projects_arr: req.body.projectID } }, { new: true, runValidators: true }).then(moderator => {
                 if (!moderator) {
                     return res.status(404).send()
@@ -807,10 +674,8 @@ module.exports = {
     },
 
     SaveGrdInPjt: function (req, res) {
-        // console.log('SaveGrdInPjt')
         if (!req.body) res.status(400).send("There is no body");
         else {
-            //find the specific project and update it
             Project.findOneAndUpdate({ "_id": req.params.id_pjt }, { $push: { Grades_arr: req.body.GradeID } }, { new: true, runValidators: true }).then(project => {
                 if (!project) {
                     return res.status(404).send()
@@ -823,17 +688,6 @@ module.exports = {
     },
 
     SaveSubInPjt: function (req, res) {
-        // console.log('SaveSubInPjt')
-        // console.log(req.params)
-        // console.log(req.body)
-
-
-        // const updates = Object.keys(req.body)
-        // const allowedUpdates = ['password'];
-        // const isValidOperation = updates.length === 1 && updates[0] === 'password';
-        // if (!isValidOperation) {
-        //     return res.status(400).send({ error: 'Invalid updates!' })
-        // }
         Project.findOneAndUpdate({ "_id": req.params.id_pjt }, { "sub_rpt_id": req.body.SubRptID }, { new: true, runValidators: true })
             .then(project => {
                 if (!project) {
@@ -846,9 +700,6 @@ module.exports = {
     },
 
     addJdgNameToActvPjts: function (req, res) {
-        // console.log('oops')
-        // console.log(req.params)
-        // console.log(req.body)
 
         const num = req.body.num;
 
@@ -891,8 +742,6 @@ module.exports = {
 
     updateActvPjts: function (req, res) {
         const num = req.body.num;
-        // console.log(req.params)
-        // console.log(req.body)
 
         if (num == 1) {
             ActvPjts.findOneAndUpdate({ "idPjt": req.params.id }, { "sdtName1": req.body.name }, { new: true, runValidators: true })
@@ -901,7 +750,6 @@ module.exports = {
                         return res.status(404).send('There is no doc of this pjt')
                     }
                     else {
-                        // console.log('actvPjts 1- ', actvPjts)
                         res.send(actvPjts)
                     }
                 }).catch(e => res.status(400).send(e))
@@ -914,7 +762,6 @@ module.exports = {
                         return res.status(404).send('There is no doc of this pjt')
                     }
                     else {
-                        // console.log('actvPjts 2-', actvPjts)
                         res.send(actvPjts)
                     }
                 }).catch(e => res.status(400).send(e))
@@ -929,7 +776,6 @@ module.exports = {
                     res.status(404).send('No document updated');
                 }
                 else {
-                    // console.log(dateOfSub),
                     res.send(dateOfSub)
                 }
             }).catch(e => res.status(400).send(e))
@@ -938,7 +784,6 @@ module.exports = {
     AddProjectToJudge: function (req, res) {
         if (!req.body) res.status(400).send("There is no body");
         else {
-            //find the specific moderator and update it
             Moderator.findOneAndUpdate({ "_id": req.params.id_judge }, { $push: { judge_project_arr: req.body.projectID } }, { new: true, runValidators: true }).then(moderator => {
                 if (!moderator) {
                     return res.status(404).send()
@@ -954,7 +799,6 @@ module.exports = {
     AddJudgesToProject: function (req, res) {
         if (!req.body) res.status(400).send("There is no body");
         else {
-            //find the specific moderator and update it
             Project.findOneAndUpdate({ "_id": req.params.id_pjt }, { $push: { Judges_arr: req.body.JudgeID, } }, { new: true, runValidators: true }).then(project => {
                 if (!project) {
                     return res.status(404).send()
@@ -969,7 +813,6 @@ module.exports = {
     addJudgeGrd: function (req, res) {
         if (!req.body) res.status(400).send("There is no body");
         else {
-            //find the specific moderator and update it
             Moderator.findOneAndUpdate({ "_id": req.params.id }, { $push: { Grades_arr_judge: req.body.id_grade, } }, { new: true, runValidators: true }).then(moderator => {
                 if (!moderator) {
                     return res.status(404).send()
@@ -982,8 +825,6 @@ module.exports = {
     },
 
     updateIdModToProjet: function (req, res) {
-        // console.log('updateIdModToProjet')
-        // console.log(req.body)
         const updates = Object.keys(req.body)
         const allowedUpdates = ['mod_id'];
         const isValidOperation = updates.length === 1 && updates[0] === 'mod_id';
