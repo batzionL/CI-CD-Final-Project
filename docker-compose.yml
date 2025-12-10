@@ -10,7 +10,9 @@ services:
       - mongo_data:/data/db
 
   backend:
-    build: ./server
+    build:
+      context: .
+      dockerfile: server/Dockerfile
     container_name: backend
     environment:
       DATABASE_URL: mongodb://mongo:27017/finalproject
@@ -22,8 +24,8 @@ services:
 
   nginx:
     build:
-      context: ./        # כל project_ci_cd הוא context
-      dockerfile: ./nginx/Dockerfile
+      context: .
+      dockerfile: nginx/Dockerfile
     container_name: nginx
     ports:
       - "80:80"
