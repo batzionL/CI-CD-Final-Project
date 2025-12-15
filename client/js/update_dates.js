@@ -19,7 +19,7 @@ function showPrevDates() {
     var prevFinal = document.getElementById('prevFinal');
     var prevPresnt = document.getElementById('prevPresnt');
     $.ajax({
-        url: '/getdates',
+        url: 'api/getdates',
         type: 'GET',
         success: function (result) {
             prevProp.value = result[0].propRpt;
@@ -63,8 +63,8 @@ function setDates(prevProp, prevAlfa, prevBeta, prevFinal, prevPresnt){
     }
 
     $.ajax({
-        type: 'PUT', 
-        url: '/updateSubDates',
+        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        url: 'api/updateSubDates',
         contentType: 'application/json',
         data: JSON.stringify({
             "propRpt": proposal,
@@ -74,8 +74,8 @@ function setDates(prevProp, prevAlfa, prevBeta, prevFinal, prevPresnt){
             "presentation": presentation
         }),
         success: function (result) {
-            alert("Dates updated successfully");
-            location.href = "/assigAndsubDats";
+            alert("התאריך/ים נשמר/ו בהצלחה");
+            location.href = "/assignments_and_submission_dates.html";
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
@@ -91,8 +91,8 @@ function getDates() {
     var present = document.getElementById("presentation_id_date");
 
     $.ajax({
-        type: 'GET',
-        url: '/getdates',
+        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        url: 'api/getdates',
         success: function (result) {
             var current = new Date()
             let dd = String(current.getDate()).padStart(2, '0');

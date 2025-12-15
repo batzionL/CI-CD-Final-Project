@@ -3,7 +3,7 @@ function randJudges() {
     const judgeSelectionCount = {}; 
     $.ajax({
         type: 'GET',
-        url: '/getmoderators',
+        url: 'api/getmoderators',
         success: function (result) {
             for (let i = 0; i < result.length; i++) {
                 judges.push(result[i]._id);
@@ -15,10 +15,11 @@ function randJudges() {
         }
     });
 
+
     const projectsJudges = [];
     $.ajax({
-        type: 'GET', 
-        url: '/projects',
+        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        url: 'api/projects',
         success: function (result) {
             for (let i = 0; i < result.length; i++) {
                 const shuffledJudges = judges.sort(() => Math.random() - 0.5);
@@ -58,8 +59,8 @@ function randJudges() {
 
 function add_pjt_to_judge(id_pjt, id_judge) {
     $.ajax({
-        type: 'POST', 
-        url: '/addProjectToJudge/' + id_judge,
+        type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+        url: 'api/addProjectToJudge/' + id_judge, // the url where we want to POST
         contentType: 'application/json',
         data: JSON.stringify({
             "projectID": id_pjt
@@ -76,8 +77,8 @@ function add_pjt_to_judge(id_pjt, id_judge) {
 
 function add_judge_grd(id_judge, grade) {
     $.ajax({
-        type: 'POST', 
-        url: '/addJudgeGrd/' + id_judge,
+        type: 'POST', // define the type of HTTP verb we want to use (GET for our form)
+        url: 'api/addJudgeGrd/' + id_judge,
         contentType: 'application/json',
         data: JSON.stringify({
             "id_grade": grade
@@ -93,8 +94,8 @@ function add_judge_grd(id_judge, grade) {
 
 function add_judge_to_pjt(id_pjt, id_judge) {
     $.ajax({
-        type: 'POST', 
-        url: '/addJudgesToProject/' + id_pjt,
+        type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+        url: 'api/addJudgesToProject/' + id_pjt, // the url where we want to POST
         contentType: 'application/json',
         data: JSON.stringify({
             "JudgeID": id_judge,
@@ -111,8 +112,8 @@ function add_judge_to_pjt(id_pjt, id_judge) {
 
 function add_grd_judge(id_judge, id_grade) {
     $.ajax({
-        type: 'PUT', 
-        url: '/updateGrdDocId/' + id_grade, 
+        type: 'PUT', // define the type of HTTP verb we want to use (PUT for our form)
+        url: 'api/updateGrdDocId/' + id_grade, // the url where we want to PUT
         contentType: 'application/json',
         data: JSON.stringify({
             "id_judge": id_judge
@@ -129,8 +130,8 @@ function add_grd_judge(id_judge, id_grade) {
 
 function getNameJdg(idPjt, idJdg, num) {
     $.ajax({
-        type: 'GET',
-        url: '/getModByIdDoc/' + idJdg,
+        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        url: 'api/getModByIdDoc/' + idJdg,
         success: function (result) {
             var Fname = result[0].mod_firstName;
             var Lname = result[0].mod_lastName;
@@ -145,8 +146,8 @@ function getNameJdg(idPjt, idJdg, num) {
 
 function addJdgIdToActvPjts(idPjt, name, num) {
     $.ajax({
-        type: 'PUT',
-        url: '/addJdgNameToActvPjts/' + idPjt, 
+        type: 'PUT', // define the type of HTTP verb we want to use (POST for our form)
+        url: 'api/addJdgNameToActvPjts/' + idPjt, // the url where we want to POST
         contentType: 'application/json',
         data: JSON.stringify({
             "jdgName": name,
@@ -164,8 +165,8 @@ function addJdgIdToActvPjts(idPjt, name, num) {
 
 function getPjt(id, judges) {
     $.ajax({
-        type: 'GET', 
-        url: '/project/' + id,
+        type: 'GET',
+        url: 'api/project/' + id,
         success: function (result) {
             var grades = result[0].Grades_arr;
             add_judge_grd(judges[0], grades[0]);
@@ -194,7 +195,7 @@ function createTable() {
     container.appendChild(table);
 
     $.ajax({
-        url: '/actvPjtsList',
+        url: 'api/actvPjtsList',
         type: 'GET',
         success: function (data) {
             $.each(data, function (index, value) { 

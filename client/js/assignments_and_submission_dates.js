@@ -40,7 +40,7 @@ function addProject() {
     localStorage.setItem("isEdit", 'false');
     var name = localStorage.getItem("name");
     localStorage.setItem("name", name);
-    window.location.href = "/addproject";
+    window.location.href = "/add_project.html";
 }
 
 function monitoringTbl() {
@@ -56,9 +56,7 @@ function monitoringTbl() {
         localStorage.setItem('modID', id);
         localStorage.setItem('secData', 'judge')
     }
-
-
-    window.location.href = "/Monitoring";
+    window.location.href = "/Monitoring_the_project.html";
 }
 
 function projectsList() {
@@ -67,34 +65,34 @@ function projectsList() {
     var name = localStorage.getItem("name")
     localStorage.setItem("name", name);
     localStorage.setItem("All", "not all");
-    window.location.href = "/home";
+    window.location.href = "/home_page.html";
 }
 
 function downloadReports() {
-    window.location.href = "/template";
+    window.location.href = "/template.html";
 }
 
 function addStudent() {
-    window.location.href = "/addstudent";
+    window.location.href = "/add_student.html";
 }
 
 function addModerator() {
-    window.location.href = "/addmoderator";
+    window.location.href = "/add_moderator.html";
 }
 
 function updateDates() {
-    window.location.href = "/updateDates";
+    window.location.href = "/update_dates.html";
 }
 
 function allProjectsList() {
     localStorage.setItem("All", "all");
     var name = localStorage.getItem("name")
     localStorage.setItem("name", name);
-    window.location.href = "/home";
+    window.location.href = "/home_page.html";
 }
 
 function judgesAndPjcts() {
-    window.location.href = "/judge";
+    window.location.href = "/judge.html";
 }
 
 //This function shows the submission dates of the reports and the project
@@ -106,8 +104,8 @@ function getDates() {
     var present = document.getElementById("presentation_id");
 
     $.ajax({
-        type: 'GET',
-        url: '/getdates',
+        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        url: 'api/getdates',
         success: function (result) {
             $.each(result, function (index, value) {
                 if ("propRpt" in value) {

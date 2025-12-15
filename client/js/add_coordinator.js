@@ -6,7 +6,7 @@ jQuery(function ($) {
     coordinators_name.appendChild(coordinator)
     $.ajax({
         type: 'GET', 
-        url: '/getmoderators',
+        url: 'api/getmoderators',
         success: function (result) {
             coordinators_name = document.getElementById("coordinators_name")
             index = 0;
@@ -42,7 +42,7 @@ function if_there_coor(e) {
     e.preventDefault()
     $.ajax({
         type: 'GET', 
-        url: '/getCoodinator',
+        url: 'api/getCoodinator',
         success: function (result) {
             if (result[0] == undefined) {
                 add_coord('');
@@ -54,7 +54,7 @@ function if_there_coor(e) {
                     dltOldCoor();
                     add_coord(userResponse);
                 } else {
-                    location.href = "/assigAndsubDats";
+                    location.href = "/assignments_and_submission_dates.html";
                 }
             }
         },
@@ -70,7 +70,7 @@ function add_coord(res) {
     var id_coor = localStorage.getItem('id_coor')
     $.ajax({
         type: 'POST',
-        url: '/addcoordinator',
+        url: 'api/addcoordinator',
         contentType: 'application/json',
         data: JSON.stringify({
             "coo_ID": id_coor
@@ -82,7 +82,7 @@ function add_coord(res) {
                 createSubDatesDoc();
             }
             else{
-                location.href = "/assigAndsubDats";
+                location.href = "/assignments_and_submission_dates.html";
             }
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -94,7 +94,7 @@ function add_coord(res) {
 function createSubDatesDoc() {
     $.ajax({
         type: 'POST', 
-        url: '/dateOfSub', 
+        url: 'api/dateOfSub', 
         contentType: 'application/json',
         data: JSON.stringify({
             "propRpt": "",
@@ -106,7 +106,7 @@ function createSubDatesDoc() {
         processData: false,
         encode: true,
         success: function (data, textStatus, jQxhr) {
-            location.href = "/assigAndsubDats";
+            location.href = "/assignments_and_submission_dates.html";
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
@@ -116,7 +116,7 @@ function createSubDatesDoc() {
 
 function dltOldCoor() {
     $.ajax({
-        url: "/deleteOldCoor",
+        url: "api/deleteOldCoor",
         type: 'DELETE',
         success: function (data) {
         },

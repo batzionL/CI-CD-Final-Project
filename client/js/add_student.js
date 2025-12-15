@@ -10,7 +10,7 @@ function add_studen(e) {
         if (flag === false) {
             $.ajax({
                 type: 'POST',
-                url: '/addstudent',
+                url: 'api/addstudent',
                 contentType: 'application/json',
                 data: JSON.stringify({
                     "username": $("#sdt_username_id").val(),
@@ -21,7 +21,7 @@ function add_studen(e) {
                     "sdt_email": $("#email_sdt_id").val()
                 }),
                 success: function () {
-                    location.href = "/assigAndsubDats";
+                    location.href = "/assignments_and_submission_dates.html";
                 },
                 error: function (err) {
                     console.log(err);
@@ -36,7 +36,7 @@ function checkIfSdudentExist(id) {
     return new Promise((resolve, reject) => {
         $.ajax({
             type: 'GET',
-            url: '/student/' + id,
+            url: 'api/student/' + id,
             success: function (result) {
                 if (result[0] != undefined) {
                     alert('This student already exists.');

@@ -65,8 +65,8 @@ jQuery(function ($) {
             else {
                 if (option.selected) {
                     $.ajax({
-                        type: 'GET',
-                        url: '/project/' + option.id,
+                        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+                        url: 'api/project/' + option.id,
                         success: function (result) {
                             explanation.value = result[0].details;
 
@@ -118,7 +118,7 @@ function editProject(id) {
 
     $.ajax({
         type: 'GET', // define the type of HTTP verb we want to use (POST for our form)
-        url: '/project/' + id,
+        url: 'api/project/' + id,
         success: function (result) {
             var data = result[0]
             localStorage.setItem('proj_id', data._id)
@@ -132,7 +132,7 @@ function editProject(id) {
             localStorage.setItem('single_or_couple_proj', data.single_or_couple)
             localStorage.setItem('external_factor_proj', data.external_factor)
             localStorage.setItem("external_party_email_proj", data.external_party_email);
-            window.location.href = "/addproject";
+            window.location.href = "/add_project.html";
         },
         error: function (err) {
             console.log("err" + err);
@@ -143,7 +143,7 @@ function editProject(id) {
 function getProjectsDetails(id, index) {
     $.ajax({
         type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/project/' + id,
+        url: 'api/project/' + id,
         success: function (result) {
             var value = result[0];
 
@@ -173,7 +173,7 @@ function getProjectsDetails(id, index) {
 function getAllProjectsDetails() {
     $.ajax({
         type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/projects',
+        url: 'api/projects',
         success: function (result) {
             //adding all the options
             // projects_name = document.getElementById("projects_name")
@@ -217,7 +217,7 @@ function getIdModFromPro(e) {
     var id_pjt = localStorage.getItem('id_pjt');
     $.ajax({
         type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/project/' + id_pjt,
+        url: 'api/project/' + id_pjt,
         success: function (result) {
             sendRequest(result[0].mod_id, result[0].name_hebrew);
         },
@@ -230,7 +230,7 @@ function getIdModFromPro(e) {
 function sendRequest(id_mod, name) {
     $.ajax({
         type: 'GET',
-        url: '/getemail/' + id_mod,
+        url: 'api/getemail/' + id_mod,
         contentType: 'application/json',
         success: function (result) {
             var subject = 'בקשת פרוייקט';
@@ -250,12 +250,12 @@ function sendRequest(id_mod, name) {
 function monitoringTbl(id) {
     $.ajax({
         type: 'GET', 
-        url: '/project/' + id,
+        url: 'api/project/' + id,
         success: function (result) {
             localStorage.setItem("secData", "notJudge")
             localStorage.setItem("idOfSubRpt", result[0].sub_rpt_id);
             localStorage.setItem("idOfPjt", id);
-            window.location.href = "/Monitoring";
+            window.location.href = "/Monitoring_the_project.html";
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
@@ -267,7 +267,7 @@ function stoppedProject(id) {
     updateSdtIdRpt(id);
     $.ajax({
         type: 'PUT',
-        url: "/stpPjt/" + id,
+        url: "api/stpPjt/" + id,
         contentType: 'application/json',
         data: JSON.stringify({
             "status": "הופסק"
@@ -286,7 +286,7 @@ function stoppedProject(id) {
 function updateSdtIdRpt(id) {
     $.ajax({
         type: 'GET',
-        url: '/getSdtbyPjtId/' + id,
+        url: 'api/getSdtbyPjtId/' + id,
         success: function (result) {
             if (result[0] != undefined) {
                 dltRpt(result[0].id_prop_rpt, "prop");
@@ -305,7 +305,7 @@ function updateSdtIdRpt(id) {
 function dltRpt(rpt, nameRpt) {
     if (rpt != "") {
         $.ajax({
-            url: "/deleteRpt/" + rpt + '/' + nameRpt,
+            url: "api/deleteRpt/" + rpt + '/' + nameRpt,
             type: 'DELETE',
             success: function (data) {
             },
@@ -315,16 +315,3 @@ function dltRpt(rpt, nameRpt) {
         });
     }
 }
-
-// function dltSubDoc(id) {
-//     $.ajax({
-//         url: "/dltSubDoc/" + id,
-//         type: 'DELETE',
-//         success: function (data) {
-//             // location.reload();
-//         },
-//         error: function (err) {
-//             console.log("err", err);
-//         }
-//     });
-// }

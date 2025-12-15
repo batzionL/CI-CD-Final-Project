@@ -98,7 +98,7 @@ const validateEmail = (email) => {
 async function update_project(id) {
     $.ajax({
         type: 'PUT',
-        url: '/updatProject/' + id,
+        url: 'api/updatProject/' + id,
         contentType: 'application/json',
         data: JSON.stringify({
             "name_english": $("#pjt_eng_id").val(),
@@ -120,7 +120,7 @@ async function update_project(id) {
                 await add_project_id_to_students(id, single_or_couple);
             }
             else {
-                location.href = "/home";
+                location.href = "/home_page.html";
             }
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -132,7 +132,7 @@ async function update_project(id) {
 async function add_project(outputStatus, outputSingleOrCouple) {
     $.ajax({
         type: 'POST', 
-        url: '/addproject',
+        url: 'api/addproject',
         contentType: 'application/json',
         data: JSON.stringify({
             "name_english": $("#pjt_eng_id").val(),
@@ -162,7 +162,7 @@ async function add_project(outputStatus, outputSingleOrCouple) {
 async function add_pro_to_mod(id_pjt, outputSingleOrCouple) {
     $.ajax({
         type: 'POST',
-        url: '/addProjectToModerator/' + modID,
+        url: 'api/addProjectToModerator/' + modID,
         contentType: 'application/json',
         data: JSON.stringify({
             "projectID": id_pjt,
@@ -182,7 +182,7 @@ async function add_pro_to_mod(id_pjt, outputSingleOrCouple) {
 async function add_mod_to_pro(id_pjt, outputSingleOrCouple) {
     $.ajax({
         type: 'PUT', 
-        url: '/updateIdModToProjet/' + id_pjt,
+        url: 'api/updateIdModToProjet/' + id_pjt,
         contentType: 'application/json',
         data: JSON.stringify({
             "mod_id": modID
@@ -231,7 +231,7 @@ async function update_student_idPjt_and_grd(id_sdt, id_pjt, id_grd, num, single_
     }
     $.ajax({
         type: 'PUT',
-        url: '/updateStudentIdPjt/' + id_sdt,
+        url: 'api/updateStudentIdPjt/' + id_sdt,
         contentType: 'application/json',
         data: JSON.stringify({
             "id_pjt": id_pjt,
@@ -261,7 +261,7 @@ async function createGraedeDoc(id_pjt, id_sdt, num, single_or_couple) {
     }
     $.ajax({
         type: 'POST', 
-        url: '/createGrdDoc', 
+        url: 'api/createGrdDoc', 
         contentType: 'application/json',
         data: JSON.stringify({
             "id_project": id_pjt,
@@ -290,7 +290,7 @@ async function createGraedeDoc(id_pjt, id_sdt, num, single_or_couple) {
 async function save_grade_id_doc(id_pjt, id_grade_doc, single_or_couple) {
     $.ajax({
         type: 'POST',
-        url: '/saveGrdInPjt/' + id_pjt,
+        url: 'api/saveGrdInPjt/' + id_pjt,
         contentType: 'application/json',
         data: JSON.stringify({
             "GradeID": id_grade_doc,
@@ -314,7 +314,7 @@ async function save_grade_id_doc(id_pjt, id_grade_doc, single_or_couple) {
 async function createSubDoc(id_pjt, outputSingleOrCouple) {
     $.ajax({
         type: 'POST',
-        url: '/createSubDoc', 
+        url: 'api/createSubDoc', 
         contentType: 'application/json',
         data: JSON.stringify({
             "id_project": id_pjt,
@@ -338,7 +338,7 @@ async function createSubDoc(id_pjt, outputSingleOrCouple) {
 async function save_sub_id_doc(id_pjt, id_sub_doc, outputSingleOrCouple) {
     $.ajax({
         type: 'PUT', 
-        url: '/saveSubInPjt/' + id_pjt,
+        url: 'api/saveSubInPjt/' + id_pjt,
         contentType: 'application/json',
         data: JSON.stringify({
             "SubRptID": id_sub_doc
@@ -356,8 +356,8 @@ async function save_sub_id_doc(id_pjt, id_sub_doc, outputSingleOrCouple) {
 async function createActivePjts(idPjt, outputSingleOrCouple) {
     if (outputSingleOrCouple == 'single') {
         $.ajax({
-            type: 'POST',
-            url: '/crtActvPjts',
+            type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url: 'api/crtActvPjts', // the url where we want to POST
             contentType: 'application/json',
             data: JSON.stringify({
                 "idPjt": idPjt,
@@ -374,7 +374,7 @@ async function createActivePjts(idPjt, outputSingleOrCouple) {
                 localStorage.setItem("data", data);
                 localStorage.setItem('modID', modID);
                 localStorage.setItem('name', nameMod)
-                location.href = "/assigAndsubDats";
+                location.href = "/assignments_and_submission_dates.html";
             },
             error: function (jqXhr, textStatus, errorThrown) {
                 console.log(errorThrown);
@@ -383,8 +383,8 @@ async function createActivePjts(idPjt, outputSingleOrCouple) {
     }
     else {
         $.ajax({
-            type: 'POST', 
-            url: '/crtActvPjts',
+            type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url: 'api/crtActvPjts', // the url where we want to POST
             contentType: 'application/json',
             data: JSON.stringify({
                 "idPjt": idPjt,
@@ -401,7 +401,7 @@ async function createActivePjts(idPjt, outputSingleOrCouple) {
             success: function (result) {
                 localStorage.setItem('name', nameMod)
                 localStorage.setItem("data", data);
-                location.href = "/assigAndsubDats";
+                location.href = "/assignments_and_submission_dates.html";
             },
             error: function (jqXhr, textStatus, errorThrown) {
                 console.log(errorThrown);
@@ -413,8 +413,8 @@ async function createActivePjts(idPjt, outputSingleOrCouple) {
 
 async function getSdtName(idSdt, idPjt, num) {
     $.ajax({
-        type: 'GET', 
-        url: '/student/' + idSdt,
+        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        url: 'api/student/' + idSdt,
         success: async function (result) {
             if (idPjt == '') {
                 if (result[0] == undefined) {
@@ -440,8 +440,8 @@ async function getSdtName(idSdt, idPjt, num) {
 
 async function updateActvPjts(name, idPjt, num) {
     $.ajax({
-        type: 'PUT', 
-        url: '/updateActvPjts/' + idPjt,
+        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        url: 'api/updateActvPjts/' + idPjt,
         contentType: 'application/json',
         data: JSON.stringify({
             "name": name,

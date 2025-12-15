@@ -22,7 +22,7 @@ function getUsername(e) {
     else {
         $.ajax({
             type: 'GET', 
-            url: '/getstudents',
+            url: 'api/getstudents',
             success: function (result) {
                 $.each(result, function (index, value) {
                     if (value.sdt_ID == id) {
@@ -32,8 +32,8 @@ function getUsername(e) {
                 });
                 if (!flag) {
                     $.ajax({
-                        type: 'GET',
-                        url: '/getmoderators',
+                        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+                        url: 'api/getmoderators',
                         success: function (result) {
                             $.each(result, function (index, value) {
                                 if (value.mod_ID == id) {
@@ -58,14 +58,14 @@ function getUsername(e) {
 function update_student_pwd(id, newPwd) {
     localStorage.setItem('status', 'student')
     $.ajax({
-        type: 'PUT', 
-        url: '/updateStudent/' + id,
+        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        url: 'api/updateStudent/' + id,
         contentType: 'application/json',
         data: JSON.stringify({
             "password": newPwd
         }),
         success: function () {
-            window.location.href = '/login';
+            window.location.href = '/login.html';
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
@@ -77,13 +77,13 @@ function update_moderator_pwd(id, newPwd) {
     localStorage.setItem('status', 'moderatur')
     $.ajax({
         type: 'PUT',
-        url: '/updateModerator/' + id,
+        url: 'api/updateModerator/' + id,
         contentType: 'application/json',
         data: JSON.stringify({
             "password": newPwd
         }),
         success: function () {
-            window.location.href = '/login';
+            window.location.href = '/login.html';
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);

@@ -22,10 +22,10 @@ async function sub(e) {
             localStorage.setItem("name", student.sdt_firstName + " " + student.sdt_lastName);
             localStorage.setItem("stdID", student.sdt_ID);
             localStorage.setItem("modID", "");
-            window.location.href = "/assigAndsubDats";
+            window.location.href = "/assignments_and_submission_dates.html";
             return;
         } else {
-            alert("Incorrect password for student");
+            alert("Password incorrect for this student");
             return;
         }
     }
@@ -47,13 +47,14 @@ async function sub(e) {
         }
     }
 
-    alert("Username not found");
+    // אם לא נמצא סטודנט ולא מודרטור
+    alert("Username doesn't exsist");
 }
 
 // ====================== קבלת סטודנט ======================
 async function getStudentInfo(username) {
     try {
-        const result = await $.ajax({ type: 'GET', url: '/getStudentPwd/' + username });
+        const result = await $.ajax({ type: 'GET', url: '/api/getStudentPwd/' + username });
         if (result[0]) return result[0];
         return null;
     } catch (err) {
@@ -65,7 +66,7 @@ async function getStudentInfo(username) {
 // ====================== קבלת מודרטור ======================
 async function getModeratorInfo(username) {
     try {
-        const result = await $.ajax({ type: 'GET', url: '/getModeratorPwd/' + username });
+        const result = await $.ajax({ type: 'GET', url: '/api/getModeratorPwd/' + username });
         if (result[0]) return result[0];
         return null;
     } catch (err) {
@@ -77,7 +78,7 @@ async function getModeratorInfo(username) {
 // ====================== בדיקת קואורדינטור ======================
 async function is_coor(id, name) {
     try {
-        const result = await $.ajax({ type: 'GET', url: '/getCoodinator' });
+        const result = await $.ajax({ type: 'GET', url: '/api/getCoodinator' });
         if (!result[0] || result[0].coo_ID !== id) {
             localStorage.setItem("data", "moderator");
         } else {
@@ -86,7 +87,7 @@ async function is_coor(id, name) {
         localStorage.setItem("name", name);
         localStorage.setItem("modID", id);
         localStorage.setItem("stdID", "");
-        window.location.href = "/assigAndsubDats";
+        window.location.href = "/assignments_and_submission_dates.html";
     } catch (err) {
         console.error(err);
     }
@@ -96,7 +97,7 @@ async function is_coor(id, name) {
 function sendEmail(userEmail, password) {
     return $.ajax({
         type: 'POST',
-        url: '/sendEmail',
+        url: '/api/sendEmail',
         contentType: 'application/json',
         data: JSON.stringify({ email: userEmail, password: password }),
     }).done(() => console.log('The password sent to your email'))
