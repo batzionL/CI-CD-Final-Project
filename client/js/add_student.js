@@ -1,19 +1,8 @@
-// jQuery(function ($) {
-//     const random7DigitNumber = getRandom7DigitNumber();
-//     document.getElementById("sdt_pswd_id").value = random7DigitNumber;
-// })
-
-// function getRandom7DigitNumber() {
-//     const min = 100000;
-//     const max = 999999;
-//     return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
-
 function add_studen(e) {
     e.preventDefault();
     var id = document.getElementById("id_sdt").value;
     if (id.length != 9) { 
-        alert("מס' ת.ז. לא תקין");
+        alert("invalid ID!");
         return;
     }
 
@@ -21,7 +10,7 @@ function add_studen(e) {
         if (flag === false) {
             $.ajax({
                 type: 'POST',
-                url: '/addstudent',
+                url: 'api/addstudent',
                 contentType: 'application/json',
                 data: JSON.stringify({
                     "username": $("#sdt_username_id").val(),
@@ -32,7 +21,7 @@ function add_studen(e) {
                     "sdt_email": $("#email_sdt_id").val()
                 }),
                 success: function () {
-                    location.href = "/assigAndsubDats";
+                    location.href = "/assignments_and_submission_dates.html";
                 },
                 error: function (err) {
                     console.log(err);
@@ -47,10 +36,10 @@ function checkIfSdudentExist(id) {
     return new Promise((resolve, reject) => {
         $.ajax({
             type: 'GET',
-            url: '/student/' + id,
+            url: 'api/student/' + id,
             success: function (result) {
                 if (result[0] != undefined) {
-                    alert('סטודנט זה כבר קיים');
+                    alert('this student already exists!');
                     resolve(true);
                 } else {
                     resolve(false);

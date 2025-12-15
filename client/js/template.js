@@ -100,7 +100,7 @@ function getIdPjt() {
     var idPjt;
     $.ajax({
         type: 'GET',
-        url: '/getstudents',
+        url: 'api/getstudents',
         success: function (result) {
             for (var i = 0; i < result.length; i++) {
                 if (result[i].sdt_ID == id_sdt) {
@@ -141,7 +141,7 @@ function proposal_upload(id) {
     // Append the file to the formData
     formData.append('proposal_rpt', file);//, fileName);
     $.ajax({
-        url: '/uploadProposalRep/' + id + '/' + fileName,
+        url: 'api/uploadProposalRep/' + id + '/' + fileName,
         type: 'POST',
         data: formData,
         contentType: false,
@@ -170,7 +170,7 @@ function alfa_upload(id) {
     // Append the file to the formData
     formData.append('alfa_rpt', file);
     $.ajax({
-        url: '/uploadAlfaRep/' + id + '/' + fileName,
+        url: 'api/uploadAlfaRep/' + id + '/' + fileName,
         type: 'POST',
         data: formData,
         contentType: false,
@@ -200,7 +200,7 @@ function beta_upload(id) {
     // Append the file to the formData
     formData.append('beta_rpt', file);
     $.ajax({
-        url: '/uploadBetaRep/' + id + '/' + fileName,
+        url: 'api/uploadBetaRep/' + id + '/' + fileName,
         type: 'POST',
         data: formData,
         contentType: false,
@@ -229,7 +229,7 @@ function final_upload(id) {
     // Append the file to the formData
     formData.append('final_rpt', file);
     $.ajax({
-        url: '/uploadFinalRep/' + id + '/' + fileName,
+        url: 'api/uploadFinalRep/' + id + '/' + fileName,
         type: 'POST',
         data: formData,
         contentType: false,
@@ -247,9 +247,8 @@ function final_upload(id) {
 function checkIfStudentUploadedRpt(id, nameRpt) {
     $.ajax({
         type: 'GET',
-        url: '/student/' + id,
+        url: 'api/student/' + id,
         success: function (result) {
-            // console.log(result[0])
             var rpt;
             if (nameRpt === 'prop') {
                 rpt = result[0].id_prop_rpt;
@@ -265,7 +264,7 @@ function checkIfStudentUploadedRpt(id, nameRpt) {
             }
             if (rpt != "") {
                 $.ajax({
-                    url: "/deleteRpt/" + rpt + '/' + nameRpt,
+                    url: "api/deleteRpt/" + rpt + '/' + nameRpt,
                     type: 'DELETE',
                     success: function (data) {
                         // location.reload();
@@ -285,7 +284,7 @@ function checkIfStudentUploadedRpt(id, nameRpt) {
 function checkUploadTnplt(nameRpt) {
     $.ajax({
         type: 'GET',
-        url: '/checkRptUpload/' + nameRpt,
+        url: 'api/checkRptUpload/' + nameRpt,
         success: function (result) {
             // console.log(result[0])
             if (result[0] != undefined) {
@@ -300,7 +299,7 @@ function checkUploadTnplt(nameRpt) {
 
 function dltRptTlt(nameRpt) {
     $.ajax({
-        url: "/deleteRptTlt/" + nameRpt,
+        url: "api/deleteRptTlt/" + nameRpt,
         type: 'DELETE',
         success: function (data) {
             // location.reload();
@@ -314,7 +313,7 @@ function dltRptTlt(nameRpt) {
 function updateSdtIdRpt(id, idRpt, nameRpt, flag) {
     $.ajax({
         type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/saveIdRptInSdt/' + id + '/' + nameRpt,
+        url: 'api/saveIdRptInSdt/' + id + '/' + nameRpt,
         contentType: 'application/json',
         data: JSON.stringify({
             "id_prop_rpt": idRpt,
@@ -339,12 +338,12 @@ function updateSdtIdRpt(id, idRpt, nameRpt, flag) {
 function checkIfSdtHasCouple(idPjt, idSdt, idRpt, nameRpt) {
     $.ajax({
         type: 'GET',
-        url: '/project/' + idPjt,
+        url: 'api/project/' + idPjt,
         success: function (result) {
             if (result[0].single_or_couple == "couple") {
                 $.ajax({
                     type: 'GET',
-                    url: '/getstudents',
+                    url: 'api/getstudents',
                     success: function (result) {
                         for (var i = 0; i < result.length; i++) {
                             if ((result[i].id_pjt == idPjt) && (result[i].sdt_ID != idSdt)) {
@@ -380,7 +379,7 @@ function loadPjt(idBtn) {//
     getIdModOfDoc(id_mod);
     $.ajax({
         type: 'GET',
-        url: '/getModeratorProjectsJudge/' + id_mod + "/" + idBtn,
+        url: 'api/getModeratorProjectsJudge/' + id_mod + "/" + idBtn,
         success: function (result) {
             //מקבלים בתשובה את האיידי של הפרויקט
             // console.log(id_mod)
@@ -394,7 +393,7 @@ function loadPjt(idBtn) {//
 
                 $.ajax({
                     type: 'GET',
-                    url: '/project/' + result,
+                    url: 'api/project/' + result,
                     success: function (result) {
                         var name = result[0].name_hebrew;
                         document.getElementById("namePjt").innerHTML = "שם הפרויקט: " + name;
@@ -418,7 +417,7 @@ function loadPjt(idBtn) {//
 function getIdModOfDoc(id) {
     $.ajax({
         type: 'GET',
-        url: '/moderator/' + id,
+        url: 'api/moderator/' + id,
         success: function (result) {
             localStorage.setItem('jdgIdDoc', result[0]._id);
         },
@@ -445,7 +444,7 @@ function getGrd(id_grade, jdgIdDoc) {
     // if (result[0].id_judge == jdgIdDoc) {
     $.ajax({
         type: 'GET',
-        url: '/getGrdDoc/' + id_grade,
+        url: 'api/getGrdDoc/' + id_grade,
         success: function (result) {
             // console.log('result - ', result);
             if (result[0].id_judge == jdgIdDoc) {
@@ -472,7 +471,7 @@ function getSub(id_sub) {
 
     $.ajax({
         type: 'GET',
-        url: '/getSubDoc/' + id_sub,
+        url: 'api/getSubDoc/' + id_sub,
         success: function (result) {
             if (result[0].prop_rpt_sub != "") {
                 document.getElementById('lblStatusProp').innerHTML = "הדוח אושר";
@@ -504,12 +503,10 @@ function showDetailsForMod() {
 
 //הצמדת דוח של סטודנט לכפתור
 function AttachStudentRptToBtn(idPjt) {
-    // console.log('idPjt - ', idPjt)
     $.ajax({
         type: 'GET',
-        url: '/getstudents',
+        url: 'api/getstudents',
         success: function (result) {
-            // console.log('rslt - ', result)
             var index;
             for (var i = 0; i < result.length; i++) {
                 if (result[i].id_pjt == idPjt) {
@@ -542,7 +539,7 @@ function AttachStudentRptToBtn(idPjt) {
 function saveSubRpt(idBtn) {
     $.ajax({
         type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/saveSub/' + idOfSubRpt,
+        url: 'api/saveSub/' + idOfSubRpt,
         contentType: 'application/json',
         data: JSON.stringify({
             "idBtn": idBtn
@@ -569,13 +566,13 @@ function grade(idBtn) {
         // מביאים את שני המערכים של מסמכי הציונים - מהשופט ומהפרויקט- המסמך הקיים בשני המערכים הוא המסמך ששם צריך לשנות את הציון
         $.ajax({
             type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-            url: '/getGradeIdDoc/' + id_mod,
+            url: 'api/getGradeIdDoc/' + id_mod,
             success: function (result) {
                 // console.log('array - ', result)
                 var grdsFromMod = result;
                 $.ajax({
                     type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-                    url: '/getGradeId/' + id_pjt,
+                    url: 'api/getGradeId/' + id_pjt,
                     success: function (result) {
                         var grdsFromPjt = result;
 
@@ -606,7 +603,7 @@ function saveGrd(id, idBtn, grade) {
 
     $.ajax({
         type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/saveGrade/' + id,
+        url: 'api/saveGrade/' + id,
         contentType: 'application/json',
         data: JSON.stringify({
             "grd": grade,
@@ -630,11 +627,9 @@ function beforeGetAvgGrds(idSdt) {
 
     $.ajax({
         type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/student/' + idSdt,
+        url: 'api/student/' + idSdt,
         success: function (result) {
-            // if (secData === 'notJudge') {
-                checkGrdForSdt(result[0].id_grade);
-            // }
+            checkGrdForSdt(result[0].id_grade);
             checkRptSub(result[0]);
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -648,17 +643,6 @@ function checkRptSub(student) {
     var alfa = document.getElementById('lblStatusAlfa');
     var beta = document.getElementById('lblStatusBeta');
     var final = document.getElementById('lblStatusFinal');
-
-    // $.ajax({
-    //     type: 'GET',
-    //     url: '/getGrdDoc/' + idGrd,
-    //     success: function (result) {
-
-    //     },
-    //     error: function (jqXhr, textStatus, errorThrown) {
-    //         console.log(errorThrown);
-    //     }
-    // });
 
     if (student.id_prop_rpt != "") {
         prop.innerHTML = 'הדוח הוגש';
@@ -678,7 +662,7 @@ function checkRptSub(student) {
 function checkGrdForSdt(idGrd) {
     $.ajax({
         type: 'GET',
-        url: '/getGrdDoc/' + idGrd,
+        url: 'api/getGrdDoc/' + idGrd,
         success: function (result) {
             if (result[0].alfa_rpt_grd == undefined ||
                 result[0].final_rpt_grd == undefined ||
@@ -700,7 +684,7 @@ function showDetailsForSdt(id_pjt, id_grd) {
 
     $.ajax({
         type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/project/' + id_pjt,
+        url: 'api/project/' + id_pjt,
         success: function (result) {
             getSub(result[0].sub_rpt_id);
         },
@@ -715,7 +699,7 @@ function getGrdsArrFromPjt(idPjt, idGrdOfSdt) {
 
     $.ajax({
         type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/project/' + idPjt,
+        url: 'api/project/' + idPjt,
         success: function (result) {
             var gradesIdArr = result[0].Grades_arr;
             for (var i = 0; i < gradesIdArr.length; i++) {
@@ -733,7 +717,7 @@ function getGrdsArrFromPjt(idPjt, idGrdOfSdt) {
 function getGradesForSdt(gradeId, idGrdOfSdt) {
     $.ajax({
         type: 'GET',
-        url: '/getGrdDoc/' + gradeId,
+        url: 'api/getGrdDoc/' + gradeId,
         success: function (result) {
             var alfaGrd = result[0].alfa_rpt_grd;
             var finalRGrd = result[0].final_rpt_grd;
@@ -771,5 +755,5 @@ function home() {
     // console.log("hi")
     // window.location.href = "http://localhost:3000/home";
 
-    window.location.href = "/assigAndsubDats";
+    window.location.href = "/assignments_and_submission_dates.html";
 }

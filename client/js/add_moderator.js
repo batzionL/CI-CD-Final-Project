@@ -11,7 +11,7 @@ function add_mod(e) {
         if (flag === false) {
             $.ajax({
                 type: 'POST', 
-                url: '/addmoderator', 
+                url: 'api/addmoderator', 
                 contentType: 'application/json',
                 data: JSON.stringify({
                     "username": $("#mod_username_id").val(),
@@ -22,7 +22,7 @@ function add_mod(e) {
                     "mod_email": $("#email_mod_id").val()
                 }),
                 success: function () {
-                    location.href = "/assigAndsubDats";
+                    location.href = "/assignments_and_submission_dates.html";
                 },
                 error: function (err) {
                     console.log(err);
@@ -36,7 +36,7 @@ function checkIfModExist(id) {
     return new Promise((resolve, reject) => {
         $.ajax({
             type: 'GET',
-            url: '/moderator/' + id,
+            url: 'api/moderator/' + id,
             success: function (result) {
                 if (result[0] != undefined) {
                     alert('מנחה זה כבר קיים');
@@ -55,5 +55,5 @@ function checkIfModExist(id) {
 
 
 function add_coor(){
-    location.href = "/addcoordinator"
+    location.href = "/add_coordinator.html"
 }

@@ -19,7 +19,7 @@ function showPrevDates() {
     var prevFinal = document.getElementById('prevFinal');
     var prevPresnt = document.getElementById('prevPresnt');
     $.ajax({
-        url: '/getdates',
+        url: 'api/getdates',
         type: 'GET',
         success: function (result) {
             prevProp.value = result[0].propRpt;
@@ -64,7 +64,7 @@ function setDates(prevProp, prevAlfa, prevBeta, prevFinal, prevPresnt){
 
     $.ajax({
         type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/updateSubDates',
+        url: 'api/updateSubDates',
         contentType: 'application/json',
         data: JSON.stringify({
             "propRpt": proposal,
@@ -75,7 +75,7 @@ function setDates(prevProp, prevAlfa, prevBeta, prevFinal, prevPresnt){
         }),
         success: function (result) {
             alert("התאריך/ים נשמר/ו בהצלחה");
-            location.href = "/assigAndsubDats";
+            location.href = "/assignments_and_submission_dates.html";
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
@@ -92,7 +92,7 @@ function getDates() {
 
     $.ajax({
         type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/getdates',
+        url: 'api/getdates',
         success: function (result) {
             // console.log(result)
             var current = new Date()//.getTime();
@@ -100,7 +100,6 @@ function getDates() {
             let mm = String(current.getMonth() + 1).padStart(2, '0'); // January is 0!
             let yyyy = current.getFullYear();
             current = yyyy + '-' + mm + '-' + dd;
-// console.log(current)
             $.each(result, function (index, value) {
                 if ("propRpt" in value) {
                     if (current <= value.propRpt) {

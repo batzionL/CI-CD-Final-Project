@@ -5,7 +5,7 @@
 //   });
 
   function home(){
-    window.location.href = "/assigAndsubDats";
+    window.location.href = "/assignments_and_submission_dates.html";
   }
 
   // function uploadFile() {

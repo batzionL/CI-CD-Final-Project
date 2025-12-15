@@ -42,8 +42,7 @@ function addProject() {
     localStorage.setItem("isEdit", 'false');
     var name = localStorage.getItem("name");
     localStorage.setItem("name", name);
-    // console.log('name - ass - ', name);
-    window.location.href = "/addproject";
+    window.location.href = "/add_project.html";
 }
 
 function monitoringTbl() {
@@ -66,7 +65,7 @@ function monitoringTbl() {
     // console.log(' id - ', id);
     // alert('id');
     // if (data === "student") {
-    window.location.href = "/Monitoring";
+    window.location.href = "/Monitoring_the_project.html";
     // }
 }
 
@@ -77,23 +76,23 @@ function projectsList() {
     var name = localStorage.getItem("name")
     localStorage.setItem("name", name);
     localStorage.setItem("All", "not all");
-    window.location.href = "/home";
+    window.location.href = "/home_page.html";
 }
 
 function downloadReports() {
-    window.location.href = "/template";
+    window.location.href = "/template.html";
 }
 
 function addStudent() {
-    window.location.href = "/addstudent";
+    window.location.href = "/add_student.html";
 }
 
 function addModerator() {
-    window.location.href = "/addmoderator";
+    window.location.href = "/add_moderator.html";
 }
 
 function updateDates() {
-    window.location.href = "/updateDates";
+    window.location.href = "/update_dates";
 }
 
 function allProjectsList() {
@@ -102,11 +101,11 @@ function allProjectsList() {
     localStorage.setItem("All", "all");
     var name = localStorage.getItem("name")
     localStorage.setItem("name", name);
-    window.location.href = "/home";
+    window.location.href = "/home_page.html";
 }
 
 function judgesAndPjcts() {
-    window.location.href = "/judge";
+    window.location.href = "/judge.html";
 }
 
 //This function shows the submission dates of the reports and the project
@@ -119,9 +118,8 @@ function getDates() {
 
     $.ajax({
         type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
-        url: '/getdates',
+        url: 'api/getdates',
         success: function (result) {
-            // console.log(result)
             $.each(result, function (index, value) {
                 if ("propRpt" in value) {
                     prop.innerHTML = value.propRpt;
