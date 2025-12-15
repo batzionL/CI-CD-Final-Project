@@ -9,7 +9,6 @@
 
 html, body {
     background-color: #bbdfee;
-    /* background: linear-gradient(90deg, #237cb8, #528eb6); Added missing colors */
     height: 100%;
     overflow: hidden;
 }
