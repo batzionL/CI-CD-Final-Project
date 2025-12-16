@@ -7,11 +7,11 @@ var ProjectSchema = new mongoose.Schema({
         trim: true
     },
 
-    name_hebrew: {
-        type: String,
-        required: true,
-        trim: true
-    },
+    // name_hebrew: {
+    //     type: String,
+    //     required: true,
+    //     trim: true
+    // },
 
     details: {
         type: String,

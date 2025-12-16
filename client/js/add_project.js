@@ -65,7 +65,7 @@ function getFullDate() {
 
 async function receiving_the_information() {
     var english_name = localStorage.getItem('english_name_proj')
-    var hebrew_name = localStorage.getItem('hebrew_name_proj')
+    // var hebrew_name = localStorage.getItem('hebrew_name_proj')
     var details = localStorage.getItem('details_proj')
     var project_type = localStorage.getItem('type_proj')
     var status = localStorage.getItem('status_proj')
@@ -76,7 +76,7 @@ async function receiving_the_information() {
     var external_party_email = localStorage.getItem('external_party_email_proj')
 
     document.getElementById("pjt_eng_id").setAttribute('value', english_name)
-    document.getElementById("pjt_hbw_id").setAttribute('value', hebrew_name)
+    // document.getElementById("pjt_hbw_id").setAttribute('value', hebrew_name)
     document.getElementById("details_id").value = details;
     document.getElementById("project_type_id").setAttribute('value', project_type)
     document.getElementById('status_id').value = status;
@@ -102,7 +102,7 @@ async function update_project(id) {
         contentType: 'application/json',
         data: JSON.stringify({
             "name_english": $("#pjt_eng_id").val(),
-            "name_hebrew": $("#pjt_hbw_id").val(),
+            // "name_hebrew": $("#pjt_hbw_id").val(),
             "details": $('#details_id').val(),
             "project_type": $('#project_type_id').val(),
             "status": $('#input_status_id').val(),
@@ -136,7 +136,7 @@ async function add_project(outputStatus, outputSingleOrCouple) {
         contentType: 'application/json',
         data: JSON.stringify({
             "name_english": $("#pjt_eng_id").val(),
-            "name_hebrew": $("#pjt_hbw_id").val(),
+            // "name_hebrew": $("#pjt_hbw_id").val(),
             "details": $('#details_id').val(),
             "project_type": $('#project_type_id').val(),
             "status": outputStatus,
@@ -358,7 +358,7 @@ async function createActivePjts(idPjt, outputSingleOrCouple) {
             contentType: 'application/json',
             data: JSON.stringify({
                 "idPjt": idPjt,
-                "pjtName": $("#pjt_hbw_id").val(),
+                "pjtName": $("#pjt_eng_id").val(),
                 "modName": $('#offer_id').val(),
                 "jdgName1": "",
                 "jdgName2": "",
@@ -385,7 +385,7 @@ async function createActivePjts(idPjt, outputSingleOrCouple) {
             contentType: 'application/json',
             data: JSON.stringify({
                 "idPjt": idPjt,
-                "pjtName": $("#pjt_hbw_id").val(),
+                "pjtName": $("#pjt_eng_id").val(),
                 "modName": $('#offer_id').val(),
                 "jdgName1": "",
                 "jdgName2": "",
