@@ -622,7 +622,7 @@ function showDetailsForSdt(id_pjt, id_grd) {
     getGrd(id_grd);
 
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',
         url: 'api/project/' + id_pjt,
         success: function (result) {
             getSub(result[0].sub_rpt_id);
@@ -636,7 +636,7 @@ function showDetailsForSdt(id_pjt, id_grd) {
 function getGrdsArrFromPjt(idPjt, idGrdOfSdt) {
 
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET', 
         url: 'api/project/' + idPjt,
         success: function (result) {
             var gradesIdArr = result[0].Grades_arr;
@@ -690,8 +690,5 @@ function getGradesForSdt(gradeId, idGrdOfSdt) {
 }
 
 function home() {
-    // console.log("hi")
-    // window.location.href = "http://localhost:3000/home";
-
     window.location.href = "/assignments_and_submission_dates.html";
 }

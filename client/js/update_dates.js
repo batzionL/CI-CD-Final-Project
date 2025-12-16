@@ -63,7 +63,7 @@ function setDates(prevProp, prevAlfa, prevBeta, prevFinal, prevPresnt){
     }
 
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'PUT', 
         url: 'api/updateSubDates',
         contentType: 'application/json',
         data: JSON.stringify({
@@ -91,7 +91,7 @@ function getDates() {
     var present = document.getElementById("presentation_id_date");
 
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',
         url: 'api/getdates',
         success: function (result) {
             var current = new Date()

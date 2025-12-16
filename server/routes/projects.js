@@ -308,7 +308,6 @@ module.exports = {
         ).catch(e => res.status(500).send())
     },
 
-    //מחזיר את רשימת הפרויקטים שמנחה זה מנחה
     getModeratorProjects: function (req, res) {
         Moderator.find({ "mod_ID": req.params.id }).then(moderator => {
             res.status(200).send(moderator[0].projects_arr)
@@ -323,7 +322,6 @@ module.exports = {
         ).catch(e => res.status(500).send())
     },
 
-    //מחזיר את הפרויקטים שמנחה זה שופט
     getProjetsById: function (req, res) {
         Moderator.find({ "mod_ID": req.params.id_mod }).then(moderator => {
             res.status(200).send(moderator[0].judge_project_arr)
@@ -331,7 +329,6 @@ module.exports = {
         ).catch(e => res.status(500).send())
     },
 
-    //מחזיר את רשימת האיידי של הציונים של הפרויקטים שהמנחה שופט
     getGradeIdDoc: function (req, res) {
         Moderator.find({ "mod_ID": req.params.id_mod }).then(moderator => {
             res.status(200).send(moderator[0].Grades_arr_judge)
@@ -339,7 +336,6 @@ module.exports = {
         ).catch(e => res.status(500).send())
     },
 
-    //מחזיר את רשימת האיידי של הציונים של אותו פרויקט
     getGradeId: function (req, res) {
         Project.find({ "_id": req.params.id_pjt }).then(project => {
             res.status(200).send(project[0].Grades_arr)
@@ -353,7 +349,6 @@ module.exports = {
         ).catch(e => res.status(500).send())
     },
 
-    //הצמדת פרויקט לכפתור
     getModeratorProjectsJudge: function (req, res) {
         const idBtn = req.params.idBtn;
         Moderator.find({ "mod_ID": req.params.id }).then(moderator => {
@@ -608,7 +603,6 @@ module.exports = {
         }).catch(e => res.status(400).send(e))
     },
 
-    //שומר את האיידי של המסמך שהועלה אצל הסטודנט
     saveIdRptInSdt: function (req, res) {
         if (req.params.nameRpt === "prop") {
             Student.findOneAndUpdate({ "sdt_ID": req.params.id_sdt }, { "id_prop_rpt": req.body.id_prop_rpt }, { new: true, runValidators: true })
