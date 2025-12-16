@@ -13,7 +13,7 @@ services:
     build:
       context: .
       dockerfile: server/Dockerfile
-    container_name: backend
+    # container_name: backend
     environment:
       DATABASE_URL: mongodb://mongo:27017/finalproject
       PORT: 3000
