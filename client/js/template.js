@@ -143,7 +143,7 @@ function alfa_upload(id) {
     if (id.startsWith("00")) {
         checkUploadTnplt('alfa')
     }
-    const formData = new FormData();  
+    const formData = new FormData(); 
     const file = document.getElementById('alfaFileInput').files[0];
     const fileName = 'alfa_rpt-' + id + '.pdf';
     formData.append('alfa_rpt', file);
@@ -195,7 +195,7 @@ function final_upload(id) {
     if (id.startsWith("00")) {
         checkUploadTnplt('final')
     }
-    const formData = new FormData();  
+    const formData = new FormData(); 
     const file = document.getElementById('finalFileInput').files[0];
     const fileName = 'final_rpt-' + id + '.pdf';
     formData.append('final_rpt', file);
@@ -206,7 +206,7 @@ function final_upload(id) {
         contentType: false,
         processData: false,
         success: function (data) {
-            alert('The file was uploaded successfully!')
+            alert('File uploaded successfully!')
             if (!data.final_rpt_id.startsWith("00")) {
                 updateSdtIdRpt(id_sdt, data._id, 'final', false);
             }
@@ -279,7 +279,7 @@ function dltRptTlt(nameRpt) {
 
 function updateSdtIdRpt(id, idRpt, nameRpt, flag) {
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'PUT',
         url: 'api/saveIdRptInSdt/' + id + '/' + nameRpt,
         contentType: 'application/json',
         data: JSON.stringify({
@@ -331,7 +331,7 @@ function checkIfSdtHasCouple(idPjt, idSdt, idRpt, nameRpt) {
 function downloadFile(fileId, rpt) {
     var path = rpt + '-' + fileId + '.pdf';
     var form = document.getElementById('downloadForm');
-    form.action = '/download-file/' + path;
+    form.action = '/api/download-file/' + path;
     form.submit();
 }
 
@@ -443,7 +443,7 @@ function getSub(id_sub) {
 }
 
 function showDetailsForMod() {
-        AttachStudentRptToBtn(idOfPjt);
+    AttachStudentRptToBtn(idOfPjt);
 
     var sdtId = localStorage.getItem('sdtId')
     beforeGetAvgGrds(sdtId)
@@ -484,7 +484,7 @@ function AttachStudentRptToBtn(idPjt) {
 
 function saveSubRpt(idBtn) {
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'PUT',
         url: 'api/saveSub/' + idOfSubRpt,
         contentType: 'application/json',
         data: JSON.stringify({
@@ -499,7 +499,6 @@ function saveSubRpt(idBtn) {
     });
 }
 
-//נתינת ציון
 function grade(idBtn) {
     getDates();
     var id_pjt = localStorage.getItem('id_pjt')
@@ -510,12 +509,12 @@ function grade(idBtn) {
     }
     else {
         $.ajax({
-            type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+            type: 'GET', 
             url: 'api/getGradeIdDoc/' + id_mod,
             success: function (result) {
                 var grdsFromMod = result;
                 $.ajax({
-                    type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+                    type: 'GET',
                     url: 'api/getGradeId/' + id_pjt,
                     success: function (result) {
                         var grdsFromPjt = result;
@@ -546,7 +545,7 @@ function saveGrd(id, idBtn, grade) {
     }
 
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'PUT',
         url: 'api/saveGrade/' + id,
         contentType: 'application/json',
         data: JSON.stringify({
@@ -567,7 +566,7 @@ function saveGrd(id, idBtn, grade) {
 function beforeGetAvgGrds(idSdt) {
 
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET', 
         url: 'api/student/' + idSdt,
         success: function (result) {
             checkGrdForSdt(result[0].id_grade);

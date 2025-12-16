@@ -202,13 +202,13 @@ async function add_mod_to_pro(id_pjt, outputSingleOrCouple) {
 
 //Add project id to the student/s that work on it
 async function add_project_id_to_students(id_pjt, single_or_couple) {
-    let id_sdt = prompt("הכנס תז של הסטודנט שעושה פרוייקט זה", "");
+    let id_sdt = prompt("Enter the ID of the student doing this project.", "");
     getSdtName(id_sdt, '', '');
     var isExist = localStorage.getItem('isExist')
     if (id_sdt == null || id_sdt == "" || isExist == 'no') {
         alert("You must enter a valid student ID");
     } else {
-        await createGraedeDoc(id_pjt, id_sdt, 1, single_or_couple);    //יצירת מסמך של ציון ושמירתו אצל הסטודנט
+        await createGraedeDoc(id_pjt, id_sdt, 1, single_or_couple);   
     }
     if (single_or_couple == 'couple') {
         let id_second_sdt = prompt("Enter the ID of the additional student working on this project", "");
@@ -286,7 +286,6 @@ async function createGraedeDoc(id_pjt, id_sdt, num, single_or_couple) {
     })
 }
 
-//שומר
 async function save_grade_id_doc(id_pjt, id_grade_doc, single_or_couple) {
     $.ajax({
         type: 'POST',
@@ -334,7 +333,6 @@ async function createSubDoc(id_pjt, outputSingleOrCouple) {
     })
 }
 
-//שומר את האיידי של המסמך בפרויקט
 async function save_sub_id_doc(id_pjt, id_sub_doc, outputSingleOrCouple) {
     $.ajax({
         type: 'PUT', 
@@ -352,12 +350,11 @@ async function save_sub_id_doc(id_pjt, id_sub_doc, outputSingleOrCouple) {
     });
 }
 
-//מייצר מסמך עבור טבלת פרויקטים פעילים 
 async function createActivePjts(idPjt, outputSingleOrCouple) {
     if (outputSingleOrCouple == 'single') {
         $.ajax({
-            type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
-            url: 'api/crtActvPjts', // the url where we want to POST
+            type: 'POST', 
+            url: 'api/crtActvPjts', 
             contentType: 'application/json',
             data: JSON.stringify({
                 "idPjt": idPjt,
@@ -383,8 +380,8 @@ async function createActivePjts(idPjt, outputSingleOrCouple) {
     }
     else {
         $.ajax({
-            type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
-            url: 'api/crtActvPjts', // the url where we want to POST
+            type: 'POST', 
+            url: 'api/crtActvPjts',
             contentType: 'application/json',
             data: JSON.stringify({
                 "idPjt": idPjt,
@@ -413,7 +410,7 @@ async function createActivePjts(idPjt, outputSingleOrCouple) {
 
 async function getSdtName(idSdt, idPjt, num) {
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',  
         url: 'api/student/' + idSdt,
         success: async function (result) {
             if (idPjt == '') {
@@ -440,7 +437,7 @@ async function getSdtName(idSdt, idPjt, num) {
 
 async function updateActvPjts(name, idPjt, num) {
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'PUT',
         url: 'api/updateActvPjts/' + idPjt,
         contentType: 'application/json',
         data: JSON.stringify({

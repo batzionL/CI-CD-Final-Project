@@ -1,4 +1,3 @@
-// ====================== כניסה ======================
 async function sub(e) {
     e.preventDefault();
 
@@ -47,11 +46,9 @@ async function sub(e) {
         }
     }
 
-    // אם לא נמצא סטודנט ולא מודרטור
     alert("Username doesn't exsist");
 }
 
-// ====================== קבלת סטודנט ======================
 async function getStudentInfo(username) {
     try {
         const result = await $.ajax({ type: 'GET', url: '/api/getStudentPwd/' + username });
@@ -63,7 +60,6 @@ async function getStudentInfo(username) {
     }
 }
 
-// ====================== קבלת מודרטור ======================
 async function getModeratorInfo(username) {
     try {
         const result = await $.ajax({ type: 'GET', url: '/api/getModeratorPwd/' + username });
@@ -75,7 +71,6 @@ async function getModeratorInfo(username) {
     }
 }
 
-// ====================== בדיקת קואורדינטור ======================
 async function is_coor(id, name) {
     try {
         const result = await $.ajax({ type: 'GET', url: '/api/getCoodinator' });
@@ -93,7 +88,6 @@ async function is_coor(id, name) {
     }
 }
 
-// ====================== שליחת סיסמה במייל ======================
 function sendEmail(userEmail, password) {
     return $.ajax({
         type: 'POST',

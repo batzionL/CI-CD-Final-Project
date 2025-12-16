@@ -18,7 +18,7 @@ function randJudges() {
 
     const projectsJudges = [];
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',
         url: 'api/projects',
         success: function (result) {
             for (let i = 0; i < result.length; i++) {
@@ -34,7 +34,6 @@ function randJudges() {
                     }
                 }
                 projectsJudges.push(selectedJudges);
-
                 add_pjt_to_judge(result[i]._id, selectedJudges[0]);
                 add_pjt_to_judge(result[i]._id, selectedJudges[1]);
                 add_pjt_to_judge(result[i]._id, selectedJudges[2]);
@@ -59,8 +58,8 @@ function randJudges() {
 
 function add_pjt_to_judge(id_pjt, id_judge) {
     $.ajax({
-        type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
-        url: 'api/addProjectToJudge/' + id_judge, // the url where we want to POST
+        type: 'POST',
+        url: 'api/addProjectToJudge/' + id_judge,
         contentType: 'application/json',
         data: JSON.stringify({
             "projectID": id_pjt
@@ -77,7 +76,7 @@ function add_pjt_to_judge(id_pjt, id_judge) {
 
 function add_judge_grd(id_judge, grade) {
     $.ajax({
-        type: 'POST', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'POST',
         url: 'api/addJudgeGrd/' + id_judge,
         contentType: 'application/json',
         data: JSON.stringify({
@@ -94,8 +93,8 @@ function add_judge_grd(id_judge, grade) {
 
 function add_judge_to_pjt(id_pjt, id_judge) {
     $.ajax({
-        type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
-        url: 'api/addJudgesToProject/' + id_pjt, // the url where we want to POST
+        type: 'POST', 
+        url: 'api/addJudgesToProject/' + id_pjt,
         contentType: 'application/json',
         data: JSON.stringify({
             "JudgeID": id_judge,
@@ -112,8 +111,8 @@ function add_judge_to_pjt(id_pjt, id_judge) {
 
 function add_grd_judge(id_judge, id_grade) {
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (PUT for our form)
-        url: 'api/updateGrdDocId/' + id_grade, // the url where we want to PUT
+        type: 'PUT', 
+        url: 'api/updateGrdDocId/' + id_grade, 
         contentType: 'application/json',
         data: JSON.stringify({
             "id_judge": id_judge
@@ -130,7 +129,7 @@ function add_grd_judge(id_judge, id_grade) {
 
 function getNameJdg(idPjt, idJdg, num) {
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET', 
         url: 'api/getModByIdDoc/' + idJdg,
         success: function (result) {
             var Fname = result[0].mod_firstName;
@@ -146,8 +145,8 @@ function getNameJdg(idPjt, idJdg, num) {
 
 function addJdgIdToActvPjts(idPjt, name, num) {
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (POST for our form)
-        url: 'api/addJdgNameToActvPjts/' + idPjt, // the url where we want to POST
+        type: 'PUT', 
+        url: 'api/addJdgNameToActvPjts/' + idPjt, 
         contentType: 'application/json',
         data: JSON.stringify({
             "jdgName": name,
@@ -198,7 +197,7 @@ function createTable() {
         url: 'api/actvPjtsList',
         type: 'GET',
         success: function (data) {
-            $.each(data, function (index, value) { 
+            $.each(data, function (index, value) {  
                 if (value.pjtName && value.modName && value.jdgName1 && value.jdgName2 && value.jdgName3 && value.sdtName1) {
                     var sdt2 = value.sdtName2 ? ', ' + value.sdtName2 : '';
                     var row = table.insertRow();

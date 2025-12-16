@@ -17,7 +17,6 @@ jQuery(function ($) {
     var all = localStorage.getItem("All")
 
 
-    // If the user id student he will see all the projects
     if (data === "student" || all === "all") {
         if (data === "coordinator") {
             btnSendingARequest.style.visibility = "hidden";
@@ -28,14 +27,13 @@ jQuery(function ($) {
         getAllProjectsDetails();
     }
     else {
-        // If the user is moderator he will see onle his projects
         if (data === "moderator" || (data === "coordinator" && all === "not all")) {
             btnSendingARequest.style.visibility = "hidden";
             monitoringTblBtn.style.display = "block";
             var id = localStorage.getItem("modID");
             $.ajax({
                 type: 'GET',
-                url: '/getModeratorProjects/' + id,
+                url: 'api/getModeratorProjects/' + id,
                 success: function (result) {
                     index = 0;
                     $.each(result, function (index, value) {
@@ -65,7 +63,7 @@ jQuery(function ($) {
             else {
                 if (option.selected) {
                     $.ajax({
-                        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+                        type: 'GET', 
                         url: 'api/project/' + option.id,
                         success: function (result) {
                             explanation.value = result[0].details;
@@ -117,7 +115,7 @@ function editProject(id) {
     localStorage.setItem("isEdit", 'true');
 
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (POST for our form)
+        type: 'GET', 
         url: 'api/project/' + id,
         success: function (result) {
             var data = result[0]
@@ -142,7 +140,7 @@ function editProject(id) {
 
 function getProjectsDetails(id, index) {
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',
         url: 'api/project/' + id,
         success: function (result) {
             var value = result[0];
@@ -172,11 +170,9 @@ function getProjectsDetails(id, index) {
 
 function getAllProjectsDetails() {
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',
         url: 'api/projects',
         success: function (result) {
-            //adding all the options
-            // projects_name = document.getElementById("projects_name")
             index = 0;
             $.each(result, function (index, value) {
                 var project = document.createElement("option")
@@ -192,10 +188,6 @@ function getAllProjectsDetails() {
                 project.setAttribute("single_or_couple", value.single_or_couple)
                 project.setAttribute("external_factor", value.external_factor)
                 project.setAttribute("external_party_email", value.external_party_email)
-
-
-                // console.log('name - ', value.name_hebrew);
-
                 project.innerHTML = value.name_hebrew;
                 projects_name.appendChild(project);
                 index++;
@@ -216,7 +208,7 @@ function getIdModFromPro(e) {
     e.preventDefault()
     var id_pjt = localStorage.getItem('id_pjt');
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET', 
         url: 'api/project/' + id_pjt,
         success: function (result) {
             sendRequest(result[0].mod_id, result[0].name_hebrew);

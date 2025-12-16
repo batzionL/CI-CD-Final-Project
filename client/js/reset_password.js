@@ -21,7 +21,7 @@ function getUsername(e) {
 
     else {
         $.ajax({
-            type: 'GET', 
+            type: 'GET',
             url: 'api/getstudents',
             success: function (result) {
                 $.each(result, function (index, value) {
@@ -32,7 +32,7 @@ function getUsername(e) {
                 });
                 if (!flag) {
                     $.ajax({
-                        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+                        type: 'GET',
                         url: 'api/getmoderators',
                         success: function (result) {
                             $.each(result, function (index, value) {
@@ -58,7 +58,7 @@ function getUsername(e) {
 function update_student_pwd(id, newPwd) {
     localStorage.setItem('status', 'student')
     $.ajax({
-        type: 'PUT', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'PUT',
         url: 'api/updateStudent/' + id,
         contentType: 'application/json',
         data: JSON.stringify({

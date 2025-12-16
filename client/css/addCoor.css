@@ -41,35 +41,33 @@ body {
     transition: background-color 0.3s ease;
     align-items: center;
     display: inline-block;
-    text-decoration: none; /* Ensure buttons are not underlined */
+    text-decoration: none; 
 }
 
 .btn-success:hover {
     background-color: #555;
 }
 .btn-success:focus, .btn-success:active {
-    outline: none; /* Remove outline on focus */
-    background-color: #1e9ad3; /* Maintain original background color */
-    /* box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); Optional: add a shadow to indicate focus */
+    outline: none; 
+    background-color: #1e9ad3;
 }
 .col-sm-6.col-sm-offset-3 {
     
     border-radius: 20px;
     background-color: #bbdfee;
-    padding: 20px; /* Adding padding to create space between content and border */
+    padding: 20px; 
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    /* flex-direction: column; Align items vertically */
+    justify-content: center;
+    align-items: center;
     text-align: center; 
   }
   label {
-    width: 150px; /* Adjust the width as needed */
-    display: inline-block; /* Ensures the width property takes effect */
+    width: 150px;
+    display: inline-block; 
   }
   
   select{
-    width: 90px; /* Adjust the width as needed */
+    width: 90px;
     height: 40px;
     text-align: center;
     border-radius: 50px;

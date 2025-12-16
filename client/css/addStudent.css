@@ -1,8 +1,7 @@
 body {
     background-image: url('1205.jpg');
-    background-size: cover;    /* font-family: sans-serif; */
+    background-size: cover;  
       font-size: 16px;
-      /* font-family: 'lato', sans-serif; */
       font-family: 'Rubik', 'ploni', sans-serif;
   
     }
@@ -17,15 +16,15 @@ body {
       background-image: url('1205.jpg');
       background-size: cover;    }
     #logo-container img {
-      max-width: 300px; /* Adjust the max-width as needed */
+      max-width: 300px; 
       height: auto;
     }
   
   
     .button-container {
       display: flex;
-      justify-content: center; /* Horizontally center the button */
-      align-items: center; /* Vertically center the button */
+      justify-content: center; 
+      align-items: center; 
   }
   
   .btn-success {
@@ -49,8 +48,8 @@ body {
   h1{
     text-align: center;
   }
-  /* Add this style to create a line through the eye icon when password is visible */
-.password-visible::after {
+
+  .password-visible::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -61,17 +60,13 @@ body {
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 .col-sm-6.col-sm-offset-3 {
-    
-    /* border: 7px solid #1e9ad3; Adding border */
     border-radius: 20px;
     background-color: #bbdfee;
 
-    padding: 20px; /* Adding padding to create space between content and border */
+    padding: 20px; 
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    /* flex-direction: column; Align items vertically */
-    /* text-align: center; Center text content */
+    justify-content: center;
+    align-items: center; 
     
   }
   #id_project{

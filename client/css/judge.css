@@ -27,7 +27,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: -20px; /* Add margin to create space between button and table */
+    margin-bottom: -20px;
 }
 
 .btn-success {
@@ -42,7 +42,7 @@ body {
     transition: background-color 0.3s ease;
     align-items: center;
     display: inline-block;
-    text-decoration: none; /* Ensure buttons are not underlined */
+    text-decoration: none; 
 }
 
 .btn-success:hover {
@@ -50,15 +50,14 @@ body {
 }
 
 .btn-success:focus, .btn-success:active {
-    outline: none; /* Remove outline on focus */
-    background-color: #1e9ad3; /* Maintain original background color */
-    /* box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); Optional: add a shadow to indicate focus */
+    outline: none; 
+    background-color: #1e9ad3;
 }
 
 #tableContainer {
     width: 50%;
-    margin: 0 auto; /* Center the table container */
-    margin-top: 10px; /* Add margin-top for spacing */
+    margin: 0 auto;
+    margin-top: 10px;
     overflow-x: auto;
     background-color: #fff;
     border-radius: 8px;

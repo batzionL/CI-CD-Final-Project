@@ -12,7 +12,7 @@ jQuery(function ($) {
     var judgesAndPjctsBtn = document.getElementById('judgesAndPjctsBtn');
 
     if (data === "student") {
-        monitoringTblBtn.textContent  = "טבלת מעקב";
+        monitoringTblBtn.textContent  = "Tracking table";
         addProjBtn.style.display = "none";
         addStudentBtn.style.display = "none";
         addModeratorBtn.style.display = 'none';
@@ -104,7 +104,7 @@ function getDates() {
     var present = document.getElementById("presentation_id");
 
     $.ajax({
-        type: 'GET', // define the type of HTTP verb we want to use (GET for our form)
+        type: 'GET',  
         url: 'api/getdates',
         success: function (result) {
             $.each(result, function (index, value) {
