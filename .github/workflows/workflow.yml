@@ -27,7 +27,7 @@ jobs:
       # שלב 4: Test API - קבלת כל הסטודנטים
       - name: Test Get All Students
         run: |
-          for i in {1..30}; do
+          for i in {1..10}; do
             STATUS=$(docker compose exec -T backend curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/api/getstudents || echo 0)
             echo "Attempt $i - Status code: $STATUS"
 
