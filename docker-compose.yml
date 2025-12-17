@@ -7,18 +7,37 @@ services:
     volumes:
       - mongo_data:/data/db
 
+  # backend:
+  #   build:
+  #     context: .
+  #     dockerfile: server/Dockerfile
+  #   # container_name: backend
+  #   environment:
+  #     DATABASE_URL: mongodb://mongo:27017/finalproject
+  #     PORT: 3000
+  #   depends_on:
+  #     - mongo
+  #   expose:
+  #     - "3000"
+
+
   backend:
     build:
       context: .
       dockerfile: server/Dockerfile
-    # container_name: backend
     environment:
       DATABASE_URL: mongodb://mongo:27017/finalproject
       PORT: 3000
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     expose:
       - "3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/getstudents"]
+      interval: 5s
+      retries: 5
+
 
   nginx:
     build:
