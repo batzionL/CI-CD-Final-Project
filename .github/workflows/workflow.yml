@@ -24,11 +24,11 @@ jobs:
         run: docker compose up -d --build
         continue-on-error: false  # אם exit 1
 
-     # שלב 4: Test API - קבלת כל הסטודנטים
+      # שלב 4: Test API - קבלת כל הסטודנטים
       - name: Test Get All Students
         run: |
           for i in {1..10}; do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/api/getstudents)
+            STATUS=$(docker compose exec -T backend curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/api/getstudents)
             echo "Attempt $i - Status code: $STATUS"
 
             if [ "$STATUS" -eq 200 ]; then
@@ -42,7 +42,6 @@ jobs:
 
           echo "Test failed: API did not become ready in time"
           exit 1
-
 
       # שלב 5: Send email if any step failed
       - name: Send failure email
@@ -58,7 +57,7 @@ jobs:
           to: batziona99@gmail.com
           from: ${{ secrets.SMTP_USER }}
           secure: true
-        
+
       - name: Login to Docker Hub
         if: success()
         uses: docker/login-action@v2
@@ -71,8 +70,8 @@ jobs:
         run: |
           docker build -t bzl123/ci-cd-final_project:latest .
           docker push bzl123/ci-cd-final_project:latest
-      
-         #   שלב 6: Shutdown Docker Compose
+
+      # שלב 6: Shutdown Docker Compose
       - name: Shutdown Docker Compose
         if: always()
         run: docker compose down
