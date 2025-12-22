@@ -1,25 +1,19 @@
+version: "3.9"
+
 services:
   mongo:
-    image: mongo:4.4
+    image: mongo:7
     container_name: mongo
     ports:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
-
-  # backend:
-  #   build:
-  #     context: .
-  #     dockerfile: server/Dockerfile
-  #   # container_name: backend
-  #   environment:
-  #     DATABASE_URL: mongodb://mongo:27017/finalproject
-  #     PORT: 3000
-  #   depends_on:
-  #     - mongo
-  #   expose:
-  #     - "3000"
-
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
 
   backend:
     build:
@@ -31,13 +25,8 @@ services:
     depends_on:
       mongo:
         condition: service_healthy
-    ports:
-      - "3000:3000"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/getstudents"]
-      interval: 5s
-      retries: 5
-
+    expose:
+      - "3000"
 
   nginx:
     build:
