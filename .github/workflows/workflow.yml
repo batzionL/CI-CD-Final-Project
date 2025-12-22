@@ -71,11 +71,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push Backend Image
+      - name: Build and Push Images
         if: success()
         run: |
           docker build -t bzl123/ci-cd-final_project-backend:latest -f server/Dockerfile .
+          docker build -t bzl123/ci-cd-final_project-nginx:latest -f nginx/Dockerfile .
           docker push bzl123/ci-cd-final_project-backend:latest
+          docker push bzl123/ci-cd-final_project-nginx:latest
 
       # שלב 6: Shutdown Docker Compose
       - name: Shutdown Docker Compose
