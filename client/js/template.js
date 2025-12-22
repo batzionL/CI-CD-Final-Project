@@ -111,6 +111,12 @@ function getIdPjt() {
 }
 
 function proposal_upload(id) {
+    const file = document.getElementById('propFileInput').files[0];
+    if (!file) {
+        alert('Please select a file first!');
+        return;
+    }
+    
     if (data === "student") {
         checkIfStudentUploadedRpt(id_sdt, 'prop');
     }
@@ -118,7 +124,6 @@ function proposal_upload(id) {
         checkUploadTnplt('prop')
     }
     const formData = new FormData(); 
-    const file = document.getElementById('propFileInput').files[0];
     const fileName = 'proposal_rpt-' + id + '.pdf';
     formData.append('proposal_rpt', file);
     $.ajax({
@@ -137,6 +142,12 @@ function proposal_upload(id) {
 }
 
 function alfa_upload(id) {
+    const file = document.getElementById('alfaFileInput').files[0];
+    if (!file) {
+        alert('Please select a file first!');
+        return;
+    }
+    
     if (data === "student") {
         checkIfStudentUploadedRpt(id_sdt, 'alfa');
     }
@@ -144,7 +155,6 @@ function alfa_upload(id) {
         checkUploadTnplt('alfa')
     }
     const formData = new FormData(); 
-    const file = document.getElementById('alfaFileInput').files[0];
     const fileName = 'alfa_rpt-' + id + '.pdf';
     formData.append('alfa_rpt', file);
     $.ajax({
@@ -163,6 +173,12 @@ function alfa_upload(id) {
 }
 
 function beta_upload(id) {
+    const file = document.getElementById('betaFileInput').files[0];
+    if (!file) {
+        alert('Please select a file first!');
+        return;
+    }
+    
     if (data === "student") {
         checkIfStudentUploadedRpt(id, 'beta');
     }
@@ -170,7 +186,6 @@ function beta_upload(id) {
         checkUploadTnplt('beta')
     }
     const formData = new FormData(); 
-    const file = document.getElementById('betaFileInput').files[0];
     const fileName = 'beta_rpt-' + id + '.pdf';
     formData.append('beta_rpt', file);
     $.ajax({
@@ -189,6 +204,12 @@ function beta_upload(id) {
 }
 
 function final_upload(id) {
+    const file = document.getElementById('finalFileInput').files[0];
+    if (!file) {
+        alert('Please select a file first!');
+        return;
+    }
+    
     if (data === "student") {
         checkIfStudentUploadedRpt(id, 'final');
     }
@@ -196,7 +217,6 @@ function final_upload(id) {
         checkUploadTnplt('final')
     }
     const formData = new FormData(); 
-    const file = document.getElementById('finalFileInput').files[0];
     const fileName = 'final_rpt-' + id + '.pdf';
     formData.append('final_rpt', file);
     $.ajax({
