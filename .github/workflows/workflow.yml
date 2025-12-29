@@ -10,27 +10,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # שלב 1: Checkout code
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # שלב 2: Set up Docker
+      # Step 2: Set up Docker
       - name: Set up Docker
         uses: docker/setup-buildx-action@v2
 
-      # שלב 3: Run Docker Compose
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        working-directory: ./server
+        run: npm install
+
+      # Step 4: Run Docker Compose
       - name: Run Docker Compose
         id: docker
         run: docker compose up -d --build
-        continue-on-error: false  # אם exit 1
+        continue-on-error: false  # if exit 1
 
-      # שלב 4: Wait for services to be ready
+      # Step 5: Wait for services to be ready
       - name: Wait for services
         run: |
           echo "Waiting for services to start..."
           sleep 30
 
-      # שלב 5: Test API - קבלת כל הסטודנטים
+      # Step 6: Test API - Get all students
       - name: Test Get All Students
         run: |
           for i in {1..15}; do
@@ -49,7 +54,7 @@ jobs:
           echo "Test failed: API did not become ready in time"
           exit 1
 
-      # שלב 5: Send email if any step failed
+      # Step 7: Send email if any step failed
       - name: Send failure email
         if: ${{ failure() }}
         uses: dawidd6/action-send-mail@v3
@@ -74,12 +79,14 @@ jobs:
       - name: Build and Push Images
         if: success()
         run: |
-          docker build -t bzl123/ci-cd-final_project-backend:latest -f server/Dockerfile .
-          docker build -t bzl123/ci-cd-final_project-nginx:latest -f nginx/Dockerfile .
-          docker push bzl123/ci-cd-final_project-backend:latest
-          docker push bzl123/ci-cd-final_project-nginx:latest
+          export TZ='Asia/Jerusalem'
+          TAG=$(date +%Y%m%d-%H%M%S)
+          docker build -t bzl123/ci-cd-final_project:backend-$TAG -f server/Dockerfile .
+          docker build -t bzl123/ci-cd-final_project:nginx-$TAG -f nginx/Dockerfile .
+          docker push bzl123/ci-cd-final_project:backend-$TAG
+          docker push bzl123/ci-cd-final_project:nginx-$TAG
 
-      # שלב 6: Shutdown Docker Compose
+      # Step 8: Shutdown Docker Compose
       - name: Shutdown Docker Compose
         if: always()
         run: docker compose down
