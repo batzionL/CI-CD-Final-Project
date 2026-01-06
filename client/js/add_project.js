@@ -17,7 +17,17 @@ jQuery(async function ($) {
         var update_or_add = document.getElementById('id_group_update')    
         update_or_add.style.visibility = "hidden";
 
-        localStorage.clear()
+        localStorage.removeItem("proj_id");
+        localStorage.removeItem("english_name_proj");
+        localStorage.removeItem("hebrew_name_proj");
+        localStorage.removeItem("details_proj");
+        localStorage.removeItem("type_proj");
+        localStorage.removeItem("status_proj");
+        localStorage.removeItem("offer_proj");
+        localStorage.removeItem("add_time_proj");
+        localStorage.removeItem("single_or_couple_proj");
+        localStorage.removeItem("external_factor_proj");
+        localStorage.removeItem("external_party_email_proj");
         $('#title').html("Add new project:")
     }
 });
