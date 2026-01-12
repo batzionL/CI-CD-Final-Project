@@ -4,10 +4,13 @@ services:
     container_name: mongo
     ports:
       - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
     volumes:
       - mongo_data:/data/db
     healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      test: echo 'db.runCommand("ping").ok' | mongosh -u $MONGO_USER -p $MONGO_PASSWORD --authenticationDatabase admin localhost:27017/admin --quiet
       interval: 10s
       timeout: 10s
       retries: 5
@@ -18,7 +21,7 @@ services:
       context: .
       dockerfile: server/Dockerfile
     environment:
-      DATABASE_URL: mongodb://mongo:27017/finalproject
+      DATABASE_URL: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongo:27017/finalproject?authSource=admin
       PORT: 3000
     depends_on:
       mongo:

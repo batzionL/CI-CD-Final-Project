@@ -1,5 +1,5 @@
 jQuery(function ($) {
-    var name = localStorage.getItem('name')
+    var name = localStorage.getItem('name') || 'Guest';
     document.getElementById("title").innerHTML = "Hello " + name;
 
     var project = document.createElement("option")
