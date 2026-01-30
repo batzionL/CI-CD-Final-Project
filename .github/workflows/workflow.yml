@@ -60,7 +60,7 @@ jobs:
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: "Workflow Failed"
           body: "Docker Compose or API test failed! Check GitHub Actions logs."
-          to: EMAIL
+          to: ${{ secrets.EMAIL }}
           from: ${{ secrets.SMTP_USER }}
           secure: true
 
@@ -85,3 +85,17 @@ jobs:
       - name: Shutdown Docker Compose
         if: always()
         run: docker compose down
+
+      # Deploy to EC2
+      - name: Deploy to EC2
+        if: success()
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /home/ubuntu/app
+            docker compose pull
+            docker compose down
+            docker compose up -d
