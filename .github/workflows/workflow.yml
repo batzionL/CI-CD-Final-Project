@@ -64,6 +64,7 @@ jobs:
           from: ${{ secrets.SMTP_USER }}
           secure: true
 
+      # Login to Docker Hub
       - name: Login to Docker Hub
         if: success()
         uses: docker/login-action@v2
@@ -71,6 +72,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      # Build and push Docker images
       - name: Build and Push Images
         if: success()
         run: |
