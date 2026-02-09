@@ -162,6 +162,7 @@ function addJdgIdToActvPjts(idPjt, name, num) {
     })
 }
 
+
 function getPjt(id, judges) {
     $.ajax({
         type: 'GET',
