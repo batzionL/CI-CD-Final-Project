@@ -19,7 +19,6 @@ jQuery(async function ($) {
 
         localStorage.removeItem("proj_id");
         localStorage.removeItem("english_name_proj");
-        localStorage.removeItem("hebrew_name_proj");
         localStorage.removeItem("details_proj");
         localStorage.removeItem("type_proj");
         localStorage.removeItem("status_proj");
@@ -74,27 +73,25 @@ function getFullDate() {
 }
 
 async function receiving_the_information() {
-    var english_name = localStorage.getItem('english_name_proj')
-    // var hebrew_name = localStorage.getItem('hebrew_name_proj')
-    var details = localStorage.getItem('details_proj')
-    var project_type = localStorage.getItem('type_proj')
-    var status = localStorage.getItem('status_proj')
-    var offer = localStorage.getItem('offer_proj')
-    var date = localStorage.getItem('add_time_proj')
-    var single_or_couple = localStorage.getItem('single_or_couple_proj')
-    var external_factor = localStorage.getItem('external_factor_proj')
-    var external_party_email = localStorage.getItem('external_party_email_proj')
+    var english_name = localStorage.getItem('english_name_proj') || '';
+    var details = localStorage.getItem('details_proj') || '';
+    var project_type = localStorage.getItem('type_proj') || '';
+    var status = localStorage.getItem('status_proj') || '';
+    var offer = localStorage.getItem('offer_proj') || '';
+    var date = localStorage.getItem('add_time_proj') || '';
+    var single_or_couple = localStorage.getItem('single_or_couple_proj') || '';
+    var external_factor = localStorage.getItem('external_factor_proj') || '';
+    var external_party_email = localStorage.getItem('external_party_email_proj') || '';
 
-    document.getElementById("pjt_eng_id").setAttribute('value', english_name)
-    // document.getElementById("pjt_hbw_id").setAttribute('value', hebrew_name)
+    document.getElementById("pjt_eng_id").value = english_name;
     document.getElementById("details_id").value = details;
-    document.getElementById("project_type_id").setAttribute('value', project_type)
+    document.getElementById("project_type_id").value = project_type;
     document.getElementById('status_id').value = status;
-    document.getElementById("offer_id").setAttribute('value', offer)
-    document.getElementById("add_time_id").setAttribute('value', date)
+    document.getElementById("offer_id").value = offer;
+    document.getElementById("add_time_id").value = date;
     document.getElementById('single_or_couple_id').value = single_or_couple;
-    document.getElementById("external_factor_id").setAttribute('value', external_factor)
-    document.getElementById("external_party_email_id").setAttribute('value', external_party_email);
+    document.getElementById("external_factor_id").value = external_factor;
+    document.getElementById("external_party_email_id").value = external_party_email;
 }
 
 const validateEmail = (email) => {
@@ -236,6 +233,7 @@ async function add_project_id_to_students(id_pjt, single_or_couple) {
 
 
 async function update_student_idPjt_and_grd(id_sdt, id_pjt, id_grd, num, single_or_couple) {
+    console.log('DEBUG update_student_idPjt_and_grd called with id_sdt:', id_sdt, 'type:', typeof id_sdt);
     if (single_or_couple == 'couple' || num == 1) {
         getSdtName(id_sdt, id_pjt, num);
     }
@@ -248,8 +246,15 @@ async function update_student_idPjt_and_grd(id_sdt, id_pjt, id_grd, num, single_
             "id_grade": id_grd
         }),
         success: async function (result) {
-            if (num == 1) {
+            console.log('✓ Student connected to project successfully:', result);
+            if (num == 1 && single_or_couple == 'couple') {
                 await save_grade_id_doc(id_pjt, id_grd, single_or_couple);
+            } else if (num == 1) {
+                alert('Student connected to project successfully!');
+                location.href = "/home_page.html";
+            } else {
+                alert('Second student connected to project successfully!');
+                location.href = "/home_page.html";
             }
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -310,7 +315,16 @@ async function save_grade_id_doc(id_pjt, id_grade_doc, single_or_couple) {
             if (isEdit == 'true') {
                 var id_second_sdt = localStorage.getItem("id_second_sdt")
                 var num = localStorage.getItem("num_for_sec_sdt")
-                await update_student_idPjt_and_grd(id_second_sdt, id_pjt, id_grade_doc, num, single_or_couple);
+                console.log('DEBUG: id_second_sdt =', id_second_sdt, 'type:', typeof id_second_sdt);
+                console.log('DEBUG: num =', num);
+                console.log('DEBUG: isEdit =', isEdit);
+                if (id_second_sdt && id_second_sdt !== 'null' && id_second_sdt !== '') {
+                    console.log('DEBUG: Calling update_student_idPjt_and_grd with id:', id_second_sdt);
+                    await update_student_idPjt_and_grd(id_second_sdt, id_pjt, id_grade_doc, num, single_or_couple);
+                } else {
+                    console.log('DEBUG: Skipping update, redirecting to home');
+                    location.href = "/home_page.html";
+                }
             }
         },
         error: function (jqXhr, textStatus, errorThrown) {

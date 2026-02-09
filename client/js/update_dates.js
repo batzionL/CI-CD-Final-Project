@@ -74,7 +74,7 @@ function setDates(prevProp, prevAlfa, prevBeta, prevFinal, prevPresnt){
             "presentation": presentation
         }),
         success: function (result) {
-            alert("התאריך/ים נשמר/ו בהצלחה");
+            alert("The date(s) have been saved successfully");
             location.href = "/assignments_and_submission_dates.html";
         },
         error: function (jqXhr, textStatus, errorThrown) {

@@ -4,20 +4,25 @@ var SubmissionReportSchema = new mongoose.Schema({
 
     id_project: {
         type: String,
+        required: true
     },
     
     prop_rpt_sub:{
         type: String,
+        default: null
     },
 
     alfa_rpt_sub: {
         type: String,
+        default: null
     },
     beta_rpt_sub:{
-        type: String
+        type: String,
+        default: null
     },
     final_rpt_sub: {
         type: String,
+        default: null
     },
 
 }, { timestamps: true });

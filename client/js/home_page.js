@@ -66,7 +66,7 @@ jQuery(function ($) {
                         type: 'GET', 
                         url: 'api/project/' + option.id,
                         success: function (result) {
-                            explanation.value = result[0].details;
+                            explanation.value = result[0].details || '';
 
                             if (result[0].status == 'open') {
                                 status.value = 'Open';
@@ -91,8 +91,11 @@ jQuery(function ($) {
                     });
 
                     if (document.getElementById("id_explanation") != "") {
-                        document.getElementById('editProjbtn').onclick = function () {
+                        document.getElementById('editProjbtn').onclick = function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
                             editProject(option.id);
+                            return false;
                         };
 
                         document.getElementById("deleteProjectBtn").onclick = function () {
@@ -112,28 +115,30 @@ jQuery(function ($) {
 
 
 function editProject(id) {
+    console.log('editProject called with id:', id);
     localStorage.setItem("isEdit", 'true');
 
     $.ajax({
         type: 'GET', 
         url: 'api/project/' + id,
         success: function (result) {
+            console.log('Project data received:', result[0]);
             var data = result[0]
-            localStorage.setItem('proj_id', data._id)
-            localStorage.setItem('english_name_proj', data.name_english)
-            localStorage.setItem('hebrew_name_proj', data.name_hebrew)
-            localStorage.setItem('details_proj', data.details)
-            localStorage.setItem('type_proj', data.project_type)
-            localStorage.setItem('status_proj', data.status)
-            localStorage.setItem('offer_proj', data.offer)
-            localStorage.setItem('add_time_proj', data.add_time)
-            localStorage.setItem('single_or_couple_proj', data.single_or_couple)
-            localStorage.setItem('external_factor_proj', data.external_factor)
-            localStorage.setItem("external_party_email_proj", data.external_party_email);
+            localStorage.setItem('proj_id', data._id || '')
+            localStorage.setItem('english_name_proj', data.name_english || '')
+            localStorage.setItem('details_proj', data.details || '')
+            localStorage.setItem('type_proj', data.project_type || '')
+            localStorage.setItem('status_proj', data.status || '')
+            localStorage.setItem('offer_proj', data.offer || '')
+            localStorage.setItem('add_time_proj', data.add_time || '')
+            localStorage.setItem('single_or_couple_proj', data.single_or_couple || '')
+            localStorage.setItem('external_factor_proj', data.external_factor || '')
+            localStorage.setItem("external_party_email_proj", data.external_party_email || '');
+            console.log('localStorage after setting:', localStorage);
             window.location.href = "/add_project.html";
         },
         error: function (err) {
-            console.log("err" + err);
+            console.log("AJAX error:", err);
         }
     });
 }
@@ -149,7 +154,6 @@ function getProjectsDetails(id, index) {
             project.setAttribute('value', index)
             project.setAttribute("id", value._id)
             project.setAttribute("name_english", value.name_english)
-            project.setAttribute("name_hebrew", value.name_hebrew)
             project.setAttribute("details", value.details)
             project.setAttribute("project_type", value.project_type)
             project.setAttribute("status", value.status)
@@ -159,7 +163,7 @@ function getProjectsDetails(id, index) {
             project.setAttribute("external_factor", value.external_factor)
             project.setAttribute("external_party_email", value.external_party_email)
 
-            project.innerHTML = value.name_hebrew
+            project.innerHTML = value.name_english
             projects_name.appendChild(project)
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -179,7 +183,6 @@ function getAllProjectsDetails() {
                 project.setAttribute('value', index)
                 project.setAttribute("id", value._id)
                 project.setAttribute("name_english", value.name_english)
-                project.setAttribute("name_hebrew", value.name_hebrew)
                 project.setAttribute("details", value.details)
                 project.setAttribute("project_type", value.project_type)
                 project.setAttribute("status", value.status)
@@ -188,7 +191,7 @@ function getAllProjectsDetails() {
                 project.setAttribute("single_or_couple", value.single_or_couple)
                 project.setAttribute("external_factor", value.external_factor)
                 project.setAttribute("external_party_email", value.external_party_email)
-                project.innerHTML = value.name_hebrew;
+                project.innerHTML = value.name_english;
                 projects_name.appendChild(project);
                 index++;
             });
@@ -211,7 +214,7 @@ function getIdModFromPro(e) {
         type: 'GET', 
         url: 'api/project/' + id_pjt,
         success: function (result) {
-            sendRequest(result[0].mod_id, result[0].name_hebrew);
+            sendRequest(result[0].mod_id, result[0].name_english);
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
@@ -225,9 +228,9 @@ function sendRequest(id_mod, name) {
         url: 'api/getemail/' + id_mod,
         contentType: 'application/json',
         success: function (result) {
-            var subject = 'בקשת פרוייקט';
-            var body1 = 'שלום וברכה,';
-            var body2 = "אשמח לשמוע פרטים אודות הפרוייקט:" + '\n' + name;
+            var subject = 'Project Request';
+            var body1 = 'Hello,';
+            var body2 = "I would like to hear details about the project:" + '\n' + name;
             var fullBody = body1 + "\n" + body2;
             var mailtoUrl = 'mailto:' + result + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(fullBody);
             window.open(mailtoUrl, '_self');
@@ -262,11 +265,11 @@ function stoppedProject(id) {
         url: "api/stpPjt/" + id,
         contentType: 'application/json',
         data: JSON.stringify({
-            "status": "הופסק"
+            "status": "Stopped"
         }),
         success: function (data) {
             console.log('stopped')
-            document.getElementById("status_id").innerHTML = "הופסק";
+            document.getElementById("status_id").innerHTML = "Stopped";
         },
         error: function (err) {
             console.log("err", err);

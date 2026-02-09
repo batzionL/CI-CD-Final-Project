@@ -84,15 +84,22 @@ jQuery(function ($) {
 
 function getIdPjt() {
     var idPjt;
+    const id_sdt = localStorage.getItem('stdID');
+    console.log('DEBUG getIdPjt: Looking for student ID:', id_sdt);
     $.ajax({
         type: 'GET',
         url: 'api/getstudents',
         success: function (result) {
+            console.log('DEBUG getIdPjt: All students:', result);
             for (var i = 0; i < result.length; i++) {
                 if (result[i].sdt_ID == id_sdt) {
                     idPjt = result[i].id_pjt;
+                    console.log('DEBUG getIdPjt: Found student, id_pjt:', idPjt);
                     break;
                 }
+            }
+            if (!idPjt) {
+                console.error('DEBUG getIdPjt: Student not found or has no project!');
             }
 
             var prop = document.getElementById('propUpload');
@@ -371,7 +378,7 @@ function loadPjt(idBtn) {
                     type: 'GET',
                     url: 'api/project/' + result,
                     success: function (result) {
-                        var name = result[0].name_hebrew;
+                        var name = result[0].name_english;
                         document.getElementById("namePjt").innerHTML = "Project Name: " + name;
                         var jdgIdDoc = localStorage.getItem('jdgIdDoc');
                         showDetails(jdgIdDoc, result[0].Grades_arr, result[0].sub_rpt_id, result[0]._id);
@@ -511,7 +518,7 @@ function saveSubRpt(idBtn) {
             "idBtn": idBtn
         }),
         success: function (result) {
-            alert("האישור נשלח");
+            alert("The confirmation has been sent");
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);
@@ -645,6 +652,7 @@ function showDetailsForSdt(id_pjt, id_grd) {
         type: 'GET',
         url: 'api/project/' + id_pjt,
         success: function (result) {
+            document.getElementById('namePjt').innerHTML = 'Project Name: ' + result[0].name_english;
             getSub(result[0].sub_rpt_id);
         },
         error: function (jqXhr, textStatus, errorThrown) {

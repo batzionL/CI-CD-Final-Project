@@ -5,7 +5,7 @@ async function sub(e) {
     const password = document.getElementById("id_password").value;
 
     if (!username) {
-        alert("אנא הזיני שם משתמש");
+        alert("Please enter a username");
         return;
     }
 

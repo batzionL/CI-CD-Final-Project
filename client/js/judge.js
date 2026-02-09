@@ -168,9 +168,14 @@ function getPjt(id, judges) {
         url: 'api/project/' + id,
         success: function (result) {
             var grades = result[0].Grades_arr;
-            add_judge_grd(judges[0], grades[0]);
-            add_judge_grd(judges[1], grades[1]);
-            add_judge_grd(judges[2], grades[2]);
+            console.log('DEBUG getPjt: Project grades:', grades, 'Judges:', judges);
+            if (grades && grades.length >= 3) {
+                add_judge_grd(judges[0], grades[0]);
+                add_judge_grd(judges[1], grades[1]);
+                add_judge_grd(judges[2], grades[2]);
+            } else {
+                console.error('ERROR: Project does not have 3 grade documents. Grades:', grades);
+            }
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(errorThrown);

@@ -20,27 +20,32 @@ var ActiveProjectsSchema = new mongoose.Schema({
 
     jdgName1: {
         type: String,
-        trim: true
+        trim: true,
+        default: null
     },
 
     jdgName2: {
         type: String,
-        trim: true
+        trim: true,
+        default: null
     },
 
     jdgName3: {
         type: String,
-        trim: true
+        trim: true,
+        default: null
     },
 
     sdtName1: {
         type: String,
-        trim: true
+        trim: true,
+        default: null
     },
 
     sdtName2: {
         type: String,
-        trim: true
+        trim: true,
+        default: null
     }
 
 }, { timestamps: true });

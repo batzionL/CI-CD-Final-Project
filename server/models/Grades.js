@@ -4,9 +4,11 @@ var GradesSchema = new mongoose.Schema({
 
     id_project: {
         type: String,
+        required: true
     },
     id_judge: {
-        type: String
+        type: String,
+        default: null
     },
     alfa_rpt_grd: {
         type: Number,

@@ -65,11 +65,13 @@ var ProjectSchema = new mongoose.Schema({
     },
 
     mod_id: {
-        type: String
+        type: String,
+        default: null
     },
 
     sub_rpt_id: {
-        type: String
+        type: String,
+        default: null
     },
 
     Grades_arr: [{
